@@ -66,6 +66,11 @@ main{max-width:1400px;margin:0 auto;padding:16px}
 .counter-label{font-size:11px;color:var(--muted);min-width:32px}
 .tag-counter{background:rgba(46,204,113,.15);color:#2ecc71;padding:1px 6px;border-radius:6px;font-size:10px}
 .tag-countered{background:rgba(231,76,60,.15);color:#e74c3c;padding:1px 6px;border-radius:6px;font-size:10px}
+.equip-row{display:flex;gap:8px;padding:4px 0;flex-wrap:wrap;align-items:flex-start}
+.equip-label{color:var(--muted);font-size:12px;flex-shrink:0;padding-top:4px}
+.equip-items{display:flex;gap:4px;flex-wrap:wrap}
+.equip-tag{background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.3);color:#7eb8ff;padding:2px 8px;border-radius:6px;font-size:12px}
+.pro-tip{padding:6px 10px;background:rgba(255,200,100,.08);border-left:3px solid rgba(255,200,100,.4);border-radius:0 8px 8px 0;margin-bottom:6px;font-size:13px;line-height:1.5}
 .tips-text{font-size:12px;color:#b8bfc9;line-height:1.6}
 .no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px}
 footer{text-align:center;padding:30px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);margin-top:32px}
@@ -107,8 +112,14 @@ return `<div class="hero-card" onclick="this.classList.toggle('expanded')">
 <div class="hero-meta"><div class="hero-name">${esc(h.cname)}</div><div class="hero-title">${esc(h.title)}</div>
 <div class="hero-tags"><span class="tag tag-type">${esc(h.type_name||'英雄')}</span><span class="tag tag-lane">${esc(h.primary_lane||'')}</span></div></div></div>
 <div class="hero-body"><div class="section"><div class="sec-title">技能详解</div>${skillHtml}</div>
+<div class="section"><div class="sec-title">铭文推荐</div><div class="tips-text">${esc(h.inscriptions||'通用铭文')}</div></div>
+<div class="section"><div class="sec-title">出装推荐</div>${(h.equips||[]).map((e,i)=>`<div class="equip-row"><span class="equip-label">方案${i+1}</span><span class="equip-items">${e.map(x=>`<span class="equip-tag">${x}</span>`).join('')}</span></div>`).join('')||'<div class="tips-text">常规出装</div>'}</div>
+<div class="section"><div class="sec-title">召唤师技能</div><div class="tips-text">${esc(h.summoner||'闪现')}</div></div>
+<div class="section"><div class="sec-title">技能加点</div><div class="tips-text">${esc(h.skill_order||'主二副一')}</div></div>
 <div class="section"><div class="sec-title">连招技巧</div>${comboHtml}</div>
 <div class="section"><div class="sec-title">对位关系</div><div class="counter-group"><div class="counter-label">克制:</div>${counters||'无'}</div><div class="counter-group"><div class="counter-label">被克:</div>${countered||'无'}</div></div>
+<div class="section"><div class="sec-title">分阶段打法</div><div class="tips-text">${esc(h.phases||'')}</div></div>
+<div class="section"><div class="sec-title">进阶技巧</div>${(h.pro_tips||[]).map(t=>`<div class="pro-tip">${esc(t)}</div>`).join('')||'<div class="tips-text">无</div>'}</div>
 <div class="section"><div class="sec-title">玩法技巧</div><div class="tips-text">${esc(tips)}</div></div></div></div>`;}
 function bind(){document.querySelectorAll('.expand-btn').forEach(b=>{b.onclick=e=>{e.stopPropagation();e.target.closest('.skill-item').classList.toggle('expanded');e.target.textContent=e.target.textContent==='展开'?'收起':'展开'}})}
 document.querySelectorAll('.nav-btn').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}});
