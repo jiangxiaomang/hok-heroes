@@ -586,6 +586,204 @@ footer{
   .medal-key{font-size:11px;padding:6px 8px}
 }
 
+
+/* ==================== 🎙️ 对局语音助手 ==================== */
+.voice-btn{
+  position:fixed;right:16px;bottom:68px;z-index:200;
+  width:52px;height:52px;border-radius:50%;
+  border:2px solid rgba(200,170,80,.55);
+  background:linear-gradient(135deg,rgba(40,50,70,.95),rgba(18,24,36,.95));
+  color:var(--gold-bright);font-size:24px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  box-shadow:0 4px 24px rgba(212,175,55,.4);
+  transition:transform .2s,box-shadow .2s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+.voice-btn:active{transform:scale(.92)}
+.voice-btn.on{
+  background:linear-gradient(135deg,#b8860b,#d4af37);
+  color:#0a0c14;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 4px 24px rgba(212,175,55,.4)}
+  50%{box-shadow:0 4px 40px rgba(212,175,55,.85),0 0 0 12px rgba(212,175,55,.08)}
+}
+.voice-panel{
+  position:fixed;right:16px;bottom:130px;z-index:201;
+  width:min(320px,calc(100vw - 32px));
+  background:linear-gradient(180deg,rgba(18,24,38,.98),rgba(12,16,26,.98));
+  border:1px solid rgba(200,170,80,.45);
+  border-radius:16px;
+  padding:14px;
+  display:none;
+  box-shadow:0 12px 48px rgba(0,0,0,.7);
+  max-height:65vh;overflow-y:auto;
+}
+.voice-panel.open{display:block}
+.voice-panel h3{
+  margin:0 0 10px;font-size:14px;color:var(--gold);
+  display:flex;align-items:center;gap:6px;justify-content:space-between;
+}
+.voice-panel h3 .close{cursor:pointer;color:#888;font-size:18px;padding:0 6px}
+.voice-timer{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:10px;background:rgba(212,175,55,.08);
+  border:1px solid rgba(212,175,55,.25);border-radius:10px;
+  margin-bottom:12px;
+}
+.voice-timer .clock{
+  font-family:'SF Mono',Menlo,monospace;font-size:26px;font-weight:800;
+  color:#f5d77f;letter-spacing:2px;min-width:90px;text-align:center;
+}
+.voice-timer .btn{
+  padding:8px 14px;border:none;border-radius:8px;
+  background:var(--gold);color:#0a0c14;font-weight:700;font-size:13px;cursor:pointer;
+}
+.voice-timer .btn.stop{background:#883e3e;color:#fff}
+.voice-timer .btn.reset{background:#3a4256;color:#c8bfae}
+.voice-voice-toggle{
+  display:flex;align-items:center;gap:8px;font-size:12px;color:#c8bfae;
+  margin-bottom:10px;padding:8px;background:rgba(255,255,255,.03);border-radius:8px;
+}
+.voice-voice-toggle input{accent-color:var(--gold);width:16px;height:16px}
+.voice-voice-toggle select{
+  flex:1;background:#1a2030;color:#e0d8c8;border:1px solid rgba(200,170,80,.3);
+  padding:5px 8px;border-radius:6px;font-size:12px;
+}
+.voice-saybox{display:flex;gap:6px;margin-bottom:12px}
+.voice-saybox input{
+  flex:1;padding:8px 10px;background:rgba(22,28,42,.85);color:#e0d8c8;
+  border:1px solid rgba(200,170,80,.25);border-radius:8px;font-size:13px;
+}
+.voice-saybox button{
+  padding:8px 12px;border:none;border-radius:8px;background:var(--gold);
+  color:#0a0c14;font-weight:700;font-size:12px;cursor:pointer;
+}
+.voice-quick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.voice-quick span{
+  padding:6px 10px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);
+  border-radius:14px;font-size:11px;color:#f5d77f;cursor:pointer;
+}
+.voice-quick span:active{background:rgba(212,175,55,.35)}
+.voice-marks{display:flex;flex-direction:column;gap:4px}
+.voice-marks .mark{
+  display:flex;gap:8px;align-items:center;font-size:11px;
+  padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;color:#bbb;
+}
+.voice-marks .mark .t{
+  font-family:Menlo,monospace;color:#f5d77f;font-weight:700;min-width:36px;text-align:center;
+  background:rgba(212,175,55,.1);border-radius:4px;padding:2px 4px;
+}
+.voice-marks .mark.passed{opacity:.4}
+.voice-marks .mark.next{border:1px solid rgba(212,175,55,.5);background:rgba(212,175,55,.12);color:#f5d77f}
+@media(max-width:640px){
+  .voice-btn{right:12px;bottom:64px;width:48px;height:48px;font-size:22px}
+  .voice-panel{right:12px;bottom:120px;width:calc(100vw - 24px)}
+}
+
+/* ==================== 🎙️ 语音输入与搜索栏增强 ==================== */
+.search-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+  width:100%;
+}
+.search-box input{
+  width:100%;
+  padding:13px 80px 13px 44px; /* 留出两端图标空间 */
+  border:1px solid rgba(200,170,80,.25);
+  background:rgba(22,28,42,.85);
+  color:var(--text);
+  border-radius:24px; /* 胶囊圆角，更贴近现代手机端风格 */
+  font-size:15px;
+  outline:none;
+  transition:all .3s;
+}
+.search-wrapper::before{
+  content:'🔍';
+  position:absolute;
+  left:16px;
+  font-size:14px;
+  opacity:.6;
+  pointer-events:none;
+}
+.search-box input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 20px rgba(212,175,55,.2);
+  background:rgba(26,32,48,.95);
+}
+.search-box .clear-btn{
+  position:absolute;
+  right:48px;
+  background:none;
+  border:none;
+  color:#888;
+  font-size:16px;
+  cursor:pointer;
+  padding:6px;
+  display:none;
+}
+.search-box .mic-btn{
+  position:absolute;
+  right:10px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  background:rgba(212,175,55,.15);
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .2s;
+  outline:none;
+}
+.search-box .mic-btn:hover{
+  background:rgba(212,175,55,.3);
+  transform:scale(1.05);
+}
+.search-box .mic-btn.listening{
+  background:#d4af37 !important;
+  color:#0a0c14 !important;
+  box-shadow:0 0 15px rgba(212,175,55,.8);
+  animation:mic-pulse-anim 1.5s infinite;
+}
+@keyframes mic-pulse-anim{
+  0%{box-shadow:0 0 0 0 rgba(212,175,55,.7)}
+  70%{box-shadow:0 0 0 12px rgba(212,175,55,0)}
+  100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}
+}
+.speech-tip{
+  display:none;
+  font-size:12px;
+  color:var(--gold);
+  text-align:center;
+  margin-top:6px;
+  padding:4px 10px;
+  background:rgba(212,175,55,.1);
+  border-radius:12px;
+  border:1px dashed rgba(212,175,55,.3);
+}
+.speech-tip.show{display:inline-block}
+.speech-tip.error{
+  color:#ff8888;
+  border-color:rgba(255,100,100,.3);
+  background:rgba(255,100,100,.1);
+}
+@media(max-width:640px){
+  .search-box input{
+    padding:11px 76px 11px 40px;
+    font-size:14px;
+    border-radius:20px;
+  }
+  .search-wrapper::before{left:14px;font-size:13px}
+  .search-box .mic-btn{width:32px;height:32px;right:8px}
+  .search-box .clear-btn{right:44px}
+}
+
 </style>
 </head>
 <body>
@@ -604,8 +802,18 @@ footer{
 <button class="nav-btn" data-lane="游走">游走</button>
 </nav>
 <div class="search-box">
-<input type="text" id="search" placeholder="搜索英雄名称或称号..." oninput="render()">
-<div style="font-size:11px;color:var(--muted);margin-top:6px;text-align:center">数据更新: 2026-10-06 · 133位英雄 · 含官方铭文/出装/组队阵容体系</div>
+  <div class="search-wrapper">
+    <input type="text" id="search" placeholder="搜索英雄、称号，或点击右侧话筒语音说出..." oninput="render()">
+    <button id="clear-btn" class="clear-btn" onclick="clearSearch()" style="display:none" aria-label="清除搜索">✕</button>
+    <button id="mic-btn" class="mic-btn" title="语音搜索（支持安卓/苹果/电脑）" onclick="toggleSpeechSearch()">
+      <svg class="mic-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+      </svg>
+    </button>
+  </div>
+  <div id="speech-tip" class="speech-tip"></div>
+  <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">数据更新: 2026-10-06 · 133位英雄 · 含官方铭文/出装/组队阵容体系</div>
 </div>
 <main id="main"></main>
 <footer>王者荣耀全英雄攻略 · 数据更新于 2026-10 · 仅供学习参考</footer>
@@ -779,6 +987,102 @@ function nextBg() {
   document.body.style.backgroundImage = `radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%), url('${BGS[bgIdx]}')`;
 }
 </script>
+
+// ==================== 语音输入与智能识别 ====================
+let recognition = null;
+let isListening = false;
+const searchInput = document.getElementById('search');
+const micBtn = document.getElementById('mic-btn');
+const clearBtn = document.getElementById('clear-btn');
+const speechTip = document.getElementById('speech-tip');
+
+// 清空搜索
+function clearSearch(){
+  searchInput.value = '';
+  render();
+  clearBtn.style.display = 'none';
+  speechTip.className = 'speech-tip';
+  speechTip.textContent = '';
+}
+
+// 显示清除按钮与处理输入
+searchInput.addEventListener('input', ()=>{
+  clearBtn.style.display = searchInput.value ? 'block' : 'none';
+});
+
+// 初始化语音识别（兼容 Chrome / Edge / Android WebView）
+function initSpeech(){
+  if('webkitSpeechRecognition' in window){
+    return new webkitSpeechRecognition();
+  }else if('SpeechRecognition' in window){
+    return new SpeechRecognition();
+  }
+  return null;
+}
+
+// 语音识别入口
+function toggleSpeechSearch(){
+  if(isListening){
+    stopSpeech();
+    return;
+  }
+  recognition = initSpeech();
+  if(!recognition){
+    speechTip.className = 'speech-tip error';
+    speechTip.textContent = '❌ 当前浏览器不支持语音识别，请使用最新版 Chrome / Edge / Safari';
+    return;
+  }
+  recognition.lang = 'zh-CN';
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 3;
+
+  speechTip.className = 'speech-tip';
+  speechTip.textContent = '🎤 聆听中... 请说出英雄名称或分路';
+  micBtn.classList.add('listening');
+  isListening = true;
+
+  recognition.onresult = (e)=>{
+    const transcript = Array.from(e.results)
+      .map(r => r[0].transcript)
+      .join('');
+    searchInput.value = transcript;
+    clearBtn.style.display = 'block';
+    render(); // 实时触发搜索过滤
+  };
+
+  recognition.onerror = (e)=>{
+    isListening = false;
+    micBtn.classList.remove('listening');
+    speechTip.className = 'speech-tip error';
+    if(e.error === 'not-allowed'){
+      speechTip.textContent = '❌ 麦克风权限被拒绝，请允许网页使用麦克风后重试';
+    }else{
+      speechTip.textContent = `❌ 识别失败：${e.error}，请重试`;
+    }
+  };
+
+  recognition.onend = ()=>{
+    isListening = false;
+    micBtn.classList.remove('listening');
+    if(!searchInput.value.trim()){
+      speechTip.className = 'speech-tip';
+      speechTip.textContent = '';
+    }
+  };
+
+  recognition.start();
+}
+
+// 停止识别
+function stopSpeech(){
+  if(recognition){
+    try{ recognition.stop(); }catch(e){}
+  }
+  isListening = false;
+  micBtn.classList.remove('listening');
+}
+
 </body>
 
 </html>
