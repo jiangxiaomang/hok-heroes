@@ -537,6 +537,55 @@ footer{
   .lane-guide-title{font-size:13px;margin-bottom:6px}
 }
 
+
+.lane-medals-box{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px dashed rgba(212,175,55,.25);
+}
+.lane-medals-title{
+  font-size:13px;
+  font-weight:700;
+  color:#f5d77f;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.medal-tier{
+  padding:8px 12px;
+  border-radius:8px;
+  margin-bottom:8px;
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre-line;
+}
+.medal-gold{
+  background:linear-gradient(90deg,rgba(212,175,55,.15),rgba(212,175,55,.05));
+  border:1px solid rgba(212,175,55,.4);
+  color:#fcedbe;
+}
+.medal-silver{
+  background:linear-gradient(90deg,rgba(192,205,220,.12),rgba(192,205,220,.03));
+  border:1px solid rgba(192,205,220,.3);
+  color:#e4ebf5;
+}
+.medal-key{
+  padding:6px 10px;
+  background:rgba(255,100,50,.08);
+  border-left:3px solid #ff9944;
+  border-radius:4px;
+  font-size:11.5px;
+  color:#f8cbb0;
+  line-height:1.55;
+  margin-top:8px;
+}
+@media(max-width:640px){
+  .lane-medals-box{margin-top:10px;padding-top:10px}
+  .medal-tier{padding:6px 10px;font-size:11.5px;margin-bottom:6px}
+  .medal-key{font-size:11px;padding:6px 8px}
+}
+
 </style>
 </head>
 <body>
@@ -587,6 +636,48 @@ const LANE_GUIDE={
 【中期】：游走三路帮队友建立优势，顺路做视野。真眼别省，龙坑/草丛必须排干净
 【团战】：要么先手开团（张飞、太乙），要么死保C位（蔡文姬、明世隐）。别追残血，你的命比对面辅助值钱，站C位旁边拆火挡技能`
 };
+const LANE_MEDALS={
+'对抗路':{gold:`🥇 金牌对抗路达成指标：
+• 参团率 ≥ 50% ~ 55%（带线同时关键龙坑/中路团战必到）
+• 承受伤害占比 ≥ 25% ~ 30%（坦克需达到 32%+）且每死承伤高
+• 输出伤害占比 ≥ 18% ~ 22%（战士/战刺需达到 22%+）
+• 对线压制：单杀/推掉对位一塔，控下自身半区传送阵/空间之灵`,silver:`🥈 银牌对抗路达成指标：
+• 参团率 ≥ 40% ~ 45%
+• 承受伤害占比 ≥ 20% ~ 25%
+• 死亡次数控制在 ≤ 3~4 次，不成为团队突破口`,key:`⭐ 核心秘诀：避免'无脑赖线单机'！金牌对抗路极其看重【承伤转化率】和【参团率】。清完线立刻利用传送阵或支援野区，团战吸收足量伤害还能全身而退评分最高。`},
+'打野':{gold:`🥇 金牌打野达成指标：
+• 参团率 ≥ 60% ~ 65%（节奏发动机核心指标）
+• 野区与中立资源控制率 ≥ 60%（暴君/主宰控龙数 ≥ 2~3 条）
+• 击杀 + 助攻占比高，KDA ≥ 6.0 ~ 8.0+
+• 经济占比 ≥ 22% ~ 25% 且输出占比 ≥ 20% ~ 25%`,silver:`🥈 银牌打野达成指标：
+• 参团率 ≥ 50%
+• 控下至少 1~2 条关键中立生物，成功组织 2 次以上有效 gank 推塔
+• KDA ≥ 4.0 ~ 5.0，经济位列全队前两名`,key:`⭐ 核心秘诀：'只刷不抓'永远拿不到金牌！系统权重最高的是【控龙数】、【前中期击杀贡献】与【推塔助攻】。抓人成功必须顺势开龙或反野推塔。`},
+'中路':{gold:`🥇 金牌中路达成指标：
+• 英雄伤害占比 ≥ 28% ~ 32%+（大法师需冲 30%+，工具人需 22%+ 并拉满控制）
+• 参团率 ≥ 65% ~ 70%（双边支援与野区协防率拉满）
+• KDA ≥ 6.5+，死亡次数 ≤ 2~3 次
+• 经济转化比高（不吃过多经济打出全场第一二输出）`,silver:`🥈 银牌中路达成指标：
+• 英雄伤害占比 ≥ 22% ~ 25%
+• 参团率 ≥ 55%
+• KDA ≥ 4.5+，无阵亡脱节断节奏`,key:`⭐ 核心秘诀：中路评分算法对【伤害转化比】（输出/经济）极度敏感！工具人法师（西施/弈星）注重【控制时长】与【助攻参团】，炮台法师注重【持续压低敌方血线】。`},
+'发育路':{gold:`🥇 金牌发育路达成指标：
+• 英雄伤害占比 ≥ 30% ~ 35%+（后期核心保障，大射常需 32%+）
+• 对建筑伤害占比 ≥ 30% ~ 40%（推塔占比是射手专属极高加分项）
+• 分均经济 ≥ 700 ~ 750+，补刀率高
+• 死亡次数极低（≤ 2次），KDA ≥ 7.0+`,silver:`🥈 银牌发育路达成指标：
+• 英雄伤害占比 ≥ 25% ~ 28%
+• 对建筑伤害占比 ≥ 20% ~ 25%
+• KDA ≥ 4.5+，后期团战提供稳定持续输出`,key:`⭐ 核心秘诀：【推塔伤害】是射手拿金牌的核武器！很多射手输出高但拿不到金牌，就是因为只打架不磨塔。保命不掉点 + 疯狂点塔推线 = 稳拿金牌发育路。`},
+'游走':{gold:`🥇 金牌游走达成指标：
+• 参团率 ≥ 70% ~ 75%+（全队最高，甚至需冲 80%）
+• 承伤占比 ≥ 28% ~ 32%（硬辅）或 治疗量/护盾量拉满 + 助攻全队第一（软辅）
+• 视野得分高，有效控制时长高
+• 极低经济占比（≤ 15%）打出全队顶尖的团队增益`,silver:`🥈 银牌游走达成指标：
+• 参团率 ≥ 60%
+• 助攻数位列全队前二，死亡不超标
+• 提供关键保 C 或开团拆火`,key:`⭐ 核心秘诀：游走算分机制最看重【参团率】与【低经济高贡献】！硬辅不要送无意义人头，软辅要把技能频繁刷在队友身上，少吃线、多占草、团战人在助攻就在。`}
+};
 let lane='all';
 function esc(s){return s?String(s).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''}
 function render(){
@@ -611,7 +702,21 @@ document.getElementById('main').innerHTML=html||'<div class="no-results">未找�
 function renderLane(lane,heroes){
 const guide = LANE_GUIDE[lane]||'';
 let h=`<div class="lane-section lane-${lane}"><div class="lane-header"><div class="lane-badge">${laneIcons[lane]}</div><div class="lane-title"><h2>${lane}</h2><p>${laneDesc[lane]} · ${heroes.length}位</p></div></div>`;
-if(guide){h+=`<div class="lane-guide"><div class="lane-guide-title">🎮 ${lane}打法思路</div><div class="lane-guide-body">${guide}</div></div>`}
+if(guide){
+  const medals = LANE_MEDALS[lane] || null;
+  h += `<div class="lane-guide">
+    <div class="lane-guide-title">🎮 ${lane}打法核心思路</div>
+    <div class="lane-guide-body">${guide}</div>`;
+  if(medals){
+    h += `<div class="lane-medals-box">
+      <div class="lane-medals-title">🏅 ${lane}·金银牌与顶级评级达成指标</div>
+      <div class="medal-tier medal-gold">${medals.gold}</div>
+      <div class="medal-tier medal-silver">${medals.silver}</div>
+      <div class="medal-key">${medals.key}</div>
+    </div>`;
+  }
+  h += `</div>`;
+}
 h+=`<div class="hero-grid">`;
 heroes.forEach(x=>h+=renderCard(x));
 return h+'</div></div>';
