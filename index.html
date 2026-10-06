@@ -8,7 +8,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0c14;
-  --card:rgba(22,28,42,.92);
+  --card:rgba(16,20,32,.96);
   --card-solid:#161c2a;
   --line:rgba(200,170,80,.2);
   --line-bright:rgba(200,170,80,.4);
@@ -31,9 +31,9 @@ body{
   min-height:100vh;
   background-color:#0a0c14;
   background-image:
-    /* 暗色遮罩层（保证文字可读） */
-    linear-gradient(180deg, rgba(10,12,20,.88) 0%, rgba(10,12,20,.94) 45%, rgba(8,10,16,.97) 100%),
-    /* 王者荣耀官方英雄原画（真实 CDN 图片） */
+    /* 通透暗化遮罩：顶部和两侧更通透，原画色彩显现 */
+    radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%),
+    /* 王者荣耀官方英雄原画（盾山/铠 真实高清壁纸） */
     url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/509/509-bigskin-2.jpg');
   background-size:cover, cover;
   background-position:center top, center top;
@@ -380,7 +380,7 @@ const BGS = [
 let bgIdx = 0;
 function nextBg() {
   bgIdx = (bgIdx + 1) % BGS.length;
-  document.body.style.backgroundImage = `linear-gradient(180deg, rgba(10,12,20,.88) 0%, rgba(10,12,20,.94) 45%, rgba(8,10,16,.97) 100%), url('${BGS[bgIdx]}')`;
+  document.body.style.backgroundImage = `radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%), url('${BGS[bgIdx]}')`;
 }
 </script>
 </body>
