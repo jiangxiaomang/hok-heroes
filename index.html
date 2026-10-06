@@ -164,6 +164,7 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .hero-card.expanded .hero-tags{justify-content:flex-start !important}
 .hero-head{display:flex;gap:16px;padding:16px;align-items:center}
 .hero-avatar{
+  position:relative;
   width:72px;height:72px;border-radius:14px;
   overflow:hidden;flex-shrink:0;
   background:linear-gradient(135deg,rgba(200,170,80,.25),rgba(22,28,42,.9));
@@ -176,7 +177,8 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
   background:linear-gradient(180deg,transparent 60%,rgba(10,12,20,.4));
   pointer-events:none;
 }
-.hero-avatar img{width:100%;height:100%;object-fit:cover}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;z-index:2}
+.avatar-fallback{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--gold);z-index:1}
 .avatar-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--gold)}
 .hero-meta{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
 .hero-name{font-size:18px;font-weight:800;color:#f0e6d2}
@@ -501,6 +503,40 @@ footer{
     box-shadow: 0 4px 16px rgba(0,0,0,.6) !important;
   }
 }
+
+.lane-guide{
+  background:rgba(212,175,55,.06);
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:12px;
+  padding:14px 18px;
+  margin:0 0 20px 0;
+  font-size:13px;
+  line-height:1.65;
+  color:#e0d8c8;
+}
+.lane-guide-title{
+  font-size:14px;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.lane-guide-body{
+  white-space:pre-line;
+  color:#bbb;
+}
+@media(max-width:640px){
+  .lane-guide{
+    padding:10px 12px;
+    margin-bottom:14px;
+    font-size:12px;
+    line-height:1.55;
+  }
+  .lane-guide-title{font-size:13px;margin-bottom:6px}
+}
+
 </style>
 </head>
 <body>
@@ -529,6 +565,28 @@ const HEROES=[{"eid":105,"cname":"廉颇","title":"正义爆轰","roles":"1|5","
 const roleOrder=['对抗路','打野','中路','发育路','游走'];
 const laneIcons={'对抗路':'⚔️','打野':'🌿','中路':'🔮','发育路':'🏹','游走':'🛡️'};
 const laneDesc={'对抗路':'战士/坦克','打野':'刺客/节奏','中路':'法师/控制','发育路':'射手/输出','游走':'辅助/保护'};
+const LANE_GUIDE={
+'对抗路':`【定位】：单人抗压带线位，负责开视野、切后排、吸收伤害、分割战场
+【对线期】：清线后优先支援野区入侵，或蹲草丛找机会单杀对位。3级前猥琐，4级后看情况压线或支援。记得卡兵线别乱A，被压就塔下清兵等打野
+【中期】：带线牵制是核心！四人抱团时你去带另一条线，逼对面分人守。团战绕后切C位，或者正面开团
+【团战】：先手开团英雄（如白起、猪八戒）直接闪大开C位；后手收割英雄（如程咬金、芈月）等对面交完技能再进场。切记别头铁送死`,
+'打野':`【定位】：全局节奏发动机，控野区资源、gank带节奏、控龙推塔
+【开局】：红BUFF开（对面强势打野就蓝开），3级抓中或边路。抓人看小地图，对面压线深就去反蹲
+【中期】：控暴君主宰是第一要务！打龙前插真眼，对面打野露头再打。抓人成功就推塔/反野，别停下来
+【后期】：别一个人上去切C！团战侧面进场或等队友先手，切死后排立刻回撤等技能CD。记住：打野活着才有节奏`,
+'中路':`【定位】：远程爆发+控制核心，清线游走、支援边路、团战输出
+【对线期】：快速清线后看小地图，边路压线就游走抓人。河道之灵必抢，能滚雪球
+【中期】：跟着打野节奏走，野区打架必到。推完中塔就开始抱团，别一个人带线深推
+【团战】：站位永远在坦克身后，技能给最值钱的目标（优先射手法师）。刺客切你立刻交闪现，活着才有输出`,
+'发育路':`【定位】：团队物理输出核心，推塔机器，团战收割者
+【对线期】：补刀>消耗，别为了点人漏刀。辅助去游走就猥琐塔下，河道蟹看情况拿
+【中期】：推完一塔就换线推中或跟团。打野来蹲别慌，先喊辅助。别单独带线过河道，被切一次丢300块还掉节奏
+【团战】：永远站最后排输出，谁离你近打谁，别追残血追进人堆。刺客切你边A边后撤，名刀/复活甲记得提前出`,
+'游走':`【定位】：团队保护+开团发动机，不吃资源但要起节奏
+【开局】：帮中抢2级或直接跟打野入侵。看对面打野动向，给队友报点
+【中期】：游走三路帮队友建立优势，顺路做视野。真眼别省，龙坑/草丛必须排干净
+【团战】：要么先手开团（张飞、太乙），要么死保C位（蔡文姬、明世隐）。别追残血，你的命比对面辅助值钱，站C位旁边拆火挡技能`
+};
 let lane='all';
 function esc(s){return s?String(s).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''}
 function render(){
@@ -551,7 +609,10 @@ if(lane==='all'){roleOrder.forEach(l=>{const lh=list.filter(h=>h.primary_lane===
 document.getElementById('main').innerHTML=html||'<div class="no-results">未找到英雄</div>';
 }
 function renderLane(lane,heroes){
-let h=`<div class="lane-section lane-${lane}"><div class="lane-header"><div class="lane-badge">${laneIcons[lane]}</div><div class="lane-title"><h2>${lane}</h2><p>${laneDesc[lane]} · ${heroes.length}位</p></div></div><div class="hero-grid">`;
+const guide = LANE_GUIDE[lane]||'';
+let h=`<div class="lane-section lane-${lane}"><div class="lane-header"><div class="lane-badge">${laneIcons[lane]}</div><div class="lane-title"><h2>${lane}</h2><p>${laneDesc[lane]} · ${heroes.length}位</p></div></div>`;
+if(guide){h+=`<div class="lane-guide"><div class="lane-guide-title">🎮 ${lane}打法思路</div><div class="lane-guide-body">${guide}</div></div>`}
+h+=`<div class="hero-grid">`;
 heroes.forEach(x=>h+=renderCard(x));
 return h+'</div></div>';
 }
