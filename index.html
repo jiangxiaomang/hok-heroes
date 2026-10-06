@@ -805,14 +805,14 @@ footer{
   <div class="search-wrapper">
     <input type="text" id="search" placeholder="搜索英雄、称号，或点击右侧话筒语音说出..." oninput="render()">
     <button id="clear-btn" class="clear-btn" onclick="clearSearch()" style="display:none" aria-label="清除搜索">✕</button>
-    <button id="mic-btn" class="mic-btn" title="语音搜索（支持安卓/苹果/电脑）" onclick="toggleSpeechSearch()">
+    <button id="mic-btn" class="mic-btn" title="长按说话，松手结束" onmousedown="startSpeech()" ontouchstart="startSpeech()" onmouseup="stopSpeech()" ontouchend="stopSpeech()" onmouseleave="stopSpeech()">
       <svg class="mic-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
         <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
         <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
       </svg>
     </button>
   </div>
-  <div id="speech-tip" class="speech-tip"></div>
+  <div id="speech-tip" class="speech-tip">长按话筒按钮说话</div>
   <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">数据更新: 2026-10-06 · 133位英雄 · 含官方铭文/出装/组队阵容体系</div>
 </div>
 <main id="main"></main>
@@ -1002,7 +1002,7 @@ function clearSearch(){
   render();
   clearBtn.style.display = 'none';
   speechTip.className = 'speech-tip';
-  speechTip.textContent = '';
+  speechTip.textContent = '长按话筒按钮说话';
 }
 
 // 显示清除按钮与处理输入
@@ -1010,7 +1010,7 @@ searchInput.addEventListener('input', ()=>{
   clearBtn.style.display = searchInput.value ? 'block' : 'none';
 });
 
-// 初始化语音识别（兼容 Chrome / Edge / Android WebView）
+// 初始化语音识别
 function initSpeech(){
   if('webkitSpeechRecognition' in window){
     return new webkitSpeechRecognition();
@@ -1020,45 +1020,48 @@ function initSpeech(){
   return null;
 }
 
-// 语音识别入口
-function toggleSpeechSearch(){
-  if(isListening){
-    stopSpeech();
-    return;
-  }
+// 按下开始录音
+function startSpeech(e){
+  e.preventDefault();
+  if(isListening) return;
+
   recognition = initSpeech();
   if(!recognition){
     speechTip.className = 'speech-tip error';
-    speechTip.textContent = '❌ 当前浏览器不支持语音识别，请使用最新版 Chrome / Edge / Safari';
+    speechTip.textContent = '❌ 当前环境不支持语音识别，请用Chrome浏览器打开';
     return;
   }
+
   recognition.lang = 'zh-CN';
-  recognition.continuous = false;
+  recognition.continuous = true;   // 长按模式：持续识别
   recognition.interimResults = true;
   recognition.maxAlternatives = 3;
 
   speechTip.className = 'speech-tip';
-  speechTip.textContent = '🎤 聆听中... 请说出英雄名称或分路';
+  speechTip.textContent = '🎤 正在听...请说话';
   micBtn.classList.add('listening');
   isListening = true;
 
   recognition.onresult = (e)=>{
-    const transcript = Array.from(e.results)
-      .map(r => r[0].transcript)
-      .join('');
+    let transcript = '';
+    for(let i = e.resultIndex; i < e.results.length; i++){
+      transcript += e.results[i][0].transcript;
+    }
     searchInput.value = transcript;
     clearBtn.style.display = 'block';
-    render(); // 实时触发搜索过滤
+    render();
   };
 
   recognition.onerror = (e)=>{
     isListening = false;
     micBtn.classList.remove('listening');
     speechTip.className = 'speech-tip error';
-    if(e.error === 'not-allowed'){
-      speechTip.textContent = '❌ 麦克风权限被拒绝，请允许网页使用麦克风后重试';
+    if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){
+      speechTip.textContent = '❌ 麦克风权限被拒，请检查设置';
+    }else if(e.error === 'network'){
+      speechTip.textContent = '❌ 网络异常，请检查网络后重试';
     }else{
-      speechTip.textContent = `❌ 识别失败：${e.error}，请重试`;
+      speechTip.textContent = `❌ 识别失败(${e.error})，请重试`;
     }
   };
 
@@ -1067,13 +1070,22 @@ function toggleSpeechSearch(){
     micBtn.classList.remove('listening');
     if(!searchInput.value.trim()){
       speechTip.className = 'speech-tip';
-      speechTip.textContent = '';
+      speechTip.textContent = '长按话筒按钮说话';
     }
   };
 
-  recognition.start();
+  try{ recognition.start(); }catch(e){}
 }
 
+// 松开停止录音
+function stopSpeech(e){
+  if(e) e.preventDefault();
+  if(recognition && isListening){
+    try{ recognition.stop(); }catch(e){}
+  }
+  isListening = false;
+  micBtn.classList.remove('listening');
+}
 // 停止识别
 function stopSpeech(){
   if(recognition){
