@@ -34,7 +34,7 @@ body{
     /* 通透暗化遮罩：顶部和两侧更通透，原画色彩显现 */
     radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%),
     /* 王者荣耀官方英雄原画（盾山/铠 真实高清壁纸） */
-    url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/509/509-bigskin-2.jpg');
+    url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-8.jpg');
   background-size:cover, cover;
   background-position:center top, center top;
   background-repeat:no-repeat, no-repeat;
@@ -160,11 +160,17 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .hero-card.expanded{grid-column:1/-1;cursor:default}
 .hero-head{display:flex;gap:16px;padding:16px;align-items:center}
 .hero-avatar{
-  width:64px;height:64px;border-radius:12px;
+  width:72px;height:72px;border-radius:14px;
   overflow:hidden;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(200,170,80,.3),rgba(22,28,42,.8));
-  border:2px solid rgba(200,170,80,.35);
-  box-shadow:0 0 15px rgba(212,175,55,.2);
+  background:linear-gradient(135deg,rgba(200,170,80,.25),rgba(22,28,42,.9));
+  border:2px solid rgba(200,170,80,.4);
+  box-shadow:0 0 18px rgba(212,175,55,.25),0 4px 15px rgba(0,0,0,.4);
+  position:relative;
+}
+.hero-avatar::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(10,12,20,.4));
+  pointer-events:none;
 }
 .hero-avatar img{width:100%;height:100%;object-fit:cover}
 .avatar-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--gold)}
@@ -328,10 +334,12 @@ heroes.forEach(x=>h+=renderCard(x));
 return h+'</div></div>';
 }
 function renderCard(h){
-const iconUrl=h.icons&&h.icons[0]?`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.icons[0]}`:'';
+const iconUrl=`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.eid}.jpg`;
+const skillIcons=['被动','1技能','2技能','大招','4技能'];
 const skills=h.skills||[];const combos=h.combos||[];const tips=h.playstyle||h.tips||'';
-let skillHtml='';skills.forEach((s,i)=>{const icon=i===0?'被动':`${i}技能`;const img=h.icons&&h.icons[i]?`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.icons[i]}`:'';
-skillHtml+=`<div class="skill-row"><div class="skill-badge skill-${i}">${img?`<img src="${img}" onerror="this.style.display='none'">`:icon}</div><div class="skill-info"><div class="skill-name">${esc(s.name)} <span class="skill-cd">CD:${s.cd||'0'}s</span></div><div class="skill-desc">${esc(s.desc)}</div></div></div>`});
+let skillHtml='';skills.forEach((s,i)=>{const icon=skillIcons[i]||`技能${i}`;
+const skillIcon=`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.eid}${i}.jpg`;
+skillHtml+=`<div class="skill-row"><div class="skill-badge skill-${i}"><img src="${skillIcon}" onerror="this.outerHTML='<span style=font-size:12px;font-weight:700>'+skillIcons[i]+'</span>'"></div><div class="skill-info"><div class="skill-name">${esc(s.name)} <span class="skill-cd">CD:${s.cd||'0'}s</span></div><div class="skill-desc">${esc(s.desc)}</div></div></div>`});
 let comboHtml='';combos.forEach(c=>{if(typeof c==='object'){comboHtml+=`<div class="combo-item"><span class="combo-name">${esc(c.name)}</span><span class="combo-seq">${esc(c.seq)}</span><div class="combo-desc">${esc(c.desc)}</div></div>`}else{comboHtml+=`<div class="combo-item"><span class="combo-seq">${esc(String(c))}</span></div>`}});
 const counters=(h.counters||[]).map(x=>`<span class="tag tag-counter">${esc(x)}</span>`).join('');
 const countered=(h.countered_by||[]).map(x=>`<span class="tag tag-countered">${esc(x)}</span>`).join('');
@@ -371,7 +379,7 @@ render();
 </div>
 <script>
 const BGS = [
-  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/509/509-bigskin-2.jpg',
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-8.jpg',
   'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/190/190-bigskin-1.jpg',
   'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-1.jpg',
   'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/507/507-bigskin-2.jpg',
