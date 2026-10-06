@@ -6,55 +6,195 @@
 <title>王者荣耀全英雄攻略 · 133位英雄铭文出装连招大全</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0d1117;--card:#161b22;--line:#30363d;--text:#e6edf3;--muted:#8b949e;--gold:#f0b929;--blue:#4a9eff;--green:#2ecc71;--red:#e74c3c}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-header{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:16px 24px}
+:root{
+  --bg:#0a0c14;
+  --card:rgba(22,28,42,.92);
+  --card-solid:#161c2a;
+  --line:rgba(200,170,80,.2);
+  --line-bright:rgba(200,170,80,.4);
+  --text:#f5f0e6;
+  --muted:#9a9284;
+  --gold:#d4af37;
+  --gold-bright:#f4d03f;
+  --gold-dark:#8a6d1a;
+  --blue:#4a9eff;
+  --red:#c0392b;
+  --blue-faction:#1a3a5c;
+  --red-faction:#4a1a1a;
+  --purple:#8e44ad;
+  --green:#2ecc71;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Microsoft YaHei',sans-serif;
+  color:var(--text);
+  line-height:1.6;
+  min-height:100vh;
+  background-color:#0a0c14;
+  background-image:
+    /* 暗色遮罩层（保证文字可读） */
+    linear-gradient(180deg, rgba(10,12,20,.88) 0%, rgba(10,12,20,.94) 45%, rgba(8,10,16,.97) 100%),
+    /* 王者荣耀官方英雄原画（真实 CDN 图片） */
+    url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/509/509-bigskin-2.jpg');
+  background-size:cover, cover;
+  background-position:center top, center top;
+  background-repeat:no-repeat, no-repeat;
+  background-attachment:fixed, fixed;
+}
+/* 背景换肤切换按钮 */
+.bg-switcher{
+  position:fixed;right:16px;bottom:16px;z-index:200;
+  display:flex;flex-direction:column;gap:8px;
+}
+.bg-btn{
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid rgba(200,170,80,.4);
+  background:rgba(20,26,38,.9);
+  color:var(--gold-bright);
+  cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s;
+  backdrop-filter:blur(8px);
+}
+.bg-btn:hover{border-color:var(--gold-bright);box-shadow:0 0 20px rgba(212,175,55,.4);transform:scale(1.08)}
+/* 顶部装饰线：王者荣耀金色龙纹边框 */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold-bright),var(--gold),transparent);
+  z-index:999;
+  box-shadow:0 0 20px rgba(212,175,55,.5);
+}
+header{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(180deg,rgba(10,12,20,.97) 0%,rgba(10,12,20,.88) 100%);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,170,80,.25);
+  padding:20px 24px;
+  box-shadow:0 4px 30px rgba(0,0,0,.6);
+}
 .header-inner{max-width:1200px;margin:0 auto}
-h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,var(--gold),#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h1{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gold-bright),var(--gold),#e8b23f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;text-shadow:0 0 30px rgba(212,175,55,.3)}
 .stats{display:flex;gap:24px;margin-top:8px;flex-wrap:wrap}
 .stat{display:flex;flex-direction:column;align-items:center}
-.stat-num{font-size:20px;font-weight:700;color:var(--gold)}
+.stat-num{font-size:22px;font-weight:800;color:var(--gold-bright);text-shadow:0 0 15px rgba(212,175,55,.4)}
 .stat-label{font-size:12px;color:var(--muted)}
 nav{display:flex;gap:8px;padding:16px 24px;flex-wrap:wrap;max-width:1200px;margin:0 auto}
-.nav-btn{padding:8px 16px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:20px;cursor:pointer;font-size:14px;transition:all .2s}
-.nav-btn:hover{border-color:var(--gold);color:var(--gold)}
-.nav-btn.active{background:var(--gold);color:#000;border-color:var(--gold)}
+.nav-btn{
+  padding:9px 20px;
+  border:1px solid var(--line);
+  background:rgba(30,38,55,.8);
+  color:var(--text);
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:1px;
+  transition:all .25s;
+  position:relative;
+  overflow:hidden;
+}
+.nav-btn::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.nav-btn:hover{border-color:var(--gold-bright);color:var(--gold-bright);background:rgba(212,175,55,.08)}.nav-btn:hover::after{opacity:1}
+.nav-btn.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#0a0c14;border-color:var(--gold);
+  font-weight:800;
+  box-shadow:0 0 20px rgba(212,175,55,.35);
+}
 .search-box{max-width:1200px;margin:0 auto;padding:0 24px 16px}
-.search-box input{width:100%;padding:12px 20px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;font-size:16px;outline:none}
-.search-box input:focus{border-color:var(--gold)}
+.search-box input{
+  width:100%;padding:13px 20px;
+  border:1px solid rgba(200,170,80,.25);
+  background:rgba(22,28,42,.85);
+  color:var(--text);border-radius:8px;
+  font-size:16px;outline:none;
+  transition:all .3s;
+}
+.search-box input:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(212,175,55,.15);background:rgba(30,38,55,.95)}
 main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .lane-section{margin-bottom:32px}
-.lane-header{display:flex;align-items:center;gap:16px;margin-bottom:16px;padding:16px;background:var(--card);border-radius:16px;border:1px solid var(--line)}
+.lane-header{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:16px;padding:20px;
+  background:linear-gradient(135deg,rgba(30,38,55,.9),rgba(22,28,42,.9));
+  border-radius:12px;
+  border:1px solid rgba(200,170,80,.2);
+  position:relative;overflow:hidden;
+}
+.lane-header::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
 .lane-badge{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}
-.lane-对抗路 .lane-badge{background:linear-gradient(135deg,#e74c3c,#c0392b)}
-.lane-打野 .lane-badge{background:linear-gradient(135deg,#9b59b6,#8e44ad)}
-.lane-中路 .lane-badge{background:linear-gradient(135deg,#3498db,#2980b9)}
-.lane-发育路 .lane-badge{background:linear-gradient(135deg,#f39c12,#e67e22)}
-.lane-游走 .lane-badge{background:linear-gradient(135deg,#2ecc71,#27ae60)}
+.lane-对抗路 .lane-badge{background:linear-gradient(135deg,#c0392b,#8e2420);box-shadow:0 0 15px rgba(192,57,43,.4)}
+.lane-打野 .lane-badge{background:linear-gradient(135deg,#8e44ad,#5e2d73);box-shadow:0 0 15px rgba(142,68,173,.4)}
+.lane-中路 .lane-badge{background:linear-gradient(135deg,#2471a3,#1a5276);box-shadow:0 0 15px rgba(36,113,163,.4)}
+.lane-发育路 .lane-badge{background:linear-gradient(135deg,#d4ac0d,#b7950b);box-shadow:0 0 15px rgba(212,172,13,.4)}
+.lane-游走 .lane-badge{background:linear-gradient(135deg,#148f77,#0e6655);box-shadow:0 0 15px rgba(20,143,119,.4)}
 .lane-title h2{font-size:20px}
 .lane-title p{font-size:13px;color:var(--muted)}
 .hero-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.hero-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .3s}
-.hero-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,185,41,.15)}
+.hero-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;cursor:pointer;
+  transition:all .3s;
+  position:relative;
+}
+.hero-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.5;transition:opacity .3s;
+}
+.hero-card:hover{
+  border-color:var(--gold-bright);
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(212,175,55,.2),0 0 0 1px rgba(212,175,55,.1);
+}
+.hero-card:hover::before{opacity:1}
 .hero-card.expanded{grid-column:1/-1;cursor:default}
 .hero-head{display:flex;gap:16px;padding:16px;align-items:center}
-.hero-avatar{width:64px;height:64px;border-radius:12px;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,var(--line),var(--bg))}
+.hero-avatar{
+  width:64px;height:64px;border-radius:12px;
+  overflow:hidden;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(200,170,80,.3),rgba(22,28,42,.8));
+  border:2px solid rgba(200,170,80,.35);
+  box-shadow:0 0 15px rgba(212,175,55,.2);
+}
 .hero-avatar img{width:100%;height:100%;object-fit:cover}
 .avatar-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--gold)}
 .hero-meta{flex:1}
-.hero-name{font-size:18px;font-weight:700}
-.hero-title{font-size:13px;color:var(--muted);margin-bottom:4px}
+.hero-name{font-size:18px;font-weight:800;color:#f0e6d2}
+.hero-title{font-size:12px;color:var(--gold-dark);margin-bottom:4px;letter-spacing:.5px}
 .hero-tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{padding:2px 8px;border-radius:6px;font-size:11px}
-.tag-type{background:rgba(74,158,255,.15);color:var(--blue)}
-.tag-lane{background:rgba(240,185,41,.15);color:var(--gold)}
-.tag-counter{background:rgba(46,204,113,.15);color:var(--green)}
-.tag-countered{background:rgba(231,76,60,.15);color:var(--red)}
+.tag-type{background:rgba(30,80,140,.3);color:#7ec3ff;border:1px solid rgba(74,158,255,.25)}
+.tag-lane{background:rgba(180,140,40,.2);color:var(--gold);border:1px solid rgba(200,170,80,.3)}
+.tag-counter{background:rgba(30,150,80,.15);color:#58d68d;border:1px solid rgba(46,204,113,.2)}
+.tag-countered{background:rgba(192,57,43,.15);color:#ec7063;border:1px solid rgba(231,76,60,.2)}
 .hero-body{display:none;padding:0 16px 16px;border-top:1px solid var(--line)}
 .hero-card.expanded .hero-body{display:block}
 .section{margin-top:16px}
-.sec-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-.skill-row{display:flex;gap:12px;padding:10px;background:rgba(255,255,255,.03);border-radius:10px;margin-bottom:8px}
+.sec-title{
+  font-size:14px;font-weight:700;
+  color:var(--gold-bright);
+  margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid rgba(200,170,80,.25);
+  letter-spacing:1px;
+}
+.skill-row{
+  display:flex;gap:12px;padding:12px;
+  background:rgba(30,38,55,.5);
+  border-radius:10px;margin-bottom:8px;
+  border:1px solid rgba(200,170,80,.08);
+  transition:all .2s;
+}
+.skill-row:hover{background:rgba(212,175,55,.05);border-color:rgba(200,170,80,.15)}
 .skill-badge{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;overflow:hidden}
 .skill-0{background:linear-gradient(135deg,#e74c3c,#c0392b)}
 .skill-1{background:linear-gradient(135deg,#3498db,#2980b9)}
@@ -65,8 +205,16 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .skill-name{font-weight:700;margin-bottom:4px}
 .skill-cd{font-size:11px;color:var(--muted);font-weight:400}
 .skill-desc{font-size:13px;color:#b8bfc9;line-height:1.5}
-.combo-item{padding:10px;background:rgba(46,204,113,.08);border-left:3px solid var(--green);border-radius:0 8px 8px 0;margin-bottom:8px}
-.combo-name{font-weight:700;color:var(--green);margin-bottom:4px}
+.combo-item{
+  padding:12px;
+  background:rgba(30,38,55,.6);
+  border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;
+  margin-bottom:8px;
+  transition:all .2s;
+}
+.combo-item:hover{border-left-color:var(--gold-bright);background:rgba(212,175,55,.06)}
+.combo-name{font-weight:700;color:var(--gold-bright);margin-bottom:4px}
 .combo-seq{font-family:monospace;background:rgba(0,0,0,.3);padding:2px 8px;border-radius:4px;font-size:12px;margin-right:8px}
 .combo-desc{font-size:13px;color:#b8bfc9;margin-top:4px}
 .counter-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center}
@@ -74,8 +222,24 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .equip-row{display:flex;gap:10px;padding:8px 0;flex-wrap:wrap;align-items:flex-start}
 .equip-label{color:var(--muted);font-size:13px;flex-shrink:0;padding-top:4px;font-weight:600}
 .equip-items{display:flex;gap:6px;flex-wrap:wrap}
-.equip-tag{background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.3);color:#7eb8ff;padding:4px 10px;border-radius:8px;font-size:13px}
-.pro-tip{padding:10px 14px;background:rgba(255,200,100,.08);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;margin-bottom:8px;font-size:14px;line-height:1.5}
+.equip-tag{
+  background:rgba(30,60,100,.4);
+  border:1px solid rgba(74,158,255,.25);
+  color:#8ec5ff;
+  padding:4px 12px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+}
+.pro-tip{
+  padding:12px 14px;
+  background:rgba(212,175,55,.07);
+  border-left:3px solid var(--gold);
+  border-radius:0 10px 10px 0;
+  margin-bottom:8px;
+  font-size:14px;line-height:1.6;
+  color:#e8dcc8;
+}
 .hot-grid{display:flex;flex-direction:column;gap:12px}
 .hot-card{display:flex;gap:14px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:all .25s}
 .hot-card:hover{transform:translateX(6px)}
@@ -96,9 +260,26 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .hot-stat b{color:var(--gold)}
 .hot-reason{font-size:13px;color:#b8bfc9;line-height:1.6}
 @media (max-width:640px){.hot-stats{flex-direction:column;gap:4px}}
-.tips-text{font-size:13px;color:#b8bfc9;line-height:1.7;padding:10px;background:rgba(255,255,255,.02);border-radius:8px}
+.tips-text{
+  font-size:13px;color:#c8bfae;
+  line-height:1.75;padding:12px;
+  background:rgba(30,38,55,.5);
+  border-radius:8px;
+  border:1px solid rgba(200,170,80,.1);
+}
 .no-results{text-align:center;padding:60px;color:var(--muted);font-size:16px}
-footer{text-align:center;padding:40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:40px}
+.footer-deco{
+  text-align:center;padding:20px;
+  font-size:24px;opacity:.4;
+  letter-spacing:10px;
+}
+footer{
+  text-align:center;padding:40px;
+  color:var(--muted);font-size:12px;
+  border-top:1px solid rgba(200,170,80,.2);
+  margin-top:40px;
+  background:linear-gradient(0deg,rgba(200,170,80,.04),transparent);
+}
 @media (max-width:640px){.hero-grid{grid-template-columns:1fr}.lane-header{flex-direction:column;text-align:center}}
 </style>
 </head>
@@ -184,5 +365,24 @@ document.querySelectorAll('.nav-btn').forEach(b=>{b.onclick=()=>{
 document.getElementById('search').oninput=()=>render();
 render();
 </script>
+
+<div class="bg-switcher">
+  <button class="bg-btn" onclick="nextBg()" title="切换王者荣耀背景壁纸">🎨</button>
+</div>
+<script>
+const BGS = [
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/509/509-bigskin-2.jpg',
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/190/190-bigskin-1.jpg',
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-1.jpg',
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/507/507-bigskin-2.jpg',
+  'https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/105/105-bigskin-2.jpg'
+];
+let bgIdx = 0;
+function nextBg() {
+  bgIdx = (bgIdx + 1) % BGS.length;
+  document.body.style.backgroundImage = `linear-gradient(180deg, rgba(10,12,20,.88) 0%, rgba(10,12,20,.94) 45%, rgba(8,10,16,.97) 100%), url('${BGS[bgIdx]}')`;
+}
+</script>
 </body>
+
 </html>
