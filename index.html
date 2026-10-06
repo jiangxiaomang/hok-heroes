@@ -158,6 +158,10 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 }
 .hero-card:hover::before{opacity:1}
 .hero-card.expanded{grid-column:1/-1;cursor:default}
+.hero-card.expanded .hero-head{flex-direction:row !important;align-items:center !important;padding:12px !important}
+.hero-card.expanded .hero-avatar{width:56px !important;height:56px !important;border-radius:12px !important}
+.hero-card.expanded .hero-name{font-size:17px !important}
+.hero-card.expanded .hero-tags{justify-content:flex-start !important}
 .hero-head{display:flex;gap:16px;padding:16px;align-items:center}
 .hero-avatar{
   width:72px;height:72px;border-radius:14px;
@@ -174,7 +178,7 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 }
 .hero-avatar img{width:100%;height:100%;object-fit:cover}
 .avatar-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--gold)}
-.hero-meta{flex:1}
+.hero-meta{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
 .hero-name{font-size:18px;font-weight:800;color:#f0e6d2}
 .hero-title{font-size:12px;color:var(--gold-dark);margin-bottom:4px;letter-spacing:.5px}
 .hero-tags{display:flex;gap:6px;flex-wrap:wrap}
@@ -286,7 +290,217 @@ footer{
   margin-top:40px;
   background:linear-gradient(0deg,rgba(200,170,80,.04),transparent);
 }
-@media (max-width:640px){.hero-grid{grid-template-columns:1fr}.lane-header{flex-direction:column;text-align:center}}
+
+
+/* ==================== 移动端专属极致优化（体验级重构） ==================== */
+@media (max-width: 640px) {
+  /* 隐藏独立的冗余统计条，已融入 Tab 按钮，直接释放 70px 垂直高度！ */
+  #stats { display: none !important; }
+  
+  header {
+    padding: 10px 16px 8px !important;
+    border-bottom: none !important;
+  }
+  h1 {
+    font-size: 18px !important;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  /* 分路 Tab：单行横滑，绝不折行，带英雄数量角标 */
+  nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding: 8px 14px 10px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 95;
+    background: rgba(10,12,20,.96) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,170,80,.18) !important;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    border-radius: 18px !important;
+    flex-shrink: 0 !important;
+    min-height: 34px !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap !important;
+  }
+  .nav-btn b {
+    font-size: 11px;
+    opacity: .75;
+    font-weight: 700;
+  }
+  .nav-btn.active b {
+    opacity: 1;
+    color: #000;
+  }
+
+  /* 搜索框：40px 高度，紧凑布局 */
+  .search-box {
+    padding: 8px 14px 6px !important;
+  }
+  .search-box input {
+    height: 38px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+    border-radius: 19px !important;
+  }
+  .search-box > div {
+    font-size: 10px !important;
+    margin-top: 3px !important;
+    opacity: .8;
+  }
+
+  /* 分路标题：紧凑条状，不占首屏 */
+  .lane-section {
+    margin-bottom: 16px !important;
+  }
+  .lane-header {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+    border-radius: 8px !important;
+  }
+  .lane-badge {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+  }
+  .lane-title h2 {
+    font-size: 14px !important;
+  }
+  .lane-title p {
+    font-size: 11px !important;
+  }
+
+  /* 核心：移动端 2 列精致紧凑网格（左头像 46px + 右侧信息饱满！） */
+  main {
+    padding: 0 10px 100px !important; /* 底部 100px 彻底避开右下角悬浮按钮 */
+  }
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .hero-card {
+    border-radius: 10px !important;
+  }
+  /* 未展开态：横向布局，左头像，右名字+标签，饱满清晰 */
+  .hero-head {
+    padding: 8px !important;
+    gap: 8px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+  }
+  .hero-avatar {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+  .hero-meta {
+    flex: 1 !important;
+    min-width: 0 !important; /* 防止溢出 */
+  }
+  .hero-name {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-title {
+    font-size: 10px !important;
+    margin-bottom: 3px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-tags {
+    justify-content: flex-start !important;
+    gap: 3px !important;
+  }
+  .tag {
+    padding: 1px 4px !important;
+    font-size: 9px !important;
+    border-radius: 4px !important;
+    white-space: nowrap;
+  }
+
+  /* 展开详情卡片：通栏展开，单手舒适浏览 */
+  .hero-card.expanded {
+    grid-column: 1 / -1 !important;
+  }
+  .hero-card.expanded .hero-head {
+    padding: 12px !important;
+  }
+  .hero-card.expanded .hero-avatar {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 10px !important;
+  }
+  .hero-card.expanded .hero-name {
+    font-size: 16px !important;
+  }
+  .hero-card.expanded .hero-title {
+    font-size: 12px !important;
+  }
+  .hero-card.expanded .tag {
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+  }
+  .hero-body {
+    padding: 0 10px 14px !important;
+  }
+  .sec-title {
+    font-size: 13px !important;
+    margin-bottom: 8px !important;
+  }
+  .skill-row {
+    padding: 8px !important;
+    gap: 8px !important;
+  }
+  .skill-badge {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 10px !important;
+  }
+  .skill-name {
+    font-size: 13px !important;
+  }
+  .skill-desc {
+    font-size: 12px !important;
+  }
+  .tips-text {
+    font-size: 12px !important;
+    padding: 10px !important;
+  }
+
+  /* 悬浮壁纸按钮安全区 */
+  .bg-switcher {
+    right: 12px !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+  }
+  .bg-btn {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,.6) !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -323,7 +537,15 @@ let list=HEROES;
 if(lane!=='all')list=list.filter(h=>h.primary_lane===lane);
 if(q)list=list.filter(h=>h.cname.toLowerCase().includes(q)||(h.title&&h.title.toLowerCase().includes(q)));
 const stats={};HEROES.forEach(h=>stats[h.primary_lane]=(stats[h.primary_lane]||0)+1);
-document.getElementById('stats').innerHTML=roleOrder.map(r=>`<div class="stat"><div class="stat-num">${stats[r]||0}</div><div class="stat-label">${r}</div></div>`).join('')+`<div class="stat"><div class="stat-num">${HEROES.length}</div><div class="stat-label">总英雄</div></div>`;
+// 更新 Tab 按钮数字
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  const l = btn.dataset.lane;
+  if(l==='all') btn.innerHTML = `全部 <b>${HEROES.length}</b>`;
+  else if(stats[l]) btn.innerHTML = `${l} <b>${stats[l]}</b>`;
+});
+// 桌面端保留 stats，移动端隐藏
+const statsEl = document.getElementById('stats');
+if(statsEl) statsEl.innerHTML=roleOrder.map(r=>`<div class="stat"><div class="stat-num">${stats[r]||0}</div><div class="stat-label">${r}</div></div>`).join('')+`<div class="stat"><div class="stat-num">${HEROES.length}</div><div class="stat-label">总英雄</div></div>`;
 let html='';
 if(lane==='all'){roleOrder.forEach(l=>{const lh=list.filter(h=>h.primary_lane===l);if(lh.length)html+=renderLane(l,lh)})}else{html+=renderLane(lane,list)}
 document.getElementById('main').innerHTML=html||'<div class="no-results">未找到英雄</div>';
@@ -339,12 +561,12 @@ const skillIcons=['被动','1技能','2技能','大招','4技能'];
 const skills=h.skills||[];const combos=h.combos||[];const tips=h.playstyle||h.tips||'';
 let skillHtml='';skills.forEach((s,i)=>{const icon=skillIcons[i]||`技能${i}`;
 const skillIcon=`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.eid}${i}.jpg`;
-skillHtml+=`<div class="skill-row"><div class="skill-badge skill-${i}"><img src="${skillIcon}" onerror="this.outerHTML='<span style=font-size:12px;font-weight:700>'+skillIcons[i]+'</span>'"></div><div class="skill-info"><div class="skill-name">${esc(s.name)} <span class="skill-cd">CD:${s.cd||'0'}s</span></div><div class="skill-desc">${esc(s.desc)}</div></div></div>`});
+skillHtml+=`<div class="skill-row"><div class="skill-badge skill-${i}"><img src="${skillIcon}" onerror="this.outerHTML='<span style=font-size:12px;font-weight:700>技能</span>'"></div><div class="skill-info"><div class="skill-name">${esc(s.name)} <span class="skill-cd">CD:${s.cd||'0'}s</span></div><div class="skill-desc">${esc(s.desc)}</div></div></div>`});
 let comboHtml='';combos.forEach(c=>{if(typeof c==='object'){comboHtml+=`<div class="combo-item"><span class="combo-name">${esc(c.name)}</span><span class="combo-seq">${esc(c.seq)}</span><div class="combo-desc">${esc(c.desc)}</div></div>`}else{comboHtml+=`<div class="combo-item"><span class="combo-seq">${esc(String(c))}</span></div>`}});
 const counters=(h.counters||[]).map(x=>`<span class="tag tag-counter">${esc(x)}</span>`).join('');
 const countered=(h.countered_by||[]).map(x=>`<span class="tag tag-countered">${esc(x)}</span>`).join('');
 return `<div class="hero-card" onclick="this.classList.toggle('expanded')">
-<div class="hero-head"><div class="hero-avatar">${iconUrl?`<img src="${iconUrl}" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=avatar-fallback>${h.cname[0]}</div>'`:`<div class="avatar-fallback">${h.cname[0]}</div>`}</div>
+<div class="hero-head"><div class="hero-avatar"><div class="avatar-fallback">${h.cname[0]}</div>${iconUrl?`<img src="${iconUrl}" onerror="this.style.display='none'" alt="${h.cname}">`:''}</div>
 <div class="hero-meta"><div class="hero-name">${esc(h.cname)}</div><div class="hero-title">${esc(h.title)}</div>
 <div class="hero-tags"><span class="tag tag-type">${esc(h.type_name||'英雄')}</span><span class="tag tag-lane">${esc(h.primary_lane||'')}</span></div></div></div>
 <div class="hero-body"><div class="section"><div class="sec-title">技能详解</div>${skillHtml}</div>
