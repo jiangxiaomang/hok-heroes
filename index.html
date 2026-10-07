@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>王者荣耀全英雄攻略 · 133位英雄铭文出装连招大全</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -25,20 +31,56 @@
   --green:#2ecc71;
 }
 body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Microsoft YaHei',sans-serif;
+  font-family:'Noto Serif SC',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',serif;
   color:var(--text);
   line-height:1.6;
   min-height:100vh;
   background-color:#0a0c14;
+  overflow-x:hidden;
+  cursor:default;
+}
+/* 自定义光标 */
+.cursor-dot,.cursor-ring{
+  pointer-events:none;
+  position:fixed;top:0;left:0;
+  border-radius:50%;
+  z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:opacity .3s, transform .15s ease-out;
+}
+.cursor-dot{
+  width:6px;height:6px;
+  background:var(--gold-bright);
+  box-shadow:0 0 10px var(--gold-bright);
+}
+.cursor-ring{
+  width:36px;height:36px;
+  border:1.5px solid rgba(212,175,55,.6);
+  transition:width .2s,height .2s,border-color .2s,background .2s;
+}
+.cursor-ring.active{
+  width:54px;height:54px;
+  border-color:var(--gold-bright);
+  background:rgba(212,175,55,.08);
+}
+@media (hover:none),(pointer:coarse){
+  .cursor-dot,.cursor-ring{display:none !important}
+}
+/* 英雄粒子 Canvas 全屏背景 */
+#particle-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+.bg-layer{
+  position:fixed;top:0;left:0;width:100%;height:100%;
   background-image:
-    /* 通透暗化遮罩：顶部和两侧更通透，原画色彩显现 */
-    radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%),
-    /* 王者荣耀官方英雄原画（盾山/铠 真实高清壁纸） */
+    radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.5) 0%, rgba(10,12,20,.9) 100%),
     url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-8.jpg');
   background-size:cover, cover;
   background-position:center top, center top;
-  background-repeat:no-repeat, no-repeat;
-  background-attachment:fixed, fixed;
+  background-repeat:no-repeat;
+  z-index:-1;
+  transition:background-image .6s ease-in-out;
 }
 /* 背景换肤切换按钮 */
 .bg-switcher{
@@ -73,7 +115,17 @@ header{
   box-shadow:0 4px 30px rgba(0,0,0,.6);
 }
 .header-inner{max-width:1200px;margin:0 auto}
-h1{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gold-bright),var(--gold),#e8b23f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;text-shadow:0 0 30px rgba(212,175,55,.3)}
+h1{
+  font-family:'Ma Shan Zheng','Noto Serif SC',serif;
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(135deg,#fff8db 0%,var(--gold-bright) 30%,var(--gold) 70%,#b8860b 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:4px;
+  text-shadow:0 0 35px rgba(212,175,55,.45);
+  display:inline-block;
+}
 .stats{display:flex;gap:24px;margin-top:8px;flex-wrap:wrap}
 .stat{display:flex;flex-direction:column;align-items:center}
 .stat-num{font-size:22px;font-weight:800;color:var(--gold-bright);text-shadow:0 0 15px rgba(212,175,55,.4)}
@@ -139,22 +191,25 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 40px}
 .lane-title p{font-size:13px;color:var(--muted)}
 .hero-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 .hero-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
+  background:rgba(16,20,32,.75);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:18px;
   overflow:hidden;cursor:pointer;
-  transition:all .3s;
+  transition:border-color .35s, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
   position:relative;
+  transform-style:preserve-3d;
+  perspective:1000px;
 }
 .hero-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.5;transition:opacity .3s;
+  background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);
+  opacity:.4;transition:opacity .35s;
 }
 .hero-card:hover{
-  border-color:var(--gold-bright);
-  transform:translateY(-3px);
-  box-shadow:0 12px 40px rgba(212,175,55,.2),0 0 0 1px rgba(212,175,55,.1);
+  border-color:rgba(244,208,63,.7);
+  box-shadow:0 16px 45px rgba(212,175,55,.28), 0 0 0 1px rgba(244,208,63,.2);
 }
 .hero-card:hover::before{opacity:1}
 .hero-card.expanded{grid-column:1/-1;cursor:default}
@@ -787,6 +842,10 @@ footer{
 </style>
 </head>
 <body>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="bg-layer" id="bg-layer"></div>
+<canvas id="particle-canvas"></canvas>
 <header>
 <div class="header-inner">
 <h1>王者荣耀全英雄攻略</h1>
@@ -984,11 +1043,142 @@ const BGS = [
 let bgIdx = 0;
 function nextBg() {
   bgIdx = (bgIdx + 1) % BGS.length;
-  document.body.style.backgroundImage = `radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.45) 0%, rgba(10,12,20,.85) 100%), url('${BGS[bgIdx]}')`;
+  const layer = document.getElementById('bg-layer');
+  if(layer){
+    layer.style.backgroundImage = `radial-gradient(ellipse 90% 60% at 50% 20%, rgba(10,12,20,.5) 0%, rgba(10,12,20,.9) 100%), url('${BGS[bgIdx]}')`;
+  }
 }
 </script>
 
-// ==================== 语音输入与智能识别 ====================
+<script>
+// ==================== 🏆 Awwwards 动效与交互核心层 ====================
+// 1. Lenis 平滑物理滚动
+let lenis = null;
+try {
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+} catch(e) { console.warn('Lenis init failed, fallback to native', e); }
+
+// 2. 自定义丝滑光标 (磁性跟手 + Hover 放大)
+(function initCursor() {
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  let mouseX = -100, mouseY = -100;
+  let ringX = -100, ringY = -100;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  });
+
+  function renderRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(renderRing);
+  }
+  requestAnimationFrame(renderRing);
+
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('button, .hero-card, input, a, .bg-btn, .mic-btn, .tag')) {
+      ring.classList.add('active');
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('button, .hero-card, input, a, .bg-btn, .mic-btn, .tag')) {
+      ring.classList.remove('active');
+    }
+  });
+})();
+
+// 3. 王者金色流光粒子系统 (国风金羽粒子)
+(function initParticles() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const count = Math.min(45, Math.floor(window.innerWidth / 30));
+  const particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2.2 + 0.8,
+      speedX: (Math.random() - 0.5) * 0.4,
+      speedY: -Math.random() * 0.6 - 0.2,
+      opacity: Math.random() * 0.6 + 0.2,
+      twinkle: Math.random() * 0.02 + 0.005,
+      hue: Math.random() > 0.3 ? 45 : 35
+    });
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.opacity += Math.sin(Date.now() * p.twinkle) * 0.01;
+      if (p.opacity > 0.85) p.opacity = 0.85;
+      if (p.opacity < 0.15) p.opacity = 0.15;
+      if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue}, 85%, 65%, ${p.opacity})`;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = 'rgba(244, 208, 63, 0.5)';
+      ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+// 4. 英雄卡片 3D 视差倾斜 (Tilt 效果)
+document.addEventListener('mousemove', (e) => {
+  const card = e.target.closest('.hero-card:not(.expanded)');
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  const rotateX = ((y - centerY) / centerY) * -7;
+  const rotateY = ((x - centerX) / centerX) * 7;
+  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+});
+
+document.addEventListener('mouseout', (e) => {
+  const card = e.target.closest('.hero-card:not(.expanded)');
+  if (!card) return;
+  card.style.transform = '';
+});
+
+// ==================== 语音输入与智能识别（标准封装） ====================
 let recognition = null;
 let isListening = false;
 const searchInput = document.getElementById('search');
@@ -996,50 +1186,54 @@ const micBtn = document.getElementById('mic-btn');
 const clearBtn = document.getElementById('clear-btn');
 const speechTip = document.getElementById('speech-tip');
 
-// 清空搜索
 function clearSearch(){
   searchInput.value = '';
   render();
-  clearBtn.style.display = 'none';
-  speechTip.className = 'speech-tip';
-  speechTip.textContent = '长按话筒按钮说话';
+  if (clearBtn) clearBtn.style.display = 'none';
+  if (speechTip) {
+    speechTip.className = 'speech-tip';
+    speechTip.textContent = '长按话筒按钮说话';
+  }
 }
 
-// 显示清除按钮与处理输入
-searchInput.addEventListener('input', ()=>{
-  clearBtn.style.display = searchInput.value ? 'block' : 'none';
-});
+if (searchInput) {
+  searchInput.addEventListener('input', ()=>{
+    if (clearBtn) clearBtn.style.display = searchInput.value ? 'block' : 'none';
+  });
+}
 
-// 初始化语音识别
 function initSpeech(){
   if('webkitSpeechRecognition' in window){
     return new webkitSpeechRecognition();
-  }else if('SpeechRecognition' in window){
+  } else if('SpeechRecognition' in window){
     return new SpeechRecognition();
   }
   return null;
 }
 
-// 按下开始录音
 function startSpeech(e){
-  e.preventDefault();
+  if (e && e.preventDefault) e.preventDefault();
   if(isListening) return;
 
   recognition = initSpeech();
   if(!recognition){
-    speechTip.className = 'speech-tip error';
-    speechTip.textContent = '❌ 当前环境不支持语音识别，请用Chrome浏览器打开';
+    if (speechTip) {
+      speechTip.className = 'speech-tip error';
+      speechTip.textContent = '❌ 当前环境不支持语音识别，请用Chrome浏览器打开';
+    }
     return;
   }
 
   recognition.lang = 'zh-CN';
-  recognition.continuous = true;   // 长按模式：持续识别
+  recognition.continuous = true;
   recognition.interimResults = true;
   recognition.maxAlternatives = 3;
 
-  speechTip.className = 'speech-tip';
-  speechTip.textContent = '🎤 正在听...请说话';
-  micBtn.classList.add('listening');
+  if (speechTip) {
+    speechTip.className = 'speech-tip';
+    speechTip.textContent = '🎤 正在听...请说话';
+  }
+  if (micBtn) micBtn.classList.add('listening');
   isListening = true;
 
   recognition.onresult = (e)=>{
@@ -1048,27 +1242,29 @@ function startSpeech(e){
       transcript += e.results[i][0].transcript;
     }
     searchInput.value = transcript;
-    clearBtn.style.display = 'block';
+    if (clearBtn) clearBtn.style.display = 'block';
     render();
   };
 
   recognition.onerror = (e)=>{
     isListening = false;
-    micBtn.classList.remove('listening');
-    speechTip.className = 'speech-tip error';
-    if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){
-      speechTip.textContent = '❌ 麦克风权限被拒，请检查设置';
-    }else if(e.error === 'network'){
-      speechTip.textContent = '❌ 网络异常，请检查网络后重试';
-    }else{
-      speechTip.textContent = `❌ 识别失败(${e.error})，请重试`;
+    if (micBtn) micBtn.classList.remove('listening');
+    if (speechTip) {
+      speechTip.className = 'speech-tip error';
+      if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){
+        speechTip.textContent = '❌ 麦克风权限被拒，请检查设置';
+      }else if(e.error === 'network'){
+        speechTip.textContent = '❌ 网络异常，请检查网络后重试';
+      }else{
+        speechTip.textContent = `❌ 识别失败(${e.error})，请重试`;
+      }
     }
   };
 
   recognition.onend = ()=>{
     isListening = false;
-    micBtn.classList.remove('listening');
-    if(!searchInput.value.trim()){
+    if (micBtn) micBtn.classList.remove('listening');
+    if(speechTip && !searchInput.value.trim()){
       speechTip.className = 'speech-tip';
       speechTip.textContent = '长按话筒按钮说话';
     }
@@ -1077,23 +1273,15 @@ function startSpeech(e){
   try{ recognition.start(); }catch(e){}
 }
 
-// 松开停止录音
 function stopSpeech(e){
-  if(e) e.preventDefault();
+  if(e && e.preventDefault) e.preventDefault();
   if(recognition && isListening){
     try{ recognition.stop(); }catch(e){}
   }
   isListening = false;
-  micBtn.classList.remove('listening');
+  if (micBtn) micBtn.classList.remove('listening');
 }
-// 停止识别
-function stopSpeech(){
-  if(recognition){
-    try{ recognition.stop(); }catch(e){}
-  }
-  isListening = false;
-  micBtn.classList.remove('listening');
-}
+</script>
 
 </body>
 
