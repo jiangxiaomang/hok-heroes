@@ -244,8 +244,34 @@
       '<button class="gb-more" data-guide-more="' + esc(g.n) + '">展开完整详情 →</button>' +
       '</div>';
 
-    body.insertAdjacentHTML('beforeend', html);
+    // 指南放在卡片正文最前面：展开卡片第一眼就是「怎么玩」，而不是滚完技能才看到
+    body.insertAdjacentHTML('afterbegin', html);
     var btn = body.querySelector('.gb-more');
+    if (btn) {
+      btn.onclick = function (e) {
+        e.stopPropagation();
+        openDrawer(g);
+      };
+    }
+    injectHeadPreview(card, g);
+  }
+
+  /* 折叠态在卡片头部显示一句话摘要 + 一键打开完整攻略 */
+  function injectHeadPreview(card, g) {
+    var head = card.querySelector('.hero-head');
+    if (!head) return;
+    var old = head.querySelector('.hero-preview');
+    if (old) old.remove();
+    var preview = document.createElement('div');
+    preview.className = 'hero-preview';
+    preview.innerHTML =
+      '<div class="hp-line"><span class="hp-feat">' + esc(g.feat) + '</span></div>' +
+      '<div class="hp-tags">' + (g.tags || []).slice(0, 4).map(function (t) {
+        return '<span class="hp-tag">' + esc(t) + '</span>';
+      }).join('') +
+      '<button class="hp-open" data-guide-open="' + esc(g.n) + '">📖 完整攻略</button></div>';
+    head.appendChild(preview);
+    var btn = preview.querySelector('.hp-open');
     if (btn) {
       btn.onclick = function (e) {
         e.stopPropagation();

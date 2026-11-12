@@ -321,3 +321,37 @@ html[data-theme="light"] .hot-name{color:#23262b}
   .gt-table td{color:#222 !important}
   .gt-table td.c-name{position:static;background:#fff !important;color:#000 !important}
 }
+
+/* ---------- 折叠态卡片头部摘要 ---------- */
+.hero-preview{
+  flex-basis:100%;margin-top:8px;padding-top:8px;
+  border-top:1px dashed var(--gt-border);
+}
+.hero-head{flex-wrap:wrap}
+.hp-line{margin-bottom:6px}
+.hp-feat{
+  font-size:12px;line-height:1.5;color:var(--gt-text-2);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.hp-tags{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.hp-tag{
+  font-size:10px;padding:1px 7px;border-radius:20px;
+  background:rgba(212,175,55,.12);border:1px solid var(--gt-border);
+  color:var(--gt-text-3);
+}
+html[data-theme="light"] .hp-tag{background:rgba(160,120,20,.08);color:#6b5410}
+.hp-open{
+  margin-left:auto;font-size:11px;padding:3px 11px;border-radius:20px;cursor:pointer;
+  background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(212,175,55,.1));
+  border:1px solid var(--gt-border);color:var(--gt-accent);font-weight:700;
+  white-space:nowrap;transition:transform .15s,filter .15s;
+}
+.hp-open:hover{filter:brightness(1.18);transform:translateY(-1px)}
+.hp-open:active{transform:translateY(0)}
+@media (max-width:768px){
+  .hp-open{margin-left:0}
+  .hp-feat{-webkit-line-clamp:3}
+}
+@media print{
+  .hero-preview{display:none !important}
+}
