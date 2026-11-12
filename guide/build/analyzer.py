@@ -59,14 +59,23 @@ DROP_UNIT = r'(?:秒|点|米|范围)'
 KEEP_UNIT = r'(?:层|次|个|段|团)'
 
 
+
+
+
+
 def strip_numbers(s):
     """把技能数值剥离，只保留机制描述（数值会随版本变，不进机制结论）。
 
-    顺序：整块数值列表 -> 数字+可丢弃单位 -> 数字+保留单位 -> 裸数字
-    -> 清理空括号/残留符号 -> 整理标点。
+    括号处理用栈扫描逐对处理，避免正则在嵌套括号上匹配错位。
     """
     if not s:
         return ''
+    # 0) 括号逐对处理：含数字的括号，剥掉其中的数字与纯符号；
+    #    若剥完只剩标点/空，则整对删除。
+    s = _clean_parens(s)
+    # 0a1) 括号内只有「加成名词」-> 整段删除（如「(物理攻击)」「(法术攻击)」）
+    s = re.sub(r'[（(](?:物理攻击|法术攻击|真实攻击|攻击力|法术强度|最大生命值?|冷却缩减|'
+               r'物理加成|法术加成|攻击加成|伤害加成|加成|攻击)[）)]', '', s)
     # 1) 斜杠数值列表（350/420/490 或 30%/32%/34%）
     s = re.sub(r'\d+(?:\.\d+)?(?:%\s*[&+＋]?\s*/\s*\d+(?:\.\d+)?%?)+', '', s)
     # 2) 波浪号区间（30~72 / 30~72点 / 30~72%）
@@ -74,16 +83,22 @@ def strip_numbers(s):
     # 3) 数字 + 可丢弃单位
     s = re.sub(r'\d+(?:\.\d+)?\s*' + DROP_UNIT, '', s)
     # 4) 数字 + 保留单位（保留名词，去掉数字）
-    s = re.sub(r'\d+(?:\.\d+)?\s*(' + KEEP_UNIT + ')', r'\1', s)
+    s = re.sub(r'\d+(?:\.\d+)?\s*(' + KEEP_UNIT + r')', r'\1', s)
     # 5) 裸数字（含百分号）
     s = re.sub(r'\d+(?:\.\d+)?%?', '', s)
     # 5b) 纯数值加成括号整体删除（含 攻击 / 加成 / 最大生命 / 护盾 的括号）
     s = re.sub(r'[（(]\s*[+＋][^（）()]{0,30}(?:攻击|加成|最大生命|护盾)[^（）()]{0,12}[）)]', '', s)
     # 6) 空括号 / 加成号残留
     s = re.sub(r'[（(]\s*[+＋]?\s*[）)]', '', s)
+    s = re.sub(r'[（(]\s*[，,、]\s*[）)]', '', s)
+    s = re.sub(r'[（(][，,、][）)]', '', s)
     s = re.sub(r'点(?=(?:物理|法术|真实)伤害|(?:物理|法术|真实)防御|护盾|加成)', '', s)
     s = re.sub(r'\s*[+＋]\s*(?=[）)。，,、])', '', s)
     s = re.sub(r'[（(]\s*[）)]', '', s)
+    s = re.sub(r'[（(][）)]', '', s)
+    # 6b) 裸露加号（数值被剥后剩下「造成+物理伤害」）
+    s = re.sub(r'[+＋](?=(?:物理|法术|真实)伤害|伤害|护盾|加成|移速|攻速|攻击|防御)', '', s)
+    s = re.sub(r'(?<=[伤害值力速攻防御加])\s*[+＋]\s*', '', s)
     # 7) 孤立符号
     s = re.sub(r'\s*[~/～*&+＋]{1,}\s*(?=[）。，,、])', '', s)
     s = re.sub(r'(?<=[，。；：、])\s*[~/～*&+＋]+\s*', '', s)
@@ -97,7 +112,119 @@ def strip_numbers(s):
     s = s.replace('、、', '、').replace('，，', '，')
     s = re.sub(r'[，、]\s*[。]', '。', s)
     s = s.strip('，。、 ；;')
+    # 9b) 悬空括号（内容已被剥离但括号还在）
+    s = re.sub(r'[（(][^（）()]{0,3}[）)]', '', s)
+    # 10) 断尾半截词（数值被剥离后常留下悬空的动词）
+    s = re.sub(r'(持续|造成|获得|减少|提升|增加|每秒|对|的|和|时|后)+$', '', s)
+    s = s.strip('，。、 ；;')
+    # 10b) 括号内只剩断尾 -> 整对删除（数值被剥后括号里只剩半句）
+    s = _drop_tail_parens(s)
+    # 10c) 相邻括号（原文并列多个括号）-> 用逗号连接
+    s = re.sub(r'[）)]\s*[，,、]?\s*[（(]', '，', s)
+    s = re.sub(r'[，,]\s*[，,]', '，', s)
+    s = re.sub(r'[，,]{2,}', '，', s)
+    # 10e) 冗余量词（「每秒次」「持续秒」「衰减至，」「次，持续」）
+    s = re.sub(r'每\s*次', '', s)
+    s = re.sub(r'每秒', '', s)
+    s = re.sub(r'[，,]\s*(次|秒|持续)[，,]', '', s)
+    s = re.sub(r'[，,]\s*(次|秒|持续)$', '', s)
+    s = re.sub(r'(持续|减速|提升|增加|减少|回复|恢复|攻击|受到|伤害|物理伤害|法术伤害|真实伤害)\s*(秒|点|层|次)', r'\1', s)
+    s = re.sub(r'(衰减至|降低至|减少至|提升至|增加至)\s*[，,、]', r'\1', s)
+    s = re.sub(r'[，,]\s*[。]', '。', s)
+    s = s.strip('，。、 ；;')
     return s
+
+
+def _clean_parens(s):
+    """栈扫描处理括号：含数字的括号剥数字；剥空则整对删除。
+
+    每层括号有独立缓冲，嵌套括号的内容会回填到父层。
+    """
+    stack = []      # 每层：(开字符, 内容列表)
+    i = 0
+    n = len(s)
+
+    def render(open_ch, parts):
+        text = ''.join(parts)
+        if re.search(r'\d', text):
+            inner = re.sub(r'[\d.\s/%&+＋~～*]', '', text)
+            if re.search(r'[\u4e00-\u9fa5]', inner):
+                return open_ch + inner + ('）' if open_ch == '（' else ')')
+            return ''
+        return open_ch + text + ('）' if open_ch == '（' else ')')
+
+    while i < n:
+        ch = s[i]
+        if ch in '（(':
+            stack.append([ch, []])
+            i += 1
+            continue
+        if ch in '）)' and stack:
+            open_ch, parts = stack.pop()
+            parts.append(render(open_ch, parts))
+            if stack:
+                stack[-1][1].append(parts[-1])
+            else:
+                return ''.join(parts)   # 顶层结束（正常只有一个顶层）
+            i += 1
+            continue
+        if stack:
+            stack[-1][1].append(ch)
+        else:
+            stack.append(['', [ch]])
+        i += 1
+    # 未闭合
+    out = []
+    for open_ch, parts in stack:
+        out.append(open_ch + ''.join(parts))
+    return ''.join(out)
+
+
+TAIL_WORDS = ('持续', '造成', '获得', '减少', '提升', '增加', '每秒', '回复',
+              '减速', '命中', '激活', '伤害', '追踪', '攻击', '移动', '瞬移',
+              '结束', '开始', '释放', '对')
+
+
+def _drop_tail_parens(s):
+    """删除「括号内只剩断尾动词」的括号对。"""
+    stack = []
+    i = 0
+    n = len(s)
+
+    def render(open_ch, parts):
+        text = ''.join(parts)
+        if re.search(r'\d', text):
+            stripped = re.sub(r'[\d.\s/%&+＋~～*]', '', text)
+            core = re.sub(r'[，,、；;：:（）()\s]', '', stripped)
+            if not core or all(w in core for w in TAIL_WORDS):
+                return ''            # 只剩断尾 -> 整对删除
+            return open_ch + stripped + ('）' if open_ch == '（' else ')')
+        return open_ch + text + ('）' if open_ch == '（' else ')')
+
+    while i < n:
+        ch = s[i]
+        if ch in '（(':
+            stack.append([ch, []])
+            i += 1
+            continue
+        if ch in '）)' and stack:
+            open_ch, parts = stack.pop()
+            res = render(open_ch, parts)
+            if stack:
+                stack[-1][1].append(res)
+            else:
+                return res
+            i += 1
+            continue
+        if stack:
+            stack[-1][1].append(ch)
+        else:
+            stack.append(['', [ch]])
+        i += 1
+    out = []
+    for open_ch, parts in stack:
+        out.append(open_ch + ''.join(parts))
+    return ''.join(out)
 
 
 def analyze(hero):

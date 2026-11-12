@@ -391,7 +391,7 @@ def sec3(ctx):
             tagk = 'A'
             if any(k in c for k in ('免控', '霸体', '免疫')):
                 tagk = 'A'
-            rows.append([tag(tagk), esc(c)])
+            rows.append([tag(tagk), esc(clean(c))])
         body += table(['标注', '官方被动描述'], rows)
     else:
         body += callout('a', '被动说明缺失', f"{tag('A')} 本英雄官方数据未附被动描述文本，待核 · 以局内说明为准。")

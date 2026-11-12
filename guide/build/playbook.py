@@ -15,6 +15,8 @@
 """
 import re
 
+from analyzer import strip_numbers
+
 # ---------------------------------------------------------------- 控制类型
 CTRL_TYPES = [
     ('击飞', ['击飞', '击 飞', '挑飞', '击飞']),
@@ -55,7 +57,7 @@ def skill_profiles(hero):
     actives = skills[1:] if len(skills) > 1 else []
     n = len(actives)
     for i, s in enumerate(actives):
-        desc = (s.get('desc') or '')
+        desc = strip_numbers(s.get('desc') or '')
         ctrl = []
         for kind, kws in CTRL_TYPES:
             if _hit(desc, kws):
@@ -92,7 +94,7 @@ def skill_profiles(hero):
     return out
 
 
-def _mech(prof, limit=60):
+def _mech(prof, limit=90):
     """技能的机制要点（去掉数值），用于连招表里的关键动作说明。"""
     desc = prof['desc'] or ''
     parts = re.split(r'[。；]', desc)
@@ -112,10 +114,34 @@ def _mech(prof, limit=60):
             if len(p) >= 6:
                 best = p
                 break
-    best = re.sub(r'\d+(?:\.\d+)?%?', '', best)
     best = re.sub(r'[（(]\s*[+＋]?[^（）()]*[）)]', '', best)
     best = re.sub(r'[，、]\s*[。]', '。', best).strip('，。、； ')
-    return best[:limit]
+    # 去掉残留的斜杠/波浪号等孤立符号
+    best = re.sub(r'[~/～*&+＋]{1,}', '', best)
+    best = re.sub(r'[，、]{2,}', '，', best)
+    best = re.sub(r'^[，、。；\s]+', '', best)
+    # 尾部被截断的半截词直接丢掉（避免出现「持续」这种断尾）
+    best = re.sub(r'(持续|造成|获得|对|的|和|时|后)$', '', best)
+    best = best.strip('，。、； ')
+    # 超长时在语义边界（逗号/句号）截断，不做硬切，避免出现「…造成」这种半句
+    if len(best) > limit:
+        cut = -1
+        for sep in ('，', '。', '、'):
+            idx = best.rfind(sep, 0, limit)
+            if idx > limit * 0.35:
+                cut = idx
+                break
+        if cut > 0:
+            best = best[:cut]
+        else:
+            best = best[:limit]
+    # 截断后去掉悬空动词，避免出现「延长持续」这种半句
+    for _ in range(3):
+        new = re.sub(r'(延长|提升|增加|减少|回复|获得|造成|伤害|持续|对|的|和|时|后)$', '', best)
+        if new == best:
+            break
+        best = new
+    best = best.strip('，。、； ')
 
 
 def _pick(profs, pred, prefer_high_cd=False):
