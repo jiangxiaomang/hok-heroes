@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>嬴政 · 中路 · 王者荣耀单英雄完整攻略</title>
+<style>
+:root{
+  --bg:#f6f5f1; --panel:#ffffff; --ink:#1c2027; --ink2:#4a5058; --ink3:#6f7680;
+  --line:#e2ded4; --line2:#cfc9bb; --gold:#8a6d1a; --gold2:#b48a20;
+  --blue:#2b6cb0; --green:#1e8449; --red:#b03a2e; --purple:#6b3fa0;
+  --soft:#faf8f3; --soft2:#f1ede3;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.top{
+  background:var(--panel);border-bottom:2px solid var(--gold2);
+  padding:26px 20px 20px;margin-bottom:22px;
+}
+header.top .inner{max-width:1080px;margin:0 auto}
+h1{margin:0 0 6px;font-size:27px;letter-spacing:.5px}
+.sub{color:var(--ink3);font-size:13.5px;margin-bottom:12px}
+.hmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{
+  font-size:12px;padding:2px 9px;border:1px solid var(--line2);border-radius:3px;
+  background:var(--soft);color:var(--ink2);
+}
+.badge.k{background:#fdf6e0;border-color:var(--gold2);color:var(--gold)}
+nav.anchors{
+  position:sticky;top:0;z-index:50;background:var(--panel);
+  border-bottom:1px solid var(--line);margin-bottom:22px;
+}
+nav.anchors .inner{
+  max-width:1080px;margin:0 auto;padding:8px 20px;
+  display:flex;gap:4px;flex-wrap:wrap;
+}
+nav.anchors a{
+  font-size:12.5px;color:var(--ink2);text-decoration:none;
+  padding:3px 8px;border:1px solid transparent;border-radius:3px;
+}
+nav.anchors a:hover{background:var(--soft2);border-color:var(--line2);color:var(--ink)}
+nav.anchors a.act{background:#fdf6e0;border-color:var(--gold2);color:var(--gold);font-weight:700}
+.sec{
+  background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:20px 22px;margin-bottom:18px;
+}
+.sec>h2{
+  margin:0 0 12px;font-size:19px;padding-bottom:9px;
+  border-bottom:2px solid var(--gold2);display:flex;align-items:baseline;gap:10px;
+}
+.sn{
+  display:inline-block;background:var(--gold);color:#fff;font-size:13px;
+  width:24px;height:24px;border-radius:3px;text-align:center;line-height:24px;
+  font-weight:700;flex-shrink:0;
+}
+.purpose{
+  background:var(--soft);border-left:3px solid var(--gold2);
+  padding:8px 12px;font-size:13px;color:var(--ink2);margin-bottom:14px;
+}
+.purpose b{color:var(--gold)}
+h3{font-size:15.5px;margin:18px 0 8px;color:var(--ink)}
+h3:first-of-type{margin-top:6px}
+h4{font-size:14px;margin:14px 0 6px;color:var(--ink2)}
+.tw{overflow-x:auto;margin-bottom:12px}
+table.tbl{
+  width:100%;border-collapse:collapse;font-size:13.5px;
+  background:var(--panel);
+}
+table.tbl th{
+  background:var(--soft2);color:var(--ink);font-weight:700;text-align:left;
+  padding:8px 10px;border:1px solid var(--line2);white-space:nowrap;
+}
+table.tbl td{
+  padding:8px 10px;border:1px solid var(--line);vertical-align:top;line-height:1.65;
+}
+table.tbl tbody tr:nth-child(even){background:var(--soft)}
+table.tbl.skel td:first-child,table.tbl.skel td:nth-child(2){white-space:nowrap}
+table.tbl.oneliner td:first-child{
+  width:96px;font-weight:700;background:var(--soft2);white-space:nowrap;
+}
+.co{
+  border:1px solid var(--line2);border-left-width:4px;border-radius:4px;
+  padding:10px 13px;margin:10px 0;background:var(--soft);
+}
+.co-t{font-weight:700;font-size:13.5px;margin-bottom:4px}
+.co-b{font-size:13.5px;color:var(--ink2);line-height:1.7}
+.co-a{border-left-color:var(--blue)}
+.co-b{border-left-color:var(--green)}
+.co-c{border-left-color:var(--purple);background:#f7f2fb}
+.co-d{border-left-color:var(--gold2)}
+.mk{
+  display:inline-block;font-size:11px;padding:1px 7px;border-radius:3px;
+  border:1px solid var(--line2);background:var(--soft2);color:var(--ink2);
+  white-space:nowrap;font-weight:700;
+}
+.mk-A{border-color:#9fc4e4;background:#eaf3fb;color:#1d5b96}
+.mk-B{border-color:#a9d8bd;background:#eaf7f0;color:#1a7040}
+.mk-C{border-color:#cdb0e0;background:#f5ecfa;color:#6b3fa0}
+.mk-D{border-color:#e2c67e;background:#fdf6e0;color:#8a6d1a}
+.foot{
+  color:var(--ink3);font-size:12.5px;text-align:center;
+  padding:22px 20px;border-top:1px solid var(--line);margin-top:26px;
+}
+@media print{
+  body{background:#fff;font-size:11.5pt}
+  .wrap{max-width:none;padding:0}
+  nav.anchors{display:none}
+  header.top{border-bottom-width:1px}
+  .sec{break-inside:avoid;page-break-inside:avoid;border-color:#bbb;margin-bottom:10px}
+  table.tbl{font-size:10pt}
+  table.tbl th{background:#eee !important}
+  table.tbl tbody tr:nth-child(even){background:#fff}
+  a{text-decoration:none;color:inherit}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="inner">
+<h1>嬴政 · 中路完整攻略</h1>
+<div class="sub">王者独尊 ｜ 本篇按 中路 写 ｜ 官方定位 法师</div>
+<div class="hmeta"><span class="badge k">本篇按 中路 写</span><span class="badge">官方分路：中路</span><span class="badge">定位：法师</span><span class="badge">资料快照：2026-11-12</span><span class="badge">当前赛季：S36</span><button id="printBtn" class="badge" style="cursor:pointer">🖨 打印 / 导出 PDF</button></div>
+</div></header>
+<nav class="anchors"><div class="inner"><a href="#s0">0 范本说明</a><a href="#s1">1 速览</a><a href="#s2">2 版本与口径</a><a href="#s3">3 技能机制</a><a href="#s4">4 出装铭文</a><a href="#s5">5 开局路线</a><a href="#s6">6 连招库</a><a href="#s7">7 节奏锚点</a><a href="#s8">8 换血与线权</a><a href="#s9">9 团战</a><a href="#s10">10 三种局势</a><a href="#s11">11 阵容与克制</a><a href="#s12">12 失误与训练</a><a href="#s13">13 附录</a></div></nav>
+<div class="wrap">
+<section id="s0" class="sec">
+<h2><span class="sn">0</span>范本说明</h2>
+<div class="purpose"><b>本节作用：</b>声明本篇结构、信息标注规范与写作纪律，并列明本次输入与资料缺口</div>
+
+<h3>13 节骨架</h3><div class="tw"><table class="tbl skel"><thead><tr><th>#</th><th>章节</th><th>作用</th></tr></thead><tbody><tr><td>0</td><td>范本说明</td><td>说明本篇结构、标注规范与写作纪律</td></tr><tr><td>1</td><td>一页纸速览</td><td>一屏内判断这英雄能不能上、怎么赢</td></tr><tr><td>2</td><td>版本状态与数据口径</td><td>明确数据时间与来源，避免把旧数据当结论</td></tr><tr><td>3</td><td>技能机制与被动</td><td>讲透被动怎么叠、怎么控，机制红利与浪费点</td></tr><tr><td>4</td><td>出装铭文与召唤师技能</td><td>一套默认解 + 按局势替换 + 后期换装链</td></tr><tr><td>5</td><td>开局路线</td><td>开局对线与首个节奏点</td></tr><tr><td>6</td><td>连招库</td><td>按场景分类，每条给触发条件、关键动作、失败点</td></tr><tr><td>7</td><td>节奏与时间锚点</td><td>四拍闭环 + 提前量 + 五个时间点 + 五条自检</td></tr><tr><td>8</td><td>换血与线权</td><td>换血窗口、线权归属、支援与防 gank 站位</td></tr><tr><td>9</td><td>团战</td><td>进场前进场后两栏、目标选择、撤退方式、第二种用法</td></tr><tr><td>10</td><td>三种局势</td><td>顺风/均势/逆风各自的目标、动作、禁区</td></tr><tr><td>11</td><td>适配阵容与克制</td><td>机制层面的克制关系与组合思路</td></tr><tr><td>12</td><td>常见失误与训练法</td><td>失误表 + 20 局只练一个动作</td></tr><tr><td>13</td><td>附录</td><td>来源分级、避坑清单、仍存疑的点</td></tr></tbody></table></div><h3>四类信息标注规范</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>含义</th><th>使用规则</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>官方硬数据</td><td>官方英雄数据库 / 公告原文，带日期与口径。可引用，但必须注明快照时间。</td></tr><tr><td><span class="mk mk-B">B · 多来源共识</span></td><td>多来源共识</td><td>三份以上攻略一致的说法，标注「主流观点」，不写「官方结论」。</td></tr><tr><td><span class="mk mk-C">C · 体验服 / 未落地</span></td><td>体验服 / 未落地</td><td>体验服与未落地调整，单独成块，不混进当前打法。</td></tr><tr><td><span class="mk mk-D">D · 主观判断</span></td><td>主观判断</td><td>上手难度、克制归纳、优先级、训练法顺序，作者判断，明说。</td></tr></tbody></table></div><h3>三条写作纪律</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>纪律</th><th>本篇执行方式</th></tr></thead><tbody><tr><td>1</td><td>时间敏感信息必须带日期与来源</td><td>本篇数据快照日期 2026-11-12；官方口径与主流观点分开标注，冲突数据并列呈现。</td></tr><tr><td>2</td><td>机制优先于数值</td><td>正文以机制与红利为主体，技能数值已剥离；数值以局内说明为准。</td></tr><tr><td>3</td><td>克制只写机制层面共性</td><td>只写机制层面的克制逻辑，不编对位胜率；热门组合不等于最优组合。</td></tr></tbody></table></div><h3>本篇输入声明</h3><div class="tw"><table class="tbl "><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>英雄</td><td>嬴政（王者独尊）</td></tr><tr><td>分路</td><td>本篇按 中路 写；官方标注分路：中路</td></tr><tr><td>资料快照日期</td><td>2026-11-12</td></tr><tr><td>未查到 / 未落地的数据</td><td>胜率 / 梯度 / 出场率等时效数据未取到（本篇不引用）；技能数值与装备属性未取到（以局内说明为准）</td></tr></tbody></table></div>
+</section><section id="s1" class="sec">
+<h2><span class="sn">1</span>一页纸速览</h2>
+<div class="purpose"><b>本节作用：</b>一屏内判断这英雄能不能上、怎么赢、什么时候最强、值不值得练</div>
+
+<div class="tw"><table class="tbl oneliner"><thead><tr><th>项</th><th>说明</th></tr></thead><tbody><tr><td>定位</td><td>法师 · 中路 · 官方分路标注：中路</td></tr><tr><td>一句话赢法</td><td>扫射法师，王者独尊；大招飞剑扫射，守塔能力强。</td></tr><tr><td>核心机制</td><td>核心技能「至尊王权」：嬴政的普通攻击可以击穿目标，并造成法术伤害。资源管理上以 无独立资源条，靠技能循环与冷却管理为主。输出上有普攻耦合：嬴政的普通攻击可以击穿目标，并造成法术伤害</td></tr><tr><td>强势期</td><td>中期2技能加速消耗；后期大招覆盖战场</td></tr><tr><td>适合谁</td><td>愿意长期稳定打中路位、能接受前期弱势的英雄玩家</td></tr><tr><td>不适合谁</td><td>希望中路位能快速滚雪球打穿对手的玩家；无法接受技能空窗期的人</td></tr><tr><td>练成标准</td><td>能在无干扰训练营里稳定完成：在 10 秒内打出一次完整技能循环且不空大；能稳定命中关键技能；能在对方回城/技能交空的窗口完成一次完整收益转化。</td></tr><tr><td>当前结论</td><td>嬴政 在中路位的收益来自「至尊王权」的机制本身，数值会随版本变动，但机制红利稳定。当前快照（2026-11-12）下未取到该英雄的胜率与梯度数据，因此不给结论性的强度排名，只给机制结论：上限取决于能否稳定命中并续上后续收益。</td></tr></tbody></table></div><div class="co co-a"><div class="co-t">本篇核心技能锚点</div><div class="co-b"><span class="mk mk-A">A · 官方硬数据</span> 核心技能：<b>至尊王权</b>；被动机制：嬴政的普通攻击可以击穿目标，并造成法术伤害。下文所有连招与打法都围绕这一条展开。</div></div><div class="co co-b"><div class="co-t">强势期原文依据</div><div class="co-b"><span class="mk mk-A">A · 官方硬数据</span> 阶段打法：前期1技能清线；中期2技能加速消耗；后期大招覆盖战场</div></div>
+</section><section id="s2" class="sec">
+<h2><span class="sn">2</span>版本状态与数据口径</h2>
+<div class="purpose"><b>本节作用：</b>明确数据时间、来源与冲突口径的处理方式，避免把旧数据当结论</div>
+
+<h3>官方数据带（快照）</h3><div class="tw"><table class="tbl "><thead><tr><th>项</th><th>值</th><th>来源与日期</th></tr></thead><tbody><tr><td>英雄名称</td><td>嬴政</td><td>官方英雄数据库 herolist.json · 快照 2026-11-12</td></tr><tr><td>英雄ID（ename）</td><td>110</td><td>官方英雄数据库 · 快照 2026-11-12</td></tr><tr><td>称号</td><td>王者独尊</td><td>官方英雄数据库 · 快照 2026-11-12</td></tr><tr><td>官方定位（hero_type）</td><td>2</td><td>官方英雄数据库 · 快照 2026-11-12</td></tr><tr><td>官方分路（roles）</td><td>中路</td><td>官方英雄数据库 · 快照 2026-11-12</td></tr><tr><td>技能条目数</td><td>4</td><td>官方技能描述 · 快照 2026-11-12</td></tr></tbody></table></div><div class="co co-a"><div class="co-t">口径说明</div><div class="co-b"><span class="mk mk-A">A · 官方硬数据</span> 本篇所有官方字段取自同一份官方英雄数据快照（2026-11-12），因此内部自洽。官方站点的部分明细接口本次不可访问，技能数值、装备属性、胜率与梯度等需要实时查询的字段未取到，正文中不出现这些数值，以局内说明为准。</div></div><h3>口径打架时的并列呈现</h3><div class="tw"><table class="tbl "><thead><tr><th>口径</th><th>说法 A</th><th>说法 B</th><th>本篇处理</th></tr></thead><tbody><tr><td>版本号</td><td>官方站新闻与客户端显示可能存在推送时差</td><td>第三方攻略站常直接沿用上一版本号</td><td>本篇不引用版本号做结论，只用「快照日期 + 机制描述」</td></tr><tr><td>分路归属</td><td>官方 roles 字段可能一名多路</td><td>攻略站会按版本强势度推荐「最适合上分的一路」</td><td>本篇按 中路 写，并在开篇注明官方分路标注</td></tr></tbody></table></div><h3>体验服 / 未落地调整</h3><div class="co co-c"><div class="co-t">体验服区块（未落地，不进正文）</div><div class="co-b"><span class="mk mk-C">C · 体验服/未落地</span> 本次未取到可核实的体验服公告原文，故此区块不写任何具体改动。若后续官方发布体验服调整，需单独记录来源与日期，且正文打法仍按正式服执行。</div></div>
+</section><section id="s3" class="sec">
+<h2><span class="sn">3</span>技能机制与被动</h2>
+<div class="purpose"><b>本节作用：</b>讲透该英雄被动如何叠加、如何转化为控制与收益，并标出机制红利与最易浪费的点</div>
+
+<h3>被动怎么叠 / 怎么控</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>官方被动描述</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>嬴政的普通攻击可以击穿目标，并造成120（+100%物理加成）（+35%法术加成）点法术伤害</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>攻击机关时会衰减50%的伤害</td></tr></tbody></table></div><h3>各技能机制锚点</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>技能</th><th>CD（官方）</th><th>机制要点</th><th>含控制</th><th>含资源</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>王者惩戒</td><td>8</td><td>嬴政在指定目标区域召唤黄金剑阵，持续，每对范围内的敌人造成法术伤害</td><td>无</td><td>无</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>王者守御</td><td>10</td><td>嬴政开启王之护盾，护盾可抵免点伤害，并对附近敌人造成法术伤害并清空装备为他们提供的物理攻击力，持续，同时嬴政在内增加随时间衰减的移动速度被动：增加嬴政移动速度</td><td>无</td><td>无</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>至尊王权</td><td>35</td><td>嬴政展示王者权力，增加移动速度，持续，期间将会号令只飞剑持续向指定方向进行冲击，每只飞剑能造成法术伤害，过程中嬴政可以使用其它技能</td><td>无</td><td>无</td></tr></tbody></table></div><h3>机制红利（跨版本稳定的部分）</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>机制红利</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>嬴政的普通攻击可以击穿目标，并造成法术伤害</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>嬴政展示王者权力，增加移动速度，持续，期间将会号令只飞剑持续向指定方向进行冲击，每只飞剑能造成法术伤害，过程中嬴政可以使用其它技能</td></tr></tbody></table></div><h3>最容易浪费的点</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>浪费点（官方机制原文）</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>嬴政的普通攻击可以击穿目标，并造成法术伤害</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>攻击机关时会衰减的伤害</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 上表列的是官方文本里的<b>限制条件</b>。嬴政 的红利通常是可累积的，在红利没叠到位就交火，等于把本该在下一轮兑现的收益提前打掉。</div></div><h3>输出方式与伤害构成</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>维度</th><th>机制要点</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>普攻相关机制</td><td>嬴政的普通攻击可以击穿目标，并造成法术伤害</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>伤害类型</td><td>法术伤害</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>资源/次数管理</td><td>嬴政开启王之护盾，护盾可抵免点伤害，并对附近敌人造成法术伤害并清空装备为他们提供的物理攻击力，持续，同时嬴政在内增加随时间衰减的移动速度被动：增加嬴政移动速度</td></tr></tbody></table></div>
+</section><section id="s4" class="sec">
+<h2><span class="sn">4</span>出装铭文与召唤师技能</h2>
+<div class="purpose"><b>本节作用：</b>给出一套可直接抄的默认解，并提供局势替换与后期换装的决策路径</div>
+
+<h3>默认解</h3><div class="tw"><table class="tbl "><thead><tr><th>方案</th><th>出装顺序</th></tr></thead><tbody><tr><td>方案 1</td><td>秘法之靴 → 回响之杖 → 博学者之怒 → 痛苦面具 → 虚无法杖 → 贤者天书</td></tr><tr><td>方案 2</td><td>秘法之靴 → 回响之杖 → 博学者之怒 → 痛苦面具 → 梦魇之牙 → 贤者天书</td></tr></tbody></table></div><div class="tw"><table class="tbl "><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>铭文</td><td>红月×10、心眼×10、狩猎×10</td></tr><tr><td>召唤师技能</td><td>闪现/斩杀</td></tr><tr><td>技能加点</td><td>主一副二，有大点大</td></tr></tbody></table></div><h3>按局势替换</h3><div class="tw"><table class="tbl "><thead><tr><th>局势信号</th><th>替换动作</th><th>备注</th></tr></thead><tbody><tr><td>敌方爆发高 / 强控多</td><td>补一件防御装，把生存位让出来</td><td>以局内说明与实际对局为准</td></tr><tr><td>需要跑位和拉扯</td><td>补移动装或攻速装，保证能持续输出</td><td>以局内说明与实际对局为准</td></tr><tr><td>后期需要穿人</td><td>补穿透或破甲，把伤害打穿前排</td><td>以局内说明与实际对局为准</td></tr></tbody></table></div><h3>后期换装链</h3><div class="tw"><table class="tbl "><thead><tr><th>阶段</th><th>动作</th><th>说明</th></tr></thead><tbody><tr><td>中期</td><td>不卖防御位</td><td>中期装备还没成型，卖鞋等于裸奔</td></tr><tr><td>后期</td><td>按需把急速鞋换成保命装</td><td>急速鞋大后期可卖；抵抗之靴 / 影忍之足别卖</td></tr><tr><td>复活甲 / 名刀</td><td>轮换链：复活甲 → 名刀 → 复活甲</td><td>按对手控制与爆发决定轮换顺序</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 上表是基于该英雄定位的装备优先级排序，不是版本最优解；不同分段与版本的最优出装会变化。</div></div>
+</section><section id="s5" class="sec">
+<h2><span class="sn">5</span>开局路线</h2>
+<div class="purpose"><b>本节作用：</b>开局对线与支援半径</div>
+
+<h3>开局对线与支援半径</h3><div class="tw"><table class="tbl "><thead><tr><th>时间点</th><th>动作</th><th>原因</th></tr></thead><tbody><tr><td>一级</td><td>站在技能可及范围边缘</td><td>中路的胜负手是技能命中率，不是兵线</td></tr><tr><td>1 级</td><td>清第一波兵，看清对方技能CD</td><td>记住对方技能CD 是中路的硬信息</td></tr><tr><td>2-3 级</td><td>抢线权并向河道靠拢</td><td>河道是中路与两侧的连接点</td></tr><tr><td>4 级</td><td>第一波支援窗口（若队友开团）</td><td>4 级是第一个能参与团战的节点</td></tr><tr><td>6 级</td><td>清线后向边路转线</td><td>中路英雄的价值在支援半径</td></tr></tbody></table></div><h3>关键节点细则</h3><div class="tw"><table class="tbl "><thead><tr><th>节点</th><th>要点</th></tr></thead><tbody><tr><td>站位</td><td>站在河道草丛或塔前，不要站在兵线正前方。</td></tr><tr><td>抢线 / 卡线</td><td>中路线权决定支援速度，优先推线再支援。</td></tr><tr><td>第一波兵</td><td>清完立刻靠河道，不要留在原地等下一波。</td></tr><tr><td>第一次回城</td><td>回城前把兵线推过去，形成线权真空。</td></tr><tr><td>首个节奏点</td><td>对方消失时立刻后撤，回中路补视野。</td></tr></tbody></table></div><h3>现行中立资源时间轴（对线期相关）</h3><div class="tw"><table class="tbl "><thead><tr><th>时间</th><th>事件</th><th>意义</th></tr></thead><tbody><tr><td>0:30</td><td>红隼刷新</td><td>首个野怪刷新点，先手方有优势</td></tr><tr><td>2:00</td><td>空间之灵刷新 / 先知主宰刷新</td><td>先知主宰是 S36 后段的中立资源点</td></tr><tr><td>10:00</td><td>双龙刷新</td><td>双龙为中后期主要资源争夺点</td></tr><tr><td>20:00</td><td>风暴龙王刷新</td><td>决胜点资源</td></tr></tbody></table></div>
+</section><section id="s6" class="sec">
+<h2><span class="sn">6</span>连招库</h2>
+<div class="purpose"><b>本节作用：</b>把连招按使用场景归类，每条注明触发条件、关键动作与失败点</div>
+
+<h3>按场景分类的连招</h3><h4>团战开团</h4><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>连招</th><th>触发条件</th><th>关键动作（该英雄技能机制）</th><th>失败点</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>2王者守御-3大招至尊王权-1王者惩戒</td><td>对方站位成团且关键控制尚未交出</td><td>王者守御（嬴政开启王之护盾，护盾可抵免点伤害，并对附近敌人造成法术伤害并清空装备为他们提供的物理攻击力，持续，同时嬴政在内增加随时间衰减的移动速度被动：增加嬴政移动速度） → 至尊王权（嬴政展示王者权力，增加移动速度，持续，期间将会号令只飞剑持续向指定方向进行冲击，每只飞剑能造成法术伤害，过程中嬴政可以使用其它技能） → 王者惩戒（嬴政在指定目标区域召唤黄金剑阵，持续，每对范围内的敌人造成法术伤害）</td><td>大招命中后才有后续收益，空放等于白给一轮冷却</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>3-2-1(远程支援)</td><td>对方站位成团且关键控制尚未交出</td><td>至尊王权（嬴政展示王者权力，增加移动速度，持续，期间将会号令只飞剑持续向指定方向进行冲击，每只飞剑能造成法术伤害，过程中嬴政可以使用其它技能） → 王者守御（嬴政开启王之护盾，护盾可抵免点伤害，并对附近敌人造成法术伤害并清空装备为他们提供的物理攻击力，持续，同时嬴政在内增加随时间衰减的移动速度被动：增加嬴政移动速度） → 王者惩戒（嬴政在指定目标区域召唤黄金剑阵，持续，每对范围内的敌人造成法术伤害）</td><td>大招命中后才有后续收益，空放等于白给一轮冷却</td></tr></tbody></table></div><h3>三条铁律</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>铁律</th><th>理由</th></tr></thead><tbody><tr><td>1</td><td>没有场景就不按键</td><td>每条连招都必须对应一个明确的局面触发条件</td></tr><tr><td>2</td><td>连招是顺序链，不是按键清单</td><td>每一段依赖前一段命中，中断后剩余技能不接上</td></tr><tr><td>3</td><td>关键技能只留一次机会</td><td>关键技能交空后的一整轮，就是对方的免费反打窗口</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 连招的「关键动作」一栏是按 嬴政 的机制推演，不是逐帧录像复刻，建议在自己的录像里对照修正。</div></div><h3>该英雄的官方实战要点</h3><div class="tw"><table class="tbl "><thead><tr><th>标注</th><th>要点</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>大招剑雨范围极大</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>技能加速追击逃跑都好用</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>被动攻速加成让平A也很强</td></tr><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>站位靠后安全输出</td></tr></tbody></table></div>
+</section><section id="s7" class="sec">
+<h2><span class="sn">7</span>节奏与时间锚点</h2>
+<div class="purpose"><b>本节作用：</b>用四拍闭环、提前量与固定时间点，把「什么时候该做什么」变成可执行的节奏表</div>
+
+<h3>四拍闭环</h3><div class="tw"><table class="tbl "><thead><tr><th>拍</th><th>动作</th><th>目的</th></tr></thead><tbody><tr><td>对线 / 转线</td><td>把兵线与等级转成线上优势</td></tr><tr><td>读图</td><td>看小地图，判断对方打野与辅助位置</td></tr><tr><td>出手</td><td>在对方技能真空期换血或支援</td></tr><tr><td>转化</td><td>把优势转成推塔、控龙或转线收益</td></tr><tr><td>回线回野区</td><td>回到兵线与视野节奏，继续攒经济</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 提前量：看到对方消失就要动，比对方出现在你脸上早 20~30 秒。这 20~30 秒就是你的绕后或转线窗口。</div></div><h3>五个时间点</h3><div class="tw"><table class="tbl "><thead><tr><th>时间点</th><th>事件</th><th>为什么重要</th></tr></thead><tbody><tr><td>0:30</td><td>红隼刷新点</td><td>第一个资源</td></tr><tr><td>2:00</td><td>空间之灵 + 先知主宰</td><td>第一个能影响局势的中立点</td></tr><tr><td>4 级</td><td>第一个可抓人节点</td><td>此时的技能组合决定第一次 gank 质量</td></tr><tr><td>10:00</td><td>双龙刷新</td><td>中后期资源争夺点</td></tr><tr><td>20:00</td><td>风暴龙王刷新</td><td>决胜点资源</td></tr></tbody></table></div><h3>五条自检</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>自检问题</th></tr></thead><tbody><tr><td>1</td><td>我现在在哪一拍的哪一步？</td></tr><tr><td>2</td><td>对方五个人分别在哪、状态如何？</td></tr><tr><td>3</td><td>我这波兵线优势在不在？</td></tr><tr><td>4</td><td>我出手的窗口是不是已经关闭了？</td></tr><tr><td>5</td><td>打完这一波，我下一步去哪？</td></tr></tbody></table></div>
+</section><section id="s8" class="sec">
+<h2><span class="sn">8</span>换血与线权</h2>
+<div class="purpose"><b>本节作用：</b>换血与线权</div>
+
+<h3>换血窗口</h3><div class="tw"><table class="tbl "><thead><tr><th>窗口</th><th>判断标准</th><th>动作</th></tr></thead><tbody><tr><td>对方技能交完</td><td>关键控制与位移已用</td><td>上前打一套伤害</td></tr><tr><td>我方技能齐</td><td>核心技能与强化都在</td><td>主动压线换血</td></tr><tr><td>对方回城</td><td>兵线已进塔</td><td>越塔强开或拆塔</td></tr></tbody></table></div><h3>线权归属</h3><div class="tw"><table class="tbl "><thead><tr><th>状态</th><th>含义</th><th>可以做什么</th></tr></thead><tbody><tr><td>线权在我</td><td>兵线在我方塔前</td><td>可以支援、可以越塔、可以抓单</td></tr><tr><td>线权在对方</td><td>兵线在对方塔前</td><td>守塔、补刀、等人来</td></tr><tr><td>线权在河道</td><td>双方兵线相接</td><td>视野优先，勿先手</td></tr></tbody></table></div><h3>支援与防 gank 站位</h3><div class="tw"><table class="tbl "><thead><tr><th>场景</th><th>站位</th><th>原因</th></tr></thead><tbody><tr><td>准备支援</td><td>靠河道侧，先清视野</td><td>支援路上不被打断</td></tr><tr><td>对方打野露头</td><td>退回塔前</td><td>不出塔送被抓</td></tr><tr><td>自己打野在抓人</td><td>站河道草丛侧翼</td><td>形成二面夹击</td></tr></tbody></table></div><h3>三个翻车点</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>翻车点</th><th>后果</th></tr></thead><tbody><tr><td>1</td><td>无视野深压线</td><td>被 gank 无支援</td></tr><tr><td>2</td><td>技能先手但没打中</td><td>被反打且失去线权</td></tr><tr><td>3</td><td>支援路上被截</td><td>两头空</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 目标判断与翻车点是按 嬴政 的机制归纳，属于操作层面的判断，不是数据结论。</div></div>
+</section><section id="s9" class="sec">
+<h2><span class="sn">9</span>团战</h2>
+<div class="purpose"><b>本节作用：</b>把团战拆成进场前与进场后两段，明确目标选择、撤退方式与技能的非常规用法</div>
+
+<h3>进场前 / 进场后</h3><div class="tw"><table class="tbl "><thead><tr><th>阶段</th><th>要做的事</th><th>判断依据</th></tr></thead><tbody><tr><td>进场前</td><td>确认关键控制是否已交、目标是否成团</td><td>对方控制未交时不要先手开团</td></tr><tr><td>进场前</td><td>站位选在对方C位与自己的距离之外</td><td>进场角度决定能否一击命中</td></tr><tr><td>进场后</td><td>第一时间打出关键控制或伤害</td><td>犹豫一秒就是被反打</td></tr><tr><td>进场后</td><td>目标明确，只打一个方向</td><td>不要在团战里换目标</td></tr><tr><td>打完怎么撤</td><td>留好撤退技能，打完即走</td><td>残血站在原地就是送</td></tr></tbody></table></div><h3>目标选择</h3><div class="tw"><table class="tbl "><thead><tr><th>优先级</th><th>目标</th><th>原因</th></tr></thead><tbody><tr><td>1</td><td>敌方核心输出位</td><td>打掉输出比打掉坦克收益高</td></tr><tr><td>2</td><td>开团者</td><td>拆掉开团点能救队友</td></tr><tr><td>3</td><td>残血可收</td><td>收掉能滚雪球</td></tr><tr><td>4</td><td>前排坦克</td><td>除非团战有利，否则不优先</td></tr></tbody></table></div><h3>核心技能的第二种用法</h3><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 除常规团战开团外，嬴政 的核心技能还有「非正面使用」的价值——用于拉扯、封路、分割阵型或保护队友撤离，具体用法以局内实况判断。</div></div>
+</section><section id="s10" class="sec">
+<h2><span class="sn">10</span>三种局势</h2>
+<div class="purpose"><b>本节作用：</b>按顺风 / 均势 / 逆风三种局面给出目标、动作与禁区，避免用同一套打法硬套</div>
+
+<h3>顺风</h3><div class="tw"><table class="tbl "><thead><tr><th>目标</th><th>动作</th><th>别做</th></tr></thead><tbody><tr><td>扩大领先，把优势变成地图控制，而不是刷数据</td><td>· 主动压线，把兵线推进对方塔下，换取更多支援时间差&lt;br&gt;· 扩大 gank 范围，从一条线蔓延到两条线&lt;br&gt;· 控下中立资源，把经济差滚成装备差&lt;br&gt;· 找机会推塔，塔掉了比拿人头更值钱</td><td>· 不要在优势局无理由接团，把大优势打没&lt;br&gt;· 不要单挑进入对方控制范围，优势局最不值的是单挑失误</td></tr></tbody></table></div><h3>均势</h3><div class="tw"><table class="tbl "><thead><tr><th>目标</th><th>动作</th><th>别做</th></tr></thead><tbody><tr><td>找到唯一的破局点，把平局变成优势</td><td>· 围绕中立资源做文章，时间点比人数重要&lt;br&gt;· 抓对方打野 / 辅助的位置空档，而不是硬打 C 位&lt;br&gt;· 跟着队友节奏走，避免单独开团&lt;br&gt;· 关键技能留到团战，不要在线上随手交</td><td>· 不要在均势局主动和对方打野换血，他可能带着人&lt;br&gt;· 不要先手开团，除非你确定对方关键控制交了</td></tr></tbody></table></div><h3>逆风</h3><div class="tw"><table class="tbl "><thead><tr><th>目标</th><th>动作</th><th>别做</th></tr></thead><tbody><tr><td>止损与拖时间，把经济差缩到可打范围</td><td>· 保 KDA，别再送出人头扩大赏金差&lt;br&gt;· 守塔、偷资源、控中立，别做无意义的架&lt;br&gt;· 抱团推进，找对方站位失误的架&lt;br&gt;· 等对方核心装备还没做出来时打一波</td><td>· 不要单带孤兵给抓单的机会&lt;br&gt;· 不要在没有控制的情况下先手开团</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">主观判断</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 三种局势的动作清单是按 嬴政 的定位归纳，属于思路建议，不是数据结论。</div></div>
+</section><section id="s11" class="sec">
+<h2><span class="sn">11</span>适配阵容与克制</h2>
+<div class="purpose"><b>本节作用：</b>给出机制层面的克制关系与组合思路，并明确区分主观归纳与官方标注</div>
+
+<h3>官方克制标注</h3><div class="tw"><table class="tbl "><thead><tr><th>方向</th><th>官方标注英雄</th><th>标注</th></tr></thead><tbody><tr><td>该英雄克制的方向</td><td>干将莫邪、墨子、米莱狄</td><td><span class="mk mk-A">A · 官方硬数据</span></td></tr><tr><td>克制该英雄的方向</td><td>兰陵王、镜、赵云、铠</td><td><span class="mk mk-A">A · 官方硬数据</span></td></tr></tbody></table></div><h3>机制层面的共性</h3><div class="tw"><table class="tbl "><thead><tr><th>方向</th><th>机制共性（主观归纳）</th><th>为什么</th></tr></thead><tbody><tr><td>较难处理的方向</td><td>兰陵王、镜、赵云、铠</td><td>这些英雄的机制能直接针对本篇核心机制的释放窗口</td></tr><tr><td>较容易处理的方向</td><td>干将莫邪、墨子、米莱狄</td><td>本篇核心机制在这些对局里能形成先手</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">重要声明</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 以上克制关系为<b>主观归纳</b>，是机制层面的共性描述，<b>不是对位胜率</b>。本篇不提供任何对位胜率数字。</div></div><h3>适配阵容思路</h3><div class="tw"><table class="tbl "><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>搭档思路</td><td>蒙恬、张飞、鲁班七号、桑启</td></tr><tr><td>强势原因</td><td>嬴政大招万剑归宗顶级压塔与清线。蒙恬举盾正面推进，嬴政在后排安全扫射；张飞大招吼退冲脸英雄；鲁班七号配合嬴政形成双POKE推塔流。</td></tr><tr><td>体系思路</td><td>蒙恬(对抗) + 赵云(打野) + 嬴政(中路) + 鲁班七号(发育) + 桑启(游走)</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">说明</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 热门组合不等于最优组合；阵容思路应按当前段位与己方已有体系来选。</div></div>
+</section><section id="s12" class="sec">
+<h2><span class="sn">12</span>常见失误与训练法</h2>
+<div class="purpose"><b>本节作用：</b>把高频失误列成可对照的表，并给出一个 20 局只做一件事的最小训练单元</div>
+
+<h3>常见失误表</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>失误</th><th>后果</th></tr></thead><tbody><tr><td>1</td><td>技能全交在无价值目标上</td><td>关键技能进入长 CD，被对方直接反打</td></tr><tr><td>2</td><td>进场前没确认对方控制是否已交</td><td>被反控，开团变送</td></tr><tr><td>3</td><td>打完不撤，留在原地</td><td>残血被收，经济与节奏双输</td></tr><tr><td>4</td><td>资源不用完就换目标</td><td>机制红利没叠满就交火</td></tr><tr><td>5</td><td>视野盲区盲目经过</td><td>被埋伏</td></tr><tr><td>6</td><td>支援时不看地图</td><td>两头空，两边都亏</td></tr><tr><td>7</td><td>顺风乱接团</td><td>把大优势打没</td></tr><tr><td>8</td><td>逆风单带孤兵</td><td>给对手抓单机会</td></tr></tbody></table></div><h3>接下来 20 局只练一个动作</h3><div class="tw"><table class="tbl "><thead><tr><th>训练项</th><th>做法</th></tr></thead><tbody><tr><td>只练一个动作</td><td>连续 20 局只练一个动作，其余照常打。练完再换下一个。</td></tr><tr><td>录像复盘</td><td>只回看自己这一个动作发生的片段，不看别的。</td></tr><tr><td>固定场景</td><td>训练营里固定一个假人位置，反复练同一个进场角度。</td></tr></tbody></table></div><div class="co co-d"><div class="co-t">训练法说明</div><div class="co-b"><span class="mk mk-D">D · 主观判断</span> 训练顺序与优先级属于主观判断，针对 嬴政 的机制特点设计。</div></div>
+</section><section id="s13" class="sec">
+<h2><span class="sn">13</span>附录</h2>
+<div class="purpose"><b>本节作用：</b>给出数据来源分级、出处、避坑清单与仍存疑的点，便于后续核对与更新</div>
+
+<h3>数据来源分级</h3><div class="tw"><table class="tbl "><thead><tr><th>级别</th><th>含义</th><th>使用规则</th></tr></thead><tbody><tr><td><span class="mk mk-A">A · 官方硬数据</span></td><td>官方硬数据</td><td>官方英雄数据库 / 公告原文，带日期与口径。可引用，但必须注明快照时间。</td></tr><tr><td><span class="mk mk-B">B · 多来源共识</span></td><td>多来源共识</td><td>三份以上攻略一致的说法，标注「主流观点」，不写「官方结论」。</td></tr><tr><td><span class="mk mk-C">C · 体验服 / 未落地</span></td><td>体验服 / 未落地</td><td>体验服与未落地调整，单独成块，不混进当前打法。</td></tr><tr><td><span class="mk mk-D">D · 主观判断</span></td><td>主观判断</td><td>上手难度、克制归纳、优先级、训练法顺序，作者判断，明说。</td></tr></tbody></table></div><h3>数据出处</h3><div class="tw"><table class="tbl "><thead><tr><th>数据项</th><th>来源</th><th>日期 / 口径</th></tr></thead><tbody><tr><td>英雄名称、ID、称号、官方定位、官方分路</td><td>官方英雄数据库 herolist.json</td><td>快照 2026-11-12</td></tr><tr><td>技能名称、CD、官方技能描述</td><td>官方英雄技能数据</td><td>快照 2026-11-12</td></tr><tr><td>出装、铭文、召唤师技能、加点、连招、阶段打法、对位标注、官方攻略</td><td>官方英雄攻略文本数据</td><td>快照 2026-11-12</td></tr><tr><td>克制标注</td><td>官方英雄数据中的对位字段</td><td>快照 2026-11-12</td></tr><tr><td>上手难度、克制归纳、优先级、训练法顺序</td><td>作者主观判断</td><td>本篇写作时点</td></tr><tr><td>胜率、梯度、出场率、禁用率、版本统计</td><td><b>未取到</b>（本篇不引用）</td><td>—</td></tr><tr><td>体验服调整</td><td><b>未取到可核实原文</b>（本篇不引用）</td><td>—</td></tr></tbody></table></div><h3>过时信息避坑清单</h3><div class="tw"><table class="tbl "><thead><tr><th>项</th><th>避坑说明</th></tr></thead><tbody><tr><td>河道之灵（河蟹）</td><td>S36 已全部移除。任何&amp;quot;1 分钟抢河蟹&amp;quot;的说法均为旧版本内容，不要照做。</td></tr><tr><td>旧野区时间轴</td><td>&amp;quot;2 分钟暴君 / 8 分钟主宰&amp;quot;已作废。现行：2:00 先知主宰 + 空间之灵，10:00 双龙，20:00 风暴龙王。</td></tr><tr><td>打野刀灼烧数值</td><td>打野刀灼烧为公式制、各版本反复调整。不要引用固定每跳数字，改为训练营实测 + 局内说明为准。</td></tr><tr><td>红刀灼烧</td><td>紫刀普攻触发灼烧；红刀是否带灼烧随版本变动，以局内说明为准。</td></tr><tr><td>娱乐模式调整</td><td>共鸣之战等娱乐模式的改动不是排位本体加强，不要当成版本更新。</td></tr><tr><td>体验服调整</td><td>体验服改动未落地前，正文打法一律按正式服写。</td></tr><tr><td>旧胜率与梯度</td><td>不引用旧赛季胜率、旧梯度榜当当前结论。</td></tr><tr><td>站桩射手卖鞋</td><td>不是一刀切：急速鞋大后期可卖；抵抗之靴 / 影忍之足别卖；中期不卖。</td></tr></tbody></table></div><h3>配套索引</h3><div class="tw"><table class="tbl "><thead><tr><th>内容</th><th>位置</th></tr></thead><tbody><tr><td>一键速览</td><td>第 1 节</td></tr><tr><td>技能机制与被动细节</td><td>第 3 节</td></tr><tr><td>连招与失败点</td><td>第 6 节</td></tr><tr><td>时间锚点与自检</td><td>第 7 节</td></tr><tr><td>局势应对</td><td>第 10 节</td></tr><tr><td>失误对照</td><td>第 12 节</td></tr></tbody></table></div><h3>仍存疑的点</h3><div class="tw"><table class="tbl "><thead><tr><th>#</th><th>存疑点</th><th>状态</th></tr></thead><tbody><tr><td>1</td><td>技能数值、装备属性（会随版本变动）</td><td>待核 · 以局内说明为准</td></tr><tr><td>2</td><td>当前版本胜率、梯度、出场率、禁用率</td><td>待核 · 未取到可靠来源，本篇不引用</td></tr><tr><td>3</td><td>体验服 / 未落地调整</td><td>待核 · 未取到可核实原文</td></tr><tr><td>4</td><td>打野刀灼烧的具体公式与每跳数值</td><td>待核 · 以训练营实测 + 局内说明为准</td></tr><tr><td>5</td><td>本文对位克制关系的量化强度</td><td>待核 · 属主观归纳，非对位胜率</td></tr></tbody></table></div>
+</section>
+</div>
+<div class="foot">
+嬴政 · 中路完整攻略 ｜ 资料快照 2026-11-12 ｜ 品质 S36<br>
+本篇含官方数据快照与作者主观判断两类信息，已按 A/B/C/D 分级标注。
+胜率、梯度等时效数据未取到，本篇不引用；数值以局内说明为准。
+</div>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.anchors a'));
+  var secs=[].slice.call(document.querySelectorAll('section.sec'));
+  function onScroll(){
+    var y=window.scrollY+140,cur=secs[0];
+    for(var i=0;i<secs.length;i++){if(secs[i].offsetTop<=y)cur=secs[i];}
+    links.forEach(function(a){
+      a.classList.toggle('act',a.getAttribute('href')==='#'+cur.id);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  var btn=document.getElementById('printBtn');
+  if(btn)btn.onclick=function(){window.print();};
+})();
+</script>
+</body>
+</html>

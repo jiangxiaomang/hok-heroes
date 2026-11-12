@@ -274,3 +274,40 @@ body:has(.hero-card.expanded) .cursor-ring{ display:none !important; }
   .bg-switcher,.voice-btn,.voice-panel,
   .cursor-dot,.cursor-ring{ display:none !important; }
 }
+
+/* ---------- 9. 完整攻略库入口 ---------- */
+.full-entry{max-width:1180px;margin:10px auto 0;padding:0 16px}
+.full-entry a{display:block;text-align:center;font-size:13.5px;font-weight:700;
+  letter-spacing:.5px;text-decoration:none;color:#8a6d1a;background:#fdfaf0;
+  border:1px solid #d9c98f;border-radius:6px;padding:11px 14px}
+.full-entry a:hover{background:#f7f0d8;border-color:#c0a75a}
+html[data-theme="light"] .full-entry a{color:#8a6d1a}
+@media print{.full-entry{display:none}}
+
+/* ---------- 10. 13 节完整攻略直达按钮 ---------- */
+.gb-full,.hp-full{display:inline-block;margin-left:8px;font-size:12px;font-weight:700;
+  text-decoration:none;color:#8a6d1a;border:1px solid #d9c98f;background:#fdfaf0;
+  border-radius:4px;padding:4px 10px;vertical-align:middle}
+.gb-full:hover,.hp-full:hover{background:#f7f0d8;border-color:#c0a75a;color:#6f5812}
+.hp-full{margin-left:6px;padding:2px 8px;font-size:11.5px}
+.hero-card.expanded .gb-full{background:#fff}
+@media print{.gb-full,.hp-full{display:none}}
+
+/* ---------- 11. 精简展开内容：重复内容收进「13 节完整攻略」 ---------- */
+/* 卡片展开时只保留：使用指南 / 技能详解 / 出装 / 铭文 / 召唤师技能 / 加点；
+   连招、分阶段、进阶、对位等深度内容统一由「13 节完整攻略」承载，避免同一屏重复堆叠。 */
+.hero-card.expanded .hero-body > .section[data-thin]{
+  display:none !important;
+}
+.hero-card.expanded .thin-note{
+  grid-column:1/-1;
+  margin:0 !important;
+  padding:9px 12px !important;
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--muted);
+  background:rgba(255,255,255,.03);
+  border:1px dashed var(--line);
+  border-radius:6px;
+}
+html[data-theme="light"] .hero-card.expanded .thin-note{ background:#fbfaf5; }

@@ -210,6 +210,15 @@
     ['被克制', 'weakto']
   ];
 
+  /* ---------- 13 节完整攻略直达链接 ---------- */
+  function fullLink(name, inline) {
+    var m = (typeof FULL_GUIDES !== 'undefined') ? FULL_GUIDES[name] : null;
+    if (!m) return '';
+    var cls = inline ? 'hp-full' : 'gb-full';
+    return '<a class="' + cls + '" href="guide/full/' + m.file + '" target="_blank" rel="noopener"' +
+      (inline ? '' : ' onclick="event.stopPropagation()"') + '>📚 13 节完整攻略</a>';
+  }
+
   function esc(s) {
     return s == null ? '' : String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -243,6 +252,7 @@
       fieldsHtml +
       tags +
       '<button class="gb-more" data-guide-more="' + esc(g.n) + '">完整详情</button>' +
+      fullLink(g.n) +
       '</div>';
 
     // 指南放在卡片正文最前面：展开卡片第一眼就是「怎么玩」，而不是滚完技能才看到
@@ -270,7 +280,8 @@
       '<div class="hp-tags">' + (g.tags || []).slice(0, 4).map(function (t) {
         return '<span class="hp-tag">' + esc(t) + '</span>';
       }).join('') +
-      '<button class="hp-open" data-guide-open="' + esc(g.n) + '">📖 完整攻略</button></div>';
+      '<button class="hp-open" data-guide-open="' + esc(g.n) + '">📖 完整详情</button>' +
+      fullLink(g.n, true) + '</div>';
     head.appendChild(preview);
     var btn = preview.querySelector('.hp-open');
     if (btn) {
@@ -416,7 +427,10 @@
           }).join('') + '</div>';
     }
 
-    body.innerHTML = f + '<div class="section"><div class="sec-title">标签</div><div class="gb-tags">' +
+    body.innerHTML = f + '<div class="section"><div class="sec-title">13 节完整攻略</div>' +
+      fullLink(g.n) + '<div class="tips-text">该英雄的独立单文件深度攻略：13 节固定骨架，含' +
+      '机制拆解、出装铭文替换表、开局路线、连招库、节奏锚点、团战与三种局势。</div></div>' +
+      '<div class="section"><div class="sec-title">标签</div><div class="gb-tags">' +
       (g.tags || []).map(function (t) { return '<span class="gb-tag">' + esc(t) + '</span>'; }).join('') +
       '</div></div>' + extra;
 

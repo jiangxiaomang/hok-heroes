@@ -877,6 +877,7 @@ footer{
   <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">数据更新: 2026-10-06 · 133位英雄 · 含官方铭文/出装/组队阵容体系</div>
 </div>
 <div class="guide-toolbar" id="guide-toolbar"></div>
+<div class="full-entry"><a href="guide/full/index.html" target="_blank" rel="noopener">📚 全英雄完整攻略库（133 篇 · 13 节深度）→</a></div>
 <main id="main"></main>
 <div id="gt-list"></div>
 <footer>王者荣耀全英雄攻略 · 数据更新于 2026-10 · 仅供学习参考</footer>
@@ -992,6 +993,10 @@ h+=`<div class="hero-grid">`;
 heroes.forEach(x=>h+=renderCard(x));
 return h+'</div></div>';
 }
+function fullGuideFile(name){
+  const m = (typeof FULL_GUIDES !== 'undefined') ? FULL_GUIDES[name] : null;
+  return m ? m.file : null;
+}
 function renderCard(h){
 const iconUrl=`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${h.eid}/${h.eid}.jpg`;
 const skillIcons=['被动','1技能','2技能','大招','4技能'];
@@ -1011,17 +1016,20 @@ return `<div class="hero-card" onclick="this.classList.toggle('expanded')">
 <div class="section"><div class="sec-title">出装推荐</div>${(h.equips||[]).map((e,i)=>`<div class="equip-row"><span class="equip-label">方案${i+1}</span><span class="equip-items">${e.map(x=>`<span class="equip-tag">${x}</span>`).join('')}</span></div>`).join('')||'<div class="tips-text">抵抗之靴、红莲斗篷、不祥征兆、魔女斗篷、霸者重装、血魔之怒</div>'}</div>
 <div class="section"><div class="sec-title">召唤师技能</div><div class="tips-text">${esc(h.summoner||'闪现 / 治疗术')}</div></div>
 <div class="section"><div class="sec-title">技能加点</div><div class="tips-text">${esc(h.skill_order||'主二副一，有大点大')}</div></div>
-<div class="section"><div class="sec-title">连招技巧</div>${comboHtml}</div>
-<div class="section"><div class="sec-title">对位关系</div><div class="counter-group"><div class="counter-label">克制:</div>${counters||'无'}</div><div class="counter-group"><div class="counter-label">被克:</div>${countered||'无'}</div></div>
-<div class="section"><div class="sec-title">分阶段打法</div><div class="tips-text">${esc(h.phases||'前期发育，中期游走，后期团战')}</div></div>
-<div class="section"><div class="sec-title">进阶技巧</div>${(h.pro_tips||[]).map(t=>`<div class="pro-tip">${esc(t)}</div>`).join('')||'<div class="tips-text">暂无进阶技巧</div>'}</div>
-${h.official_tips?`<div class="section"><div class="sec-title">官方攻略</div><div class="tips-text">${esc(h.official_tips)}</div></div>`:''}
-${h.lineup?`<div class="section"><div class="sec-title">🤝 建议组队阵容</div>
+<div class="section" data-thin><div class="sec-title">连招技巧</div>${comboHtml}</div>
+<div class="section" data-thin><div class="sec-title">对位关系</div><div class="counter-group"><div class="counter-label">克制:</div>${counters||'无'}</div><div class="counter-group"><div class="counter-label">被克:</div>${countered||'无'}</div></div>
+<div class="section" data-thin><div class="sec-title">分阶段打法</div><div class="tips-text">${esc(h.phases||'前期发育，中期游走，后期团战')}</div></div>
+<div class="section" data-thin><div class="sec-title">进阶技巧</div>${(h.pro_tips||[]).map(t=>`<div class="pro-tip">${esc(t)}</div>`).join('')||'<div class="tips-text">暂无进阶技巧</div>'}</div>
+${h.official_tips?`<div class="section" data-thin><div class="sec-title">官方攻略</div><div class="tips-text">${esc(h.official_tips)}</div></div>`:''}
+${h.lineup?`<div class="section" data-thin><div class="sec-title">🤝 建议组队阵容</div>
 <div class="tips-text" style="margin-bottom:8px"><strong>最佳搭档：</strong>${(h.lineup.teammates||[]).map(t=>`<span class="tag tag-counter" style="margin:2px 4px">${esc(t)}</span>`).join('')}</div>
 <div class="tips-text" style="margin-bottom:8px;line-height:1.6"><strong>强势原因：</strong>${esc(h.lineup.synergy||'')}</div>
 ${h.lineup.composition?`<div class="tips-text" style="color:var(--accent,#e6a23c);font-size:12px"><strong>理想五人体系：</strong>${esc(h.lineup.composition)}</div>`:''}
 </div>`:''}
-<div class="section"><div class="sec-title">玩法技巧</div><div class="tips-text">${esc(tips)}</div></div></div></div>`;
+<div class="section" data-thin><div class="sec-title">玩法技巧</div><div class="tips-text">${esc(tips)}</div></div>
+<div class="thin-note">连招、分阶段打法、进阶技巧、对位关系与官方攻略已收录在
+${fullGuideFile(h.cname) ? `<a class="gb-full" href="guide/full/${encodeURIComponent(fullGuideFile(h.cname))}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📚 ${esc(h.cname)} · 13 节完整攻略</a>` : '（该英雄攻略待生成）'}
+中，本卡片只保留速查信息。</div></div></div>`;
 }
 document.querySelectorAll('.nav-btn').forEach(b=>{b.onclick=()=>{
   document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
@@ -1287,6 +1295,7 @@ function stopSpeech(e){
 }
 </script>
 <script src="guide/data/heroes.js"></script>
+<script src="guide/data/full_guides.js"></script>
 <script src="guide/guide-ui.js"></script>
 
 </body>
