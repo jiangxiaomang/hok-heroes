@@ -355,3 +355,6 @@ html[data-theme="light"] .hp-tag{background:rgba(160,120,20,.08);color:#6b5410}
 @media print{
   .hero-preview{display:none !important}
 }
+
+/* ---------- 指南字段网格容器（供平铺布局使用） ---------- */
+.gb-fields{ display:block }

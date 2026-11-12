@@ -1,0 +1,276 @@
+/* ==========================================================================
+   平铺布局层（加载在 index.html 内联样式之后）
+   目标：展开后的英雄详情「一屏铺开、块块平铺」，去掉渐变/模糊/金色光效/长动画。
+   ========================================================================== */
+
+/* ---------- 1. 基础去特效 ---------- */
+.hero-card{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  transition:border-color .12s linear !important;
+}
+.hero-card::before{ display:none !important; }
+.hero-card:hover{
+  box-shadow:none !important;
+  border-color:rgba(244,208,63,.55) !important;
+}
+.bg-layer{ backdrop-filter:none !important; }
+
+/* ---------- 2. 展开卡片：平铺主体 ---------- */
+.hero-card.expanded{
+  background:#141926 !important;
+  border:1px solid rgba(212,175,55,.3) !important;
+  border-radius:8px !important;
+  overflow:visible !important;
+}
+html[data-theme="light"] .hero-card.expanded{
+  background:#fff !important;
+  border-color:#c9bd94 !important;
+}
+.hero-card.expanded .hero-head{
+  padding:14px 16px !important;
+  border-bottom:1px solid var(--line) !important;
+  background:transparent !important;
+  align-items:center !important;
+}
+.hero-card.expanded .hero-avatar{
+  border-radius:8px !important;
+  border:1px solid var(--line) !important;
+  background:rgba(200,170,80,.14) !important;
+}
+.hero-card.expanded .hero-avatar::after{ display:none !important; }
+
+/* 摘要行：平铺，无虚线/渐变 */
+.hero-card.expanded .hero-preview{
+  border-top:none !important;
+  padding-top:0 !important;
+  margin-top:0 !important;
+}
+
+/* 展开正文：多栏网格平铺，一屏看完 */
+.hero-card.expanded .hero-body{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+  gap:10px 14px !important;
+  align-items:start !important;
+  padding:14px 16px 18px !important;
+  border-top:none !important;
+}
+/* 指南区块与技能详解占满整行，其余区块两栏并排 */
+.hero-card.expanded .hero-body > .guide-block{ grid-column:1/-1 }
+.hero-card.expanded .hero-body > .section{
+  margin:0 !important;
+  padding:10px 12px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  border-radius:6px;
+  break-inside:avoid;
+  min-width:0;
+}
+/* 技能详解内容多，独占整行 */
+.hero-card.expanded .hero-body > .section:has(.skill-row){ grid-column:1/-1 }
+html[data-theme="light"] .hero-card.expanded .hero-body .section{
+  background:#fbfaf5;
+  border-color:#ddd6c0;
+}
+.hero-card.expanded .hero-body .section:last-child{ margin-bottom:0 !important; }
+
+/* section 标题：左对齐细线，不用大字号+发光 */
+.hero-card.expanded .sec-title{
+  font-size:12px !important;
+  font-weight:800 !important;
+  letter-spacing:1px;
+  color:var(--gold) !important;
+  margin:0 0 8px !important;
+  padding:0 0 5px !important;
+  border-bottom:1px solid rgba(200,170,80,.22) !important;
+}
+html[data-theme="light"] .hero-card.expanded .sec-title{ color:#8a6d1a !important; }
+
+/* 技能行：平铺紧凑卡，无渐变无 hover 变色 */
+.hero-card.expanded .skill-row{
+  background:rgba(255,255,255,.035) !important;
+  border:1px solid var(--line) !important;
+  border-radius:5px !important;
+  padding:8px 10px !important;
+  margin-bottom:6px !important;
+  transition:none !important;
+}
+.hero-card.expanded .skill-row:hover{
+  background:rgba(255,255,255,.035) !important;
+  border-color:var(--line) !important;
+}
+html[data-theme="light"] .hero-card.expanded .skill-row{ background:#fff !important; border-color:#e3dcc8 !important; }
+.hero-card.expanded .skill-badge{ border-radius:5px !important; }
+.hero-card.expanded .skill-desc{ line-height:1.6 !important; }
+
+/* 提示文本块：平铺 */
+.hero-card.expanded .tips-text{
+  background:rgba(255,255,255,.035) !important;
+  border:1px solid var(--line) !important;
+  border-radius:5px !important;
+  padding:9px 11px !important;
+  line-height:1.65 !important;
+}
+html[data-theme="light"] .hero-card.expanded .tips-text{ background:#fff !important; border-color:#e3dcc8 !important; }
+
+/* 连招 / 进阶技巧：平铺，左边框改细实线 */
+.hero-card.expanded .combo-item{
+  background:rgba(255,255,255,.035) !important;
+  border:1px solid var(--line) !important;
+  border-left:2px solid var(--gold) !important;
+  border-radius:4px !important;
+  padding:9px 11px !important;
+  margin-bottom:6px !important;
+  transition:none !important;
+}
+.hero-card.expanded .combo-item:hover{
+  background:rgba(255,255,255,.035) !important;
+  border-left-color:var(--gold) !important;
+}
+.hero-card.expanded .pro-tip{
+  background:rgba(255,255,255,.035) !important;
+  border:1px solid var(--line) !important;
+  border-left:2px solid var(--gold) !important;
+  border-radius:4px !important;
+  padding:9px 11px !important;
+  margin-bottom:6px !important;
+  font-size:13px !important;
+}
+html[data-theme="light"] .hero-card.expanded .combo-item,
+html[data-theme="light"] .hero-card.expanded .pro-tip{ background:#fff !important; border-color:#e3dcc8 !important; }
+
+/* 对位标签 */
+.hero-card.expanded .counter-group{
+  margin-bottom:5px !important;
+  padding:5px 0;
+  border-bottom:1px dashed var(--line);
+}
+.hero-card.expanded .counter-group:last-child{ border-bottom:none; }
+
+/* ---------- 3. 指南区块：字段改网格平铺 ---------- */
+.hero-card.expanded .guide-block{
+  margin:0 0 10px 0 !important;
+  padding:12px 14px !important;
+  background:rgba(212,175,55,.05) !important;
+  border:1px solid rgba(212,175,55,.24) !important;
+  border-radius:6px !important;
+  overflow:visible !important;
+}
+html[data-theme="light"] .hero-card.expanded .guide-block{
+  background:#fdfaf0 !important;
+  border-color:#d9c98f !important;
+}
+.hero-card.expanded .guide-block::before{ display:none !important; }
+.hero-card.expanded .gb-title{
+  font-size:12px !important;
+  letter-spacing:1px;
+  margin:0 0 8px !important;
+  color:var(--gold) !important;
+}
+.hero-card.expanded .gb-title .gb-line{ display:none !important; }
+.hero-card.expanded .gb-badges{ margin-bottom:9px !important; }
+.hero-card.expanded .gb-badge{ border-radius:4px !important; padding:1px 8px !important; }
+
+/* 六个字段：两列平铺 */
+.hero-card.expanded .gb-fields{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:6px 14px !important;
+}
+.hero-card.expanded .gb-field{
+  display:grid !important;
+  grid-template-columns:52px 1fr;
+  gap:8px !important;
+  align-items:start;
+  padding:5px 0 !important;
+  border-bottom:none !important;
+}
+.hero-card.expanded .gb-label{
+  font-size:11px !important;
+  font-weight:800;
+  color:var(--gold) !important;
+  padding-top:2px;
+}
+html[data-theme="light"] .hero-card.expanded .gb-label{ color:#8a6d1a !important; }
+.hero-card.expanded .gb-text{ font-size:12.5px !important; line-height:1.65 !important; }
+.hero-card.expanded .gb-tags{ margin-top:8px !important; }
+.hero-card.expanded .gb-tag{
+  border-radius:4px !important;
+  padding:1px 7px !important;
+  background:transparent !important;
+}
+.hero-card.expanded .gb-more{
+  margin-top:10px !important;
+  padding:5px 12px !important;
+  border-radius:4px !important;
+  font-size:12px !important;
+  transition:none !important;
+}
+
+/* ---------- 4. 抽屉：去掉毛玻璃与滑入长动画 ---------- */
+.gt-drawer-mask{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  background:rgba(6,8,14,.6) !important;
+  transition:opacity .12s linear !important;
+}
+.gt-drawer{
+  box-shadow:none !important;
+  border-left:1px solid var(--gt-border) !important;
+  transition:transform .14s linear !important;
+}
+.gt-drawer-body .section{
+  border:1px solid var(--gt-border);
+  border-radius:6px;
+  padding:10px 12px;
+  background:var(--gt-soft);
+}
+.gt-drawer-body .sec-title{ font-size:12px !important; letter-spacing:1px; }
+.gt-drawer-close{ border-radius:6px !important; }
+
+/* ---------- 5. 折叠态摘要：平铺 ---------- */
+.hero-preview{ border-top:1px solid var(--line) !important; }
+.hp-open{
+  border-radius:4px !important;
+  background:transparent !important;
+  transition:none !important;
+}
+.hp-open:hover{ filter:none !important; transform:none !important; border-color:var(--gt-accent) !important; }
+
+/* ---------- 6. 移动端：单列平铺 ---------- */
+@media (max-width:768px){
+  .hero-card.expanded .hero-body{
+    grid-template-columns:1fr !important;
+    padding:10px 11px 14px !important;
+  }
+  .hero-card.expanded .gb-fields{ grid-template-columns:1fr !important; }
+  .hero-card.expanded .hero-body .section{ padding:9px 10px !important; }
+}
+
+/* ---------- 7. 打印：纯白平铺 ---------- */
+@media print{
+  .hero-card.expanded{ background:#fff !important; border:1px solid #ccc !important; }
+  .hero-card.expanded .hero-body .section,
+  .hero-card.expanded .skill-row,
+  .hero-card.expanded .tips-text,
+  .hero-card.expanded .combo-item,
+  .hero-card.expanded .pro-tip,
+  .hero-card.expanded .guide-block{
+    background:#fff !important; border:1px solid #ccc !important;
+  }
+  .hero-card.expanded .gb-fields{ grid-template-columns:repeat(2,1fr) !important; }
+}
+
+/* ---------- 8. 展开时隐藏固定浮层控件，避免压住卡片内容 ---------- */
+body:has(.hero-card.expanded) .bg-switcher,
+body:has(.hero-card.expanded) .voice-btn,
+body:has(.hero-card.expanded) .voice-panel{ display:none !important; }
+/* 阅读展开内容时关掉跟随鼠标的金色光环，避免压在文字上 */
+body:has(.hero-card.expanded) .cursor-dot,
+body:has(.hero-card.expanded) .cursor-ring{ display:none !important; }
+
+@media print{
+  .bg-switcher,.voice-btn,.voice-panel,
+  .cursor-dot,.cursor-ring{ display:none !important; }
+}

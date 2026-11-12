@@ -230,6 +230,7 @@
       return '<div class="gb-field"><div class="gb-label">' + f[0] + '</div>' +
              '<div class="gb-text">' + esc(g[f[1]]) + '</div></div>';
     }).join('');
+    var fieldsHtml = '<div class="gb-fields">' + fields + '</div>';
 
     var tags = '<div class="gb-tags">' + (g.tags || []).map(function (t) {
       return '<span class="gb-tag">' + esc(t) + '</span>';
@@ -239,9 +240,9 @@
       '<div class="guide-block">' +
       '<div class="gb-title">📖 全英雄使用指南<span class="gb-line"></span></div>' +
       '<div class="gb-badges">' + badges + '</div>' +
-      fields +
+      fieldsHtml +
       tags +
-      '<button class="gb-more" data-guide-more="' + esc(g.n) + '">展开完整详情 →</button>' +
+      '<button class="gb-more" data-guide-more="' + esc(g.n) + '">完整详情</button>' +
       '</div>';
 
     // 指南放在卡片正文最前面：展开卡片第一眼就是「怎么玩」，而不是滚完技能才看到
@@ -364,10 +365,14 @@
       g.lane + ' · ' + g.role + ' · 难度 ' + g.diff + ' · 副分路 ' + g.alt;
 
     var body = document.getElementById('gt-d-body');
-    var f = GUIDE_FIELDS.map(function (x) {
-      return '<div class="section"><div class="sec-title">' + x[0] + '</div>' +
-        '<div class="tips-text">' + esc(g[x[1]]) + '</div></div>';
-    }).join('');
+    // 指南六项平铺进一个网格区块，一眼看完，不用逐段下滑
+    var f = '<div class="section"><div class="sec-title">使用指南</div>' +
+      '<div class="gb-fields">' +
+      GUIDE_FIELDS.map(function (x) {
+        return '<div class="gb-field"><div class="gb-label">' + x[0] + '</div>' +
+          '<div class="gb-text">' + esc(g[x[1]]) + '</div></div>';
+      }).join('') +
+      '</div></div>';
 
     var extra = '';
     if (hero) {
