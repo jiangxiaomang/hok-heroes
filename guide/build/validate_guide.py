@@ -32,10 +32,16 @@ def check(path):
     ids = re.findall(r'<section id="s(\d+)"', s)
     if ids != [str(i) for i in range(14)]:
         errs.append(f'章节编号异常: {ids}')
-    # 每节本节作用
+    # 前置连招速查板（必须存在，且在正文最前）
+    if 'id="combo-board"' not in s:
+        errs.append('缺少前置连招速查板')
+    else:
+        if s.index('id="combo-board"') > s.index('<section id="s0"'):
+            errs.append('连招速查板未置于正文最前')
+    # 每节本节作用（14 节 + 1 连招板）
     n_purpose = len(re.findall(r'本节作用：', s))
-    if n_purpose != 14:
-        errs.append(f'本节作用标签数 {n_purpose}，应为 14')
+    if n_purpose != 15:
+        errs.append(f'本节作用标签数 {n_purpose}，应为 15')
     # 标题顺序
     for num, title in SECTION_TITLES:
         m = re.search(r'<section id="s%d".*?<h2>.*?</h2>' % num, s, re.S)

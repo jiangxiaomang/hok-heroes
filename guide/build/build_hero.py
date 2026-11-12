@@ -17,6 +17,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from analyzer import analyze, ROLE_MAP, LANES
 from template import (build_html, esc, clean, SNAPSHOT_DATE, CURRENT_SEASON,
                       LANE_OPENING)
+from playbook import (skill_profiles, build_combos, lane_playbook,
+                      feature_tags)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'data')
@@ -146,6 +148,17 @@ def build_ctx(h, lane):
     # 该英雄自己的机制要点（供正文引用，均来自官方描述）
     hero_tips = [(clean(t), 'A') for t in (tips or [])]
 
+    # ---- 打法引擎：技能画像 → 场景化连招 → 分路打法 ----
+    profs = skill_profiles(h)
+    combos_new = build_combos(h, profs, lane)
+    pb = lane_playbook(h, profs, lane, h.get('type_name', ''))
+    if profs:
+        prof_summary = '；'.join(
+            f"{p['name']}（{feature_tags(p)}）"
+            for p in profs)
+    else:
+        prof_summary = '待核 · 以局内说明为准'
+
     missing = []
     if not an['passive_core']:
         missing.append('官方被动描述未取到')
@@ -175,6 +188,10 @@ def build_ctx(h, lane):
         'combo_trigger': scene_trigger,
         'combo_key': scene_key,
         'hero_tips': hero_tips,
+        'profs': profs,
+        'combos_new': combos_new,
+        'playbook': pb,
+        'prof_summary': prof_summary,
     }
 
 
