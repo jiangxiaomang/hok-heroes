@@ -1,0 +1,323 @@
+/* ============================================================
+   《全英雄使用指南》扩展样式
+   - 双主题（深色国风 / 浅色资料手册）
+   - 网格 / 清单 双视图
+   - 交叉筛选工具条 + 详情抽屉
+   - 打印样式
+   ============================================================ */
+
+/* ---------- 主题变量 ---------- */
+:root{
+  --gt-panel:rgba(22,28,42,.96);
+  --gt-panel-solid:#161c2a;
+  --gt-soft:rgba(30,38,55,.5);
+  --gt-soft2:rgba(30,38,55,.8);
+  --gt-border:rgba(200,170,80,.2);
+  --gt-text:#f5f0e6;
+  --gt-text-2:#c8bfae;
+  --gt-text-3:#9a9284;
+  --gt-accent:#f4d03f;
+  --gt-accent-2:#d4af37;
+  --gt-shadow:0 16px 45px rgba(0,0,0,.45);
+}
+html[data-theme="light"]{
+  --bg:#f4f1e8;
+  --card:rgba(255,253,247,.97);
+  --card-solid:#fffdf7;
+  --line:rgba(140,118,66,.22);
+  --line-bright:rgba(140,118,66,.42);
+  --text:#23262b;
+  --muted:#6b6558;
+  --gold:#9a7b1f;
+  --gold-bright:#8a6d1a;
+  --gold-dark:#6d5414;
+  --blue:#2b6cb0;
+  --red:#b03a2e;
+  --purple:#7d3c98;
+  --green:#1e8449;
+
+  --gt-panel:rgba(255,253,247,.98);
+  --gt-panel-solid:#fffdf7;
+  --gt-soft:rgba(240,235,220,.6);
+  --gt-soft2:rgba(238,232,216,.9);
+  --gt-border:rgba(140,118,66,.2);
+  --gt-text:#23262b;
+  --gt-text-2:#4a4f57;
+  --gt-text-3:#6b6558;
+  --gt-accent:#8a6d1a;
+  --gt-accent-2:#a8871f;
+  --gt-shadow:0 10px 30px rgba(90,78,48,.16);
+}
+
+/* ---------- 工具条 ---------- */
+.guide-toolbar{
+  max-width:1200px;margin:0 auto;padding:0 24px 14px;
+  display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  font-family:'Noto Serif SC',-apple-system,'PingFang SC',serif;
+}
+.gt-group{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.gt-select,.gt-btn{
+  font-family:inherit;font-size:13px;
+  padding:7px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--gt-border);
+  background:var(--gt-panel);color:var(--gt-text);
+  transition:all .22s;
+}
+.gt-select{appearance:none;-webkit-appearance:none;padding-right:28px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--gt-text-3) 50%),linear-gradient(135deg,var(--gt-text-3) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+}
+.gt-select:hover,.gt-btn:hover{border-color:var(--gt-accent);color:var(--gt-accent)}
+.gt-btn.active{background:linear-gradient(135deg,var(--gt-accent-2),var(--gt-accent));color:#141414;border-color:var(--gt-accent);font-weight:700}
+.gt-btn.ghost{background:transparent}
+.gt-count{font-size:13px;color:var(--gt-text-3);letter-spacing:.5px}
+.gt-count b{color:var(--gt-accent);font-size:15px}
+.gt-sep{width:1px;height:22px;background:var(--gt-border)}
+
+/* ---------- 指南区块（英雄卡片内） ---------- */
+.guide-block{
+  margin-top:14px;padding:14px 14px 12px;
+  background:linear-gradient(160deg,rgba(212,175,55,.08),rgba(30,38,55,.28));
+  border:1px solid var(--gt-border);
+  border-radius:14px;
+  position:relative;overflow:hidden;
+}
+html[data-theme="light"] .guide-block{
+  background:linear-gradient(160deg,rgba(212,175,55,.1),rgba(240,235,220,.5));
+}
+.guide-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gt-accent),transparent);opacity:.55;
+}
+.gb-title{
+  font-size:13px;font-weight:800;letter-spacing:1.5px;color:var(--gt-accent);
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.gb-title .gb-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gt-border),transparent)}
+.gb-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.gb-badge{
+  font-size:11px;padding:2px 9px;border-radius:20px;
+  border:1px solid var(--gt-border);background:var(--gt-soft);color:var(--gt-text-2);
+}
+.gb-badge.b-role{border-color:rgba(74,158,255,.45);color:#7ec3ff}
+html[data-theme="light"] .gb-badge.b-role{color:#2b6cb0;background:rgba(43,108,176,.1)}
+.gb-badge.b-diff{border-color:rgba(231,76,60,.45);color:#ec7063}
+html[data-theme="light"] .gb-badge.b-diff{color:#b03a2e;background:rgba(176,58,46,.1)}
+.gb-badge.b-alt{border-color:rgba(46,204,113,.45);color:#58d68d}
+html[data-theme="light"] .gb-badge.b-alt{color:#1e8449;background:rgba(30,132,73,.1)}
+.gb-badge.b-diff-易{color:#58d68d;border-color:rgba(46,204,113,.45)}
+.gb-badge.b-diff-中{color:#f0c674;border-color:rgba(240,198,116,.45)}
+.gb-badge.b-diff-难{color:#f0946b;border-color:rgba(240,148,107,.45)}
+.gb-badge.b-diff-极难{color:#ec7063;border-color:rgba(231,76,60,.5)}
+html[data-theme="light"] .gb-badge.b-diff-易{color:#1e8449;border-color:rgba(30,132,73,.4)}
+html[data-theme="light"] .gb-badge.b-diff-中{color:#9a7b1f;border-color:rgba(154,123,31,.4)}
+html[data-theme="light"] .gb-badge.b-diff-难{color:#b95f24;border-color:rgba(185,95,36,.4)}
+html[data-theme="light"] .gb-badge.b-diff-极难{color:#b03a2e;border-color:rgba(176,58,46,.45)}
+
+.gb-field{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--gt-border)}
+.gb-field:last-of-type{border-bottom:none}
+.gb-label{
+  flex:0 0 62px;font-size:12px;font-weight:700;color:var(--gt-text-3);
+  letter-spacing:1px;padding-top:2px;
+}
+.gb-text{flex:1;font-size:13.5px;line-height:1.75;color:var(--gt-text-2)}
+.gb-text em{font-style:normal;color:var(--gt-accent);font-weight:700}
+.gb-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gb-tag{
+  font-size:11px;padding:3px 9px;border-radius:6px;
+  background:var(--gt-soft);border:1px solid var(--gt-border);color:var(--gt-text-2);
+}
+.gb-more{
+  margin-top:10px;width:100%;
+  font-family:inherit;font-size:12.5px;letter-spacing:1px;
+  padding:8px;border-radius:9px;cursor:pointer;
+  background:rgba(212,175,55,.12);border:1px solid var(--gt-border);color:var(--gt-accent);
+  transition:all .22s;
+}
+.gb-more:hover{background:rgba(212,175,55,.22);border-color:var(--gt-accent)}
+
+/* ---------- 清单视图 ---------- */
+.gt-table-wrap{
+  max-width:1200px;margin:0 auto;padding:0 24px 20px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+.gt-table{
+  width:100%;border-collapse:collapse;font-size:13px;
+  background:var(--gt-panel);border:1px solid var(--gt-border);border-radius:12px;overflow:hidden;
+}
+.gt-table th{
+  position:sticky;top:0;z-index:2;
+  background:var(--gt-panel-solid);
+  color:var(--gt-accent);font-weight:700;font-size:12px;letter-spacing:1px;
+  padding:11px 10px;text-align:left;white-space:nowrap;
+  border-bottom:1px solid var(--gt-border);
+}
+.gt-table td{
+  padding:10px;border-bottom:1px solid var(--gt-border);
+  color:var(--gt-text-2);vertical-align:top;line-height:1.6;min-width:110px;
+}
+.gt-table tbody tr:hover{background:var(--gt-soft)}
+.gt-table td.c-name{color:var(--gt-text);font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--gt-panel-solid)}
+.gt-table tbody tr:hover td.c-name{background:var(--gt-soft2)}
+.gt-table td.c-feat{min-width:220px}
+.gt-table td.c-mini{min-width:80px;white-space:nowrap}
+.gt-table .g-mini-tag{
+  display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:5px;margin:2px 3px 2px 0;
+  background:var(--gt-soft);border:1px solid var(--gt-border);color:var(--gt-text-3);
+}
+.gt-empty{text-align:center;padding:60px;color:var(--gt-text-3)}
+
+/* ---------- 详情抽屉 ---------- */
+.gt-drawer-mask{
+  position:fixed;inset:0;background:rgba(6,8,14,.72);
+  backdrop-filter:blur(4px);z-index:9000;opacity:0;pointer-events:none;transition:opacity .3s;
+}
+html[data-theme="light"] .gt-drawer-mask{background:rgba(60,52,32,.42)}
+.gt-drawer-mask.open{opacity:1;pointer-events:auto}
+.gt-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(520px,92vw);
+  background:var(--gt-panel);border-left:1px solid var(--gt-border);
+  box-shadow:var(--gt-shadow);z-index:9001;
+  transform:translateX(102%);transition:transform .38s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;
+}
+.gt-drawer.open{transform:translateX(0)}
+.gt-drawer-head{
+  padding:18px 20px;border-bottom:1px solid var(--gt-border);
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+}
+.gt-drawer-avatar{
+  width:52px;height:52px;border-radius:12px;overflow:hidden;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(200,170,80,.25),var(--gt-soft2));
+  border:1px solid var(--gt-border);display:flex;align-items:center;justify-content:center;
+  color:var(--gt-accent);font-weight:800;font-size:20px;
+  position:relative;   /* 必须：否则绝对定位的字形会溢出到整个抽屉 */
+}
+.gt-drawer-avatar img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
+.gt-drawer-avatar .av-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--gt-accent)}
+.gt-drawer-name{font-size:20px;font-weight:800;color:var(--gt-text)}
+.gt-drawer-sub{font-size:12px;color:var(--gt-text-3);margin-top:2px}
+.gt-drawer-close{
+  margin-left:auto;width:34px;height:34px;border-radius:8px;cursor:pointer;
+  background:var(--gt-soft);border:1px solid var(--gt-border);color:var(--gt-text-2);font-size:16px;
+}
+.gt-drawer-close:hover{color:var(--gt-accent);border-color:var(--gt-accent)}
+.gt-drawer-body{padding:18px 20px 30px;overflow-y:auto;flex:1}
+.gt-drawer-body .section{margin-top:18px}
+.gt-drawer-body .section:first-child{margin-top:0}
+
+/* ---------- 浅色主题覆盖（原页面硬编码色） ---------- */
+html[data-theme="light"] body{background-color:#f4f1e8;color:#23262b}
+html[data-theme="light"] .bg-layer{
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% 20%, rgba(244,241,232,.86) 0%, rgba(240,236,226,.95) 100%),
+    url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/199/199-bigskin-8.jpg');
+}
+html[data-theme="light"] header{
+  background:linear-gradient(180deg,rgba(255,253,247,.97),rgba(250,247,238,.9));
+  border-bottom:1px solid rgba(140,118,66,.25);
+  box-shadow:0 4px 22px rgba(90,78,48,.1);
+}
+html[data-theme="light"] h1{
+  background:linear-gradient(135deg,#5c4a12 0%,#8a6d1a 35%,#b08d1f 70%,#6d5414 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:none;
+}
+html[data-theme="light"] .stat-num{color:#8a6d1a;text-shadow:none}
+html[data-theme="light"] .stat-label{color:#6b6558}
+html[data-theme="light"] .nav-btn{background:rgba(255,253,247,.9);color:#23262b;border-color:rgba(140,118,66,.24)}
+html[data-theme="light"] .nav-btn:hover{background:rgba(212,175,55,.14);color:#8a6d1a;border-color:#a8871f}
+html[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,#a8871f,#8a6d1a);color:#fffdf7;border-color:#8a6d1a}
+html[data-theme="light"] .search-box input{background:rgba(255,253,247,.95);border-color:rgba(140,118,66,.28);color:#23262b}
+html[data-theme="light"] .search-box input:focus{background:#fff;border-color:#a8871f;box-shadow:0 0 16px rgba(168,135,31,.15)}
+html[data-theme="light"] .lane-header{background:linear-gradient(135deg,rgba(255,253,247,.95),rgba(245,240,226,.9));border-color:rgba(140,118,66,.2)}
+html[data-theme="light"] .lane-title p{color:#6b6558}
+html[data-theme="light"] .hero-card{background:rgba(255,253,247,.92);border-color:rgba(140,118,66,.24);box-shadow:0 2px 14px rgba(90,78,48,.07)}
+html[data-theme="light"] .hero-card:hover{border-color:#a8871f;box-shadow:0 12px 32px rgba(168,135,31,.18)}
+html[data-theme="light"] .hero-name{color:#23262b}
+html[data-theme="light"] .hero-title{color:#6b5410}
+html[data-theme="dark"] .hero-title{color:#d8bd6a}
+html[data-theme="light"] .hero-body{border-top-color:rgba(140,118,66,.2)}
+html[data-theme="light"] .sec-title{color:#8a6d1a;border-bottom-color:rgba(140,118,66,.25)}
+html[data-theme="light"] .skill-row{background:rgba(246,242,230,.85);border-color:rgba(140,118,66,.12)}
+html[data-theme="light"] .skill-name{color:#2c3037}
+html[data-theme="light"] .skill-desc{color:#4a4f57}
+html[data-theme="light"] .skill-cd{color:#6b6558}
+html[data-theme="light"] .tips-text{background:rgba(246,242,230,.85);color:#4a4f57;border-color:rgba(140,118,66,.12)}
+html[data-theme="light"] .pro-tip{background:rgba(250,244,222,.9);color:#3f3a2c;border-left-color:#a8871f}
+html[data-theme="light"] .combo-desc{color:#4a4f57}
+html[data-theme="light"] .combo-seq{background:rgba(240,235,220,.9);color:#4a4f57}
+html[data-theme="light"] .equip-tag{background:rgba(43,108,176,.1);border-color:rgba(43,108,176,.28);color:#2b6cb0}
+html[data-theme="light"] .tag-type{background:rgba(43,108,176,.12);color:#22558c;border-color:rgba(43,108,176,.25)}
+html[data-theme="light"] .tag-lane{background:rgba(168,135,31,.14);color:#6b5410;border-color:rgba(140,118,66,.3)}
+html[data-theme="light"] .tag-counter{background:rgba(30,132,73,.12);color:#1e8449;border-color:rgba(30,132,73,.25)}
+html[data-theme="light"] .tag-countered{background:rgba(176,58,46,.12);color:#b03a2e;border-color:rgba(176,58,46,.25)}
+html[data-theme="light"] .lane-guide{background:rgba(250,246,235,.85)}
+html[data-theme="light"] .lane-guide-body{color:#4a4f57}
+html[data-theme="light"] .lane-guide-title{color:#6d5414}
+html[data-theme="light"] .lane-medals-box{border-top-color:rgba(140,118,66,.25)}
+html[data-theme="light"] .lane-medals-title{color:#8a6d1a}
+html[data-theme="light"] .medal-gold{
+  background:linear-gradient(90deg,rgba(212,175,55,.22),rgba(212,175,55,.08));
+  border-color:rgba(154,123,31,.45);color:#5c4a12;
+}
+html[data-theme="light"] .medal-silver{
+  background:linear-gradient(90deg,rgba(140,150,165,.18),rgba(140,150,165,.05));
+  border-color:rgba(110,120,135,.4);color:#3c434d;
+}
+html[data-theme="light"] .medal-key{
+  background:rgba(255,153,68,.1);border-left-color:#c26a10;color:#6b4210;
+}
+html[data-theme="light"] footer{background:linear-gradient(0deg,rgba(212,175,55,.05),transparent);border-top-color:rgba(140,118,66,.2);color:#6b6558}
+html[data-theme="light"] .no-results{color:#6b6558}
+html[data-theme="light"] .bg-btn{background:rgba(255,253,247,.95);color:#8a6d1a;border-color:rgba(140,118,66,.35)}
+html[data-theme="light"] .search-box .mic-btn,.search-box .clear-btn{color:#6b6558}
+html[data-theme="light"] .hot-card{background:rgba(255,253,247,.95)}
+html[data-theme="light"] .hot-reason{color:#4a4f57}
+html[data-theme="light"] .hot-name{color:#23262b}
+
+/* ---------- 移动端 ---------- */
+@media (max-width:640px){
+  .guide-toolbar{padding:6px 14px 10px;gap:8px}
+  .gt-select,.gt-btn{padding:6px 10px;font-size:12px}
+  .gt-sep{display:none}
+  .gt-count{font-size:12px}
+  .guide-block{padding:12px 11px 10px;border-radius:12px}
+  .gb-label{flex:0 0 52px;font-size:11px}
+  .gb-text{font-size:12.5px;line-height:1.7}
+  .gb-title{font-size:12px;letter-spacing:1px}
+  .gt-table-wrap{padding:0 10px 20px}
+  .gt-table{font-size:12px}
+  .gt-table td,.gt-table th{padding:8px}
+  .gt-drawer{width:100%}
+}
+
+/* ---------- 打印 ---------- */
+@media print{
+  @page{margin:12mm}
+  body{background:#fff !important;color:#000 !important}
+  .cursor-dot,.cursor-ring,.bg-layer,#particle-canvas,.bg-switcher,
+  .guide-toolbar,.search-box,nav,.gt-drawer,.gt-drawer-mask,
+  .voice-panel,.footer-deco{display:none !important}
+  header{position:static;background:none !important;border:none !important;box-shadow:none !important;padding:0 0 8px !important}
+  h1{background:none !important;-webkit-text-fill-color:#000 !important;color:#000 !important;font-size:22px !important}
+  .stats{display:none !important}
+  main,.gt-table-wrap{padding:0 !important;max-width:100% !important}
+  .lane-section{break-inside:avoid;page-break-inside:avoid}
+  .lane-header{background:none !important;border:1px solid #bbb !important;box-shadow:none !important}
+  .hero-card{background:#fff !important;border:1px solid #ccc !important;box-shadow:none !important;break-inside:avoid;page-break-inside:avoid}
+  .hero-card::before{display:none}
+  .hero-grid{grid-template-columns:repeat(2,1fr) !important;gap:10px}
+  .hero-body{display:block !important;border-top:1px solid #ddd !important}
+  .guide-block{background:#fff !important;border:1px solid #bbb !important}
+  .gb-text,.skill-desc,.tips-text,.combo-desc{color:#222 !important}
+  .sec-title{color:#000 !important;border-bottom-color:#999 !important}
+  .hero-name{color:#000 !important}
+  .hero-title{color:#444 !important}
+  .skill-row{background:#fff !important;border:1px solid #ddd !important}
+  .gt-table{font-size:10px;background:#fff !important}
+  .gt-table th{background:#eee !important;color:#000 !important;position:static}
+  .gt-table td{color:#222 !important}
+  .gt-table td.c-name{position:static;background:#fff !important;color:#000 !important}
+}
