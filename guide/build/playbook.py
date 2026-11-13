@@ -50,10 +50,34 @@ def _hit(text, kws):
     return any(k in text for k in kws)
 
 
+def _is_ult(i, actives):
+    """
+    判断第 i 个主动技能是不是大招。
+
+    绝大多数英雄是 被动 + 3 主动，第 3 个是大招。
+    但有 8 个英雄是 被动 + 4 主动（兰陵王、大乔、干将莫邪、女娲、元歌、
+    盾山、李信、敖隐），此时最后一个主动技通常不是大招
+    （如兰陵王第 4 技是"秘技·隐匿"，不是大招）。
+    判定规则：
+      - 3 主动 → 第 3 个是大招
+      - 4 主动 → 第 3 个是大招，第 4 个多为功能技/形态技
+    """
+    n = len(actives)
+    if n <= 2:
+        return False
+    if n == 3:
+        return i == 2
+    # 4 主动：第 3 个（索引 2）是大招
+    return i == 2
+
+
 def skill_profiles(hero):
     """从官方技能描述构建技能画像列表（不含被动）。"""
     out = []
     skills = hero.get('skills') or []
+    # 王者官方数据的排布固定为：第 0 项是被动，第 1 项起是主动技能。
+    # 部分英雄有 4 个主动技能（兰陵王、大乔、干将莫邪、元歌、盾山、李信、敖隐），
+    # 数据里是 被动 + 4 主动共 5 项，所以取 [1:] 即可全部拿到主动技。
     actives = skills[1:] if len(skills) > 1 else []
     n = len(actives)
     for i, s in enumerate(actives):
@@ -72,7 +96,7 @@ def skill_profiles(hero):
             'has_ctrl': bool(ctrl),
             'disp': _hit(desc, DISP_KW),
             'shield': _hit(desc, SHIELD_KW),
-            'heal': _hit(desc, HEAL_KW),
+            'heal': _hit(desc, HEAL_KW) and not _hit(desc, ['使其回复', '为其回复', '回复其']),
             'buff': _hit(desc, BUFF_KW),
             'charge': _hit(desc, CHARGE_KW),
             'far': _hit(desc, RANGE_FAR_KW),
@@ -83,12 +107,15 @@ def skill_profiles(hero):
             'buffself': _hit(desc, ['自身', '自己'] ) and _hit(desc, ['提升', '增加', '强化', '暴击', '攻速', '移速']),
             'summon': _hit(desc, ['召唤', '傀儡', '分身', '召唤物']),
             'mode': _hit(desc, ['形态', '切换', '展开', '关闭', '弓', '长弓', '进入', '退出']),
+            'stealth': _hit(desc, ['隐身', '无法被选中', '不可选中', '不可被攻击']),
+            'invuln': _hit(desc, ['无敌', '免疫所有伤害', '抵挡一次', '免疫此次']),
+            'pickup': _hit(desc, ['拾取', '捡起', '收回', '收集']),
             'dot': _hit(desc, ['持续灼烧', '灼烧', '持续伤害', '每秒造成']),
             'execute': _hit(desc, ['斩杀', '处决', '对生命值低于', '已死亡']),
             'antiheal': _hit(desc, ['回复减少', '治疗效果降低', '禁止治疗', '反治疗']),
             'mark': _hit(desc, ['标记', '锁定', '易伤', '破绽', '目标身上']),
             'stun_field': _hit(desc, ['阵法', '领域', '范围持续', '持续8秒', '持续6秒', '持续5秒']),
-            'is_ult': (i + 1 == n) and n >= 3,
+            'is_ult': _is_ult(i, actives),
         }
         out.append(prof)
     return out

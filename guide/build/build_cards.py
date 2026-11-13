@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from analyzer import strip_numbers, ROLE_MAP
 from playbook import (skill_profiles, build_combos, lane_playbook,
                       feature_tags, _mech)
+from hero_play import hero_lane_playbook
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'data')
@@ -83,7 +84,7 @@ def build_card(h, lane):
     """生成一张卡片的结构化内容。"""
     an_profs = skill_profiles(h)
     combos = build_combos(h, an_profs, lane)
-    pb = lane_playbook(h, an_profs, lane, h.get('type_name', ''))
+    pb = hero_lane_playbook(h, an_profs, lane, h.get('type_name', ''))
     off = OFFICIAL.get(h['cname'], {})
 
     # --- 连招：实战场景连招优先，官方原文补充 ---
@@ -144,14 +145,14 @@ def build_card(h, lane):
             'tags': feature_tags(p),
         })
 
-    # --- 分路打法要点：从 playbook 各 section 抽首列要点 ---
+    # --- 分路打法要点：全部行都要保留（每行都绑定该英雄独有机制） ---
     lane_points = []
     for sec in pb.get('sections', []):
         title = sec[0]
         header = sec[1]
         rows = sec[2]
         picked = []
-        for r in rows[:3]:
+        for r in rows:
             cells = [re.sub(r'<[^>]+>', '', str(x)) for x in r]
             picked.append(cells)
         lane_points.append({'title': title, 'header': header, 'rows': picked})
