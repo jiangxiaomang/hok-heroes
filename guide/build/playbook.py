@@ -134,14 +134,28 @@ def _mech(prof, limit=90):
         if cut > 0:
             best = best[:cut]
         else:
+            # 没有标点可断时，优先在「伤害/效果/状态」等完整短语前断开
             best = best[:limit]
+            m = None
+            for kw in ('伤害', '状态', '效果', '增益', '减伤', '沉默', '控制'):
+                i = best.rfind(kw)
+                if i > limit * 0.4:
+                    m = i
+                    break
+            if m is not None:
+                best = best[:m]
     # 截断后去掉悬空动词，避免出现「延长持续」这种半句
+    # 注意：「物理伤害」「法术伤害」是完整宾语，不能剥；
+    #      只有裸露的「造成伤害」「延长持续」这类才算半句。
     for _ in range(3):
-        new = re.sub(r'(延长|提升|增加|减少|回复|获得|造成|伤害|持续|对|的|和|时|后)$', '', best)
+        new = best
+        new = re.sub(r'(造成|受到|承受|给予)伤害$', '', new)
+        new = re.sub(r'(延长|提升|增加|减少|回复|获得|造成|持续|对|的|和|时|后)$', '', new)
         if new == best:
             break
         best = new
     best = best.strip('，。、； ')
+    return best
 
 
 def _pick(profs, pred, prefer_high_cd=False):
@@ -651,46 +665,62 @@ def lane_playbook(hero, profs, lane, role):
 
 
 def feature_tags(p):
-    """把技能画像转成一行人类可读的机制标签。"""
-    f = []
+    """把技能画像转成一行人类可读的机制标签。
+
+    控制类与伤害类分开，避免把「物理伤害」混进「硬控：」那一栏。
+    分组之间用「 | 」分隔，避免读者把不同维度的标签误读成同类。
+    """
+    ctrl_g, move_g, self_g, dmg_g, kind_g = [], [], [], [], []
+
     if p['hard_ctrl']:
-        f.append('硬控：' + '、'.join(p['hard_ctrl']))
+        ctrl_g.append('硬控：' + '、'.join(p['hard_ctrl']))
     elif p['ctrl']:
-        f.append('控制：' + '、'.join(p['ctrl']))
-    if p['disp']:
-        f.append('位移/拉拽')
-    if p['revive']:
-        f.append('复活保护')
-    if p['shield']:
-        f.append('护盾')
-    if p['heal']:
-        f.append('治疗/回复')
-    if p['buffself'] or p['buff']:
-        f.append('自身强化')
-    if p['mode']:
-        f.append('形态切换')
-    if p['stun_field']:
-        f.append('持续区域')
+        ctrl_g.append('控制：' + '、'.join(p['ctrl']))
     if p['mark']:
-        f.append('标记/锁定')
-    if p['antiheal']:
-        f.append('反治疗')
-    if p['execute']:
-        f.append('斩杀')
+        ctrl_g.append('标记/锁定')
     if p['dot']:
-        f.append('持续伤害')
+        ctrl_g.append('持续伤害')
+    if p['antiheal']:
+        ctrl_g.append('反治疗')
+    if p['execute']:
+        ctrl_g.append('斩杀')
+
+    if p['disp']:
+        move_g.append('位移/拉拽')
+    if p['stun_field']:
+        move_g.append('持续区域')
     if p['charge']:
-        f.append('蓄力/引导')
+        move_g.append('蓄力/引导')
+
+    if p['shield']:
+        self_g.append('护盾')
+    if p['heal']:
+        self_g.append('治疗/回复')
+    if p['buffself'] or p['buff']:
+        self_g.append('自身强化')
+    if p['mode']:
+        self_g.append('形态切换')
+    if p['revive']:
+        self_g.append('复活保护')
     if p['summon']:
-        f.append('召唤物')
+        self_g.append('召唤物')
     if p['far']:
-        f.append('远程')
+        self_g.append('远程')
     if p['near']:
-        f.append('近战')
-    if p['dmg']:
-        f.append('、'.join(p['dmg']))
-    if p['is_ult']:
-        f.append('大招')
+        self_g.append('近战')
     if p['clear']:
-        f.append('可清线')
-    return '、'.join(f) or '—'
+        self_g.append('可清线')
+
+    if p['dmg']:
+        dmg_g.append('伤害：' + '、'.join(p['dmg']))
+
+    if p['is_ult']:
+        kind_g.append('大招')
+    else:
+        kind_g.append('技能')
+
+    groups = [g for g in (ctrl_g, move_g, self_g, dmg_g) if g]
+    parts = ['、'.join(g) for g in groups]
+    if kind_g:
+        parts.append('／'.join(kind_g))
+    return ' | '.join(parts) or '—'

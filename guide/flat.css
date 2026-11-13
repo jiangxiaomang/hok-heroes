@@ -311,3 +311,8 @@ html[data-theme="light"] .full-entry a{color:#8a6d1a}
   border-radius:6px;
 }
 html[data-theme="light"] .hero-card.expanded .thin-note{ background:#fbfaf5; }
+
+/* 攻略库 / 卡片库入口（多链接时换行排布） */
+.full-entry{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.full-entry a{text-decoration:none}
+@media print{.full-entry{display:none}}
