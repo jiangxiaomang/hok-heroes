@@ -215,7 +215,8 @@
     var m = (typeof FULL_GUIDES !== 'undefined') ? FULL_GUIDES[name] : null;
     if (!m) return '';
     var cls = inline ? 'hp-full' : 'gb-full';
-    return '<a class="' + cls + '" href="guide/full/' + m.file + '" target="_blank" rel="noopener"' +
+    var base = m.file.replace('_完整攻略.html', '');
+    return '<a class="' + cls + '" href="guide/heroes/' + base + '/index.html" target="_blank" rel="noopener"' +
       (inline ? '' : ' onclick="event.stopPropagation()"') + '>📚 13 节完整攻略</a>';
   }
 

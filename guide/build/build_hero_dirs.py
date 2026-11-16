@@ -76,6 +76,14 @@ def parse_lane(base):
 
 
 def copy_all(found):
+    """复制文件到各英雄目录。
+
+    若源目录已被清理（found 为空），保留现有目录内容，只重建索引页，
+    避免脚本在老目录删除后误清空 guide/heroes/。
+    """
+    if not found:
+        print('源目录已清理，跳过文件复制（仅重建索引页）')
+        return []
     written = []
     for base, items in found.items():
         target = os.path.join(OUT, base)
@@ -143,6 +151,17 @@ h2{{font-size:16px;font-weight:800;margin:26px 0 10px;padding-left:9px;
 
 def build_pages(found):
     bases = sorted(found.keys())
+    if not bases:
+        # 老目录已清理：从现有 guide/heroes 目录重建索引页
+        for d in sorted(os.listdir(OUT)):
+            if os.path.isdir(os.path.join(OUT, d)):
+                bases.append(d)
+                items = {}
+                for dp, _, fs in os.walk(os.path.join(OUT, d)):
+                    for f in fs:
+                        rel = os.path.relpath(os.path.join(dp, f), os.path.join(OUT, d))
+                        items[rel] = os.path.join(dp, f)
+                found[d] = items
     for base in bases:
         hero, lane = parse_lane(base)
         items = found[base]
@@ -179,7 +198,7 @@ def build_pages(found):
     for lane in LANE_ORDER:
         if lane not in groups:
             continue
-        rows.append('<h2>{lane} · {n} 位</h2>\n<div class="grid">'.format(
+        rows.append('<h2 id="lane-{lane}">{lane} · {n} 位</h2>\n<div class="grid">'.format(
             lane=lane, n=len(groups[lane])))
         for hero, base in groups[lane]:
             rows.append(
@@ -208,12 +227,37 @@ h2{font-size:16px;font-weight:800;margin:24px 0 10px;padding-left:9px;
 .item a{color:var(--accent);text-decoration:none;font-weight:700;font-size:15px}
 .item a:hover{text-decoration:underline}
 .item small{display:block;color:var(--ink2);font-size:12px;margin-top:3px}
+.dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.dl a{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;text-decoration:none;color:var(--ink);display:block}
+.dl a:hover{border-color:var(--accent)}
+.dl b{display:block;color:var(--accent);font-size:14px}
+.dl span{color:var(--ink2);font-size:12px}
 </style></head><body><div class="page">
 <h1>王者荣耀 · 全部英雄独立攻略库</h1>
 <p class="sub">__TOTAL__ 位英雄 · 每位一个独立文件夹（13 节完整攻略 + 速查卡 + 精华卡 + 全部图片）</p>
+__DL__
 __ROWS__
 </div></body></html>
-""".replace('__TOTAL__', str(len(bases))).replace('__ROWS__', '\n'.join(rows))
+"""
+    dl = ['<h2>离线下载</h2>', '<div class="dl">']
+    for fname, desc in [
+        ('hok_cards_133.zip', '133 英雄速查卡（HTML+MD 合集）'),
+        ('hok_cards_133.tar.gz', '同上 tar.gz 版'),
+        ('hok_card_images_133.zip', '全部卡图 jpg（266 张）'),
+        ('hok_card_images_133.tar.gz', '同上 tar.gz 版'),
+        ('cards_all.html', '133 卡单文件合集（浏览器直接打开）'),
+        ('cards.md', '133 卡 Markdown 合集'),
+    ]:
+        p = os.path.join(OUT, fname)
+        if os.path.isfile(p):
+            dl.append('<a href="{u}" download><b>{n}</b><span>{d} · {s} MB</span></a>'.format(
+                u=fname, n=fname, d=desc, s=round(os.path.getsize(p) / 1e6, 2)))
+    dl.append('</div>')
+    index_html = (index_html
+                  .replace('__TOTAL__', str(len(bases)))
+                  .replace('__DL__', '\n'.join(dl))
+                  .replace('__ROWS__', '\n'.join(rows)))
     with open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
     return len(bases)
@@ -223,8 +267,15 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     found = collect()
     if not found:
-        print('未找到任何英雄文件，源目录异常')
-        return 1
+        # 老目录已清理：仅从现有 guide/heroes 重建索引页
+        print('源目录已清理，从 guide/heroes 重建索引页')
+        n = build_pages(found)
+        size = sum(
+            os.path.getsize(os.path.join(dp, f))
+            for dp, _, fs in os.walk(OUT) for f in fs)
+        print('英雄目录数: %d' % n)
+        print('总大小: %.1f MB' % (size / 1e6))
+        return 0
     copy_all(found)
     n = build_pages(found)
     size = sum(
