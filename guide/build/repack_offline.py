@@ -128,8 +128,9 @@ def main():
     for old in ('hok_card_images_133.zip', 'hok_card_images_133.tar.gz'):
         p = os.path.join(HEROES, old)
         if os.path.isfile(p):
+            size_mb = os.path.getsize(p) / 1e6
             os.remove(p)
-            print(f'  已移除超限旧整包: {old} ({os.path.getsize(p)/1e6:.2f} MB)')
+            print(f'  已移除超限旧整包: {old} ({size_mb:.2f} MB)')
     print(f'  时间: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}')
 
 if __name__ == '__main__':

@@ -353,12 +353,19 @@ def render_card_html(c):
         for row in lp['rows']:
             p.append('<tr>' + ''.join(f'<td>{esc(c2)}</td>' for c2 in row) + '</tr>')
         p.append('</tbody></table></div>')
-    if c['phases']:
+    # 分阶段要点表：只渲染"要点"列真正有内容的行；整表无内容则不出表格
+    phase_rows = []
+    for ph in c['phases']:
+        name, sep, rest = ph.partition('：')
+        rest = (rest or ph.partition(':')[2]).strip()
+        if not rest:
+            continue
+        phase_rows.append((name.strip(), rest))
+    if phase_rows:
         p.append('<table><thead><tr><th style="width:78px">分阶段</th><th>要点</th>'
                  '</tr></thead><tbody>')
-        for ph in c['phases']:
-            name, _, rest = ph.partition('：')
-            p.append(f'<tr><td><b>{esc(name)}</b></td><td>{esc(rest)}</td></tr>')
+        for ph_name, ph_rest in phase_rows:
+            p.append(f'<tr><td><b>{esc(ph_name)}</b></td><td>{esc(ph_rest)}</td></tr>')
         p.append('</tbody></table>')
     p.append('</div>')
 
@@ -425,12 +432,19 @@ def render_card_md(c):
         for row in lp['rows']:
             L.append('| ' + ' | '.join(row) + ' |')
         L.append('')
-    if c['phases']:
+    # 分阶段要点表：只输出"要点"列有内容的行；无内容则整表不输出
+    phase_rows = []
+    for ph in c['phases']:
+        name, sep, rest = ph.partition('：')
+        rest = (rest or ph.partition(':')[2]).strip()
+        if not rest:
+            continue
+        phase_rows.append((name.strip(), rest))
+    if phase_rows:
         L.append("| 分阶段 | 要点 |")
         L.append("| --- | --- |")
-        for ph in c['phases']:
-            name, _, rest = ph.partition('：')
-            L.append(f"| {name} | {rest} |")
+        for ph_name, ph_rest in phase_rows:
+            L.append(f"| {ph_name} | {ph_rest} |")
         L.append('')
     L.append("## 对位\n")
     if c['counters']:
