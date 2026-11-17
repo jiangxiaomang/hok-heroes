@@ -44,14 +44,15 @@ body{width:1080px;min-width:1080px;background:#f2ede3;
   display:flex;align-items:center;gap:10px}
 .sec>h2::before{content:"";width:6px;height:22px;background:#b4442e;border-radius:2px}
 .sec>h2 em{font-style:normal;font-size:14px;color:#8a847a;font-weight:600}
-.combo{display:flex;align-items:center;gap:14px;padding:11px 15px;margin-bottom:9px;
+.combo{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:11px 15px;margin-bottom:9px;
   background:#faf8f3;border:1px solid #e5dfd3;border-left:5px solid #2f6f6a;
   border-radius:10px}
 .combo .sc{font-size:19px;font-weight:800;flex:0 0 190px}
-.combo .kk{font-size:24px;font-weight:900;color:#b4442e;flex:0 0 auto;
+.combo .kk{font-size:24px;font-weight:900;color:#b4442e;flex:0 1 auto;min-width:0;
+  overflow-wrap:anywhere;word-break:break-all;white-space:normal;
   font-family:ui-monospace,Menlo,monospace;letter-spacing:1px}
-.combo .pp{font-size:14.5px;color:#5b554d;flex:1;line-height:1.45}
-.combo .off{flex:0 0 auto}
+.combo .pp{font-size:14.5px;color:#5b554d;flex:1 1 100%;min-width:0;line-height:1.45}
+.combo .off{flex:0 1 auto;min-width:0}
 .combo .off .kk{font-size:19px;color:#6b655c}
 .combo .off .n{font-size:13px;color:#2f6f6a;font-weight:700}
 .sk{display:flex;gap:11px;margin-bottom:9px}

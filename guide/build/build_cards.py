@@ -64,7 +64,15 @@ def first_sentence(text, limit=60):
         if sep in t:
             t = t.split(sep)[0]
             break
-    return t[:limit]
+    if len(t) <= limit:
+        return t
+    # 超限时不要硬切字（会切出「毁灭程」「至少可以大」这类残句），
+    # 而是在 limit 内最后一个逗号处收尾，保证留下的都是完整分句。
+    cut = t.rfind('，', 0, limit)
+    if cut > limit // 2:
+        return t[:cut].rstrip('，、')
+    # 前段没有合适逗号时，宁可返回稍长的完整句，也不切断词语
+    return t
 
 
 def split_runes(text):

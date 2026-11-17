@@ -69,7 +69,16 @@ def _excerpt(prof, limit=40):
             d = d.split(sep)[0]
             break
     d = d.strip('，。、； ')
-    return d[:limit]
+    if len(d) <= limit:
+        return d
+    # 超限时不要硬切字（会留下「并」「每次」这类悬空残句），
+    # 在 limit 内最后一个逗号处收尾，保证是完整分句。
+    cut = d.rfind('，', 0, limit)
+    if cut > limit // 2:
+        d = d[:cut]
+    else:
+        d = d[:limit]
+    return d.rstrip('，、；并和或的每次')
 
 
 def _core_skill(profs, tr):
@@ -795,7 +804,11 @@ def _pro_rows(hero, profs, tr):
             how = f'围绕【{_name(skill)}】用：{t}'
         else:
             how = _pro_how(t, profs)
-        rows.append((_tip_label(t, i), how, '实战要点口径'))
+        # 第三列「口径」= 这条技巧的依据/来源。优先给出命中技能的真实机制
+        # 短句作为依据；没有命中技能时，标注来源（来自该英雄官方实战要点），
+        # 避免整列重复同一个「实战要点口径」占位词。
+        basis = _excerpt(skill, 34) if skill else ''
+        rows.append((_tip_label(t, i), how, basis or '来自官方实战要点'))
     return rows
 
 
