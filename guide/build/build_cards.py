@@ -357,10 +357,20 @@ def render_card_html(c):
     phase_rows = []
     for ph in c['phases']:
         name, sep, rest = ph.partition('：')
-        rest = (rest or ph.partition(':')[2]).strip()
+        if not sep:
+            name, sep, rest = ph.partition(':')
+        if sep:
+            rest = rest.strip()
+        else:
+            # 无冒号格式（如"前期1技能消耗清线"）：从段首提取阶段名，整段作为要点
+            m = re.match(r'^(前期|中期|后期|开局|前期对线|大后期)\s*', ph)
+            if m:
+                name, rest = m.group(1), ph[m.end():].strip()
+            else:
+                name, rest = '', ph.strip()
         if not rest:
             continue
-        phase_rows.append((name.strip(), rest))
+        phase_rows.append((name.strip() or '要点', rest))
     if phase_rows:
         p.append('<table><thead><tr><th style="width:78px">分阶段</th><th>要点</th>'
                  '</tr></thead><tbody>')
@@ -436,10 +446,19 @@ def render_card_md(c):
     phase_rows = []
     for ph in c['phases']:
         name, sep, rest = ph.partition('：')
-        rest = (rest or ph.partition(':')[2]).strip()
+        if not sep:
+            name, sep, rest = ph.partition(':')
+        if sep:
+            rest = rest.strip()
+        else:
+            m = re.match(r'^(前期|中期|后期|开局|前期对线|大后期)\s*', ph)
+            if m:
+                name, rest = m.group(1), ph[m.end():].strip()
+            else:
+                name, rest = '', ph.strip()
         if not rest:
             continue
-        phase_rows.append((name.strip(), rest))
+        phase_rows.append((name.strip() or '要点', rest))
     if phase_rows:
         L.append("| 分阶段 | 要点 |")
         L.append("| --- | --- |")
