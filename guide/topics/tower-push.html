@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对抗路推塔英雄专题 · 带线拆塔谁最强</title>
+<style>
+:root{
+  --bg:#0e1218; --bg2:#121826; --card:rgba(22,28,42,.92); --card-solid:#161c2a;
+  --line:rgba(200,170,80,.20); --line-b:rgba(200,170,80,.42);
+  --text:#f5f0e6; --text2:#c8bfae; --text3:#9a9284;
+  --gold:#f4d03f; --gold2:#d4af37; --blue:#5b9bd5; --red:#e06c5a; --green:#5fbf7f; --purple:#b07fd0;
+  --shadow:0 16px 45px rgba(0,0,0,.45);
+}
+html[data-theme="light"]{
+  --bg:#f4f1e8; --bg2:#efe9da; --card:rgba(255,253,247,.97); --card-solid:#fffdf7;
+  --line:rgba(140,118,66,.22); --line-b:rgba(140,118,66,.42);
+  --text:#23262b; --text2:#4a4f57; --text3:#6b6558;
+  --gold:#8a6d1a; --gold2:#a8871f; --blue:#2b6cb0; --red:#b03a2e; --green:#1e8449; --purple:#7d3c98;
+  --shadow:0 10px 30px rgba(90,78,48,.16);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--text); font-family:'Noto Serif SC',-apple-system,'PingFang SC','Microsoft YaHei',serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.back{color:var(--text3);text-decoration:none;font-size:14px}
+.back:hover{color:var(--gold)}
+.toggle{cursor:pointer;border:1px solid var(--line-b);background:var(--card);color:var(--text2);
+  border-radius:999px;padding:7px 16px;font-size:13px;font-family:inherit}
+.toggle:hover{border-color:var(--gold);color:var(--gold)}
+header.hero{padding:26px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.kicker{font-size:13px;letter-spacing:3px;color:var(--gold2);margin:0 0 10px}
+h1{font-size:30px;margin:0 0 10px;letter-spacing:1px}
+h1 .accent{color:var(--gold)}
+.lead{color:var(--text2);font-size:15px;margin:0;max-width:760px}
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.badge{font-size:12.5px;border:1px solid var(--line-b);border-radius:999px;padding:5px 13px;color:var(--text2);background:var(--card)}
+.badge b{color:var(--gold)}
+.callout{border:1px solid var(--line-b);border-left:4px solid var(--gold);background:var(--card);
+  border-radius:10px;padding:16px 18px;margin:0 0 30px;box-shadow:var(--shadow)}
+.callout h3{margin:0 0 8px;font-size:15px;color:var(--gold)}
+.callout p{margin:5px 0;font-size:13.5px;color:var(--text2)}
+.callout .newlist{color:var(--text);font-weight:600}
+h2.sec{font-size:21px;margin:40px 0 6px;display:flex;align-items:center;gap:10px}
+h2.sec::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px;display:inline-block}
+.sec-sub{color:var(--text3);font-size:13px;margin:0 0 18px}
+.tier{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+.tier-head{display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid var(--line)}
+.tier-tag{font-weight:700;font-size:14px;padding:5px 12px;border-radius:8px;letter-spacing:1px;white-space:nowrap}
+.t0 .tier-tag{background:rgba(244,208,63,.16);color:var(--gold);border:1px solid var(--gold2)}
+.t1 .tier-tag{background:rgba(91,155,213,.14);color:var(--blue);border:1px solid var(--blue)}
+.t2 .tier-tag{background:rgba(176,127,208,.14);color:var(--purple);border:1px solid var(--purple)}
+.t3 .tier-tag{background:rgba(154,146,132,.14);color:var(--text3);border:1px solid var(--text3)}
+.tier-head h4{margin:0;font-size:16px}
+.tier-head .desc{margin:0;font-size:12.5px;color:var(--text3)}
+.tier-body{padding:6px 20px 16px}
+.hero-item{padding:13px 0;border-bottom:1px dashed var(--line)}
+.hero-item:last-child{border-bottom:none}
+.hname{font-size:16px;font-weight:700;color:var(--text)}
+.hname .role{font-size:12px;font-weight:400;color:var(--text3);margin-left:8px}
+.quote{margin:5px 0 0;font-size:13.5px;color:var(--text2)}
+.quote::before{content:"「";color:var(--gold2)}
+.quote::after{content:"」";color:var(--gold2)}
+.evi{display:inline-block;font-size:11px;color:var(--gold2);border:1px solid var(--line-b);border-radius:5px;padding:1px 7px;margin-right:6px;vertical-align:1px}
+table{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:13.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--gold);font-weight:600;font-size:13px;background:var(--card-solid)}
+td.name{font-weight:700;white-space:nowrap}
+.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.tip{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--card);box-shadow:var(--shadow)}
+.tip h5{margin:0 0 6px;color:var(--gold);font-size:14.5px}
+.tip p{margin:0;font-size:13px;color:var(--text2)}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text3);line-height:1.8}
+footer b{color:var(--text2)}
+.note-inline{color:var(--red);font-weight:600}
+@media(max-width:600px){h1{font-size:23px}table{font-size:12px}th,td{padding:8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="../heroes/index.html">← 返回英雄库</a>
+    <button class="toggle" id="themeBtn">🌓 切换主题</button>
+  </div>
+
+  <header class="hero">
+    <p class="kicker">对抗路 · 分推专题</p>
+    <h1>谁才是真正的<span class="accent">推塔机器</span>？对抗路带线拆塔英雄榜</h1>
+    <p class="lead">拆塔不是看谁伤害高，而是看「清线速度 + 持续作战/续航 + 分推安全性」。本专题基于官方技能与攻略原文逐条甄别每一位对抗路英雄的推塔/带线机制，给出可上分的分档与玩法。</p>
+    <div class="badge-row">
+      <span class="badge">数据基准：pvp.qq.com 官方 herolist 核验</span>
+      <span class="badge">对抗路英雄 <b>32</b> 位</span>
+      <span class="badge">更新于 <b>2026-11-26</b></span>
+      <span class="badge">不含编造胜率</span>
+    </div>
+  </header>
+
+  <div class="callout">
+    <h3>📌 数据时效核验（先说清楚，避免拿旧名单下判断）</h3>
+    <p>本次生成前实测拉取官方 <b>herolist.json</b>：线上共 <b>140</b> 位英雄；本站攻略库收录 <b>133</b> 位。</p>
+    <p>差额 <b>7 位</b>为近期新增、攻略库暂未收录：<span class="newlist">刀锋宝贝（刺客）、卡芬妮（射手）、星葵（刺客）、皮皮（辅助）、索文（射手）、绯泪（战士）、莉莉安（法师）</span>。</p>
+    <p>其中仅 <b>绯泪</b> 属于战士，可能涉对抗路，但目前缺官方技能文本，<b>本专题不臆测其强度</b>，待攻略库补录后再评。以下榜单只对已有官方数据支撑的对抗路英雄评级。</p>
+  </div>
+
+  <h2 class="sec">分档总览</h2>
+  <p class="sec-sub">分档依据：官方技能文本中「攻速/真伤/强化普攻/回血续航/推进拆塔」等可验证机制 + 清线与带线安全性综合判断。</p>
+
+  <!-- T0 -->
+  <div class="tier t0">
+    <div class="tier-head">
+      <span class="tier-tag">T0 · 核心</span>
+      <div><h4>推塔/偷塔顶级 · 分推一把手</h4><p class="desc">拆塔速度或牵制能力在对抗路属于天花板，运营得当成胜负核心</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">李信（暗信形态）<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">官方攻略原文</span>暗信攻速极快偷塔无解；光信守家一流，暗信带线一流；近战攻速偷塔偷龙</p>
+        <p class="quote"><span class="evi">玩法</span>4 级选暗信后主走「带线—偷塔—偷龙」，攻速装快速拆塔；对面回防就换线，避免正面硬拼</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">程咬金<span class="role">坦克 · 对抗路</span></div>
+        <p class="quote"><span class="evi">官方攻略原文</span>持续回血，牵制带线；中期带线牵制无人能抓；带线流精髓：永远不团，牵制三路</p>
+        <p class="quote"><span class="evi">玩法</span>残血开大招边打边退、越塔带线；不死鸟之眼+大招=移动泉水，靠牵制逼对面分兵</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">老夫子<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>被动满训诫后 +25% 攻速并附带真伤；大招「圣人之威」把目标捆在明灯范围 5 秒</p>
+        <p class="quote"><span class="evi">官方攻略原文</span>单挑之王；大招绑住的人跑不掉（除非净化）</p>
+        <p class="quote"><span class="evi">玩法</span>大招捆住守塔/回防的人直接强拆，攻速真伤拆塔极快；怕多人集火，带线盯小地图</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">蒙恬<span class="role">坦克 · 对抗路</span></div>
+        <p class="quote"><span class="evi">官方攻略原文</span>中期举盾推进；后期大招士兵+举盾推进拆塔；举盾状态下正面几乎无敌</p>
+        <p class="quote"><span class="evi">玩法</span>大招士兵抗塔伤、举盾正面无敌强推；注意侧面/背面是弱点，站位贴塔正面推进</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- T1 -->
+  <div class="tier t1">
+    <div class="tier-head">
+      <span class="tier-tag">T1 · 优秀</span>
+      <div><h4>推塔优秀 · 带线续航强</h4><p class="desc">拆塔或续航突出，能稳定牵制一路，是合格的分推点</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">芈月<span class="role">法师 · 对抗路</span></div>
+        <p class="quote"><span class="evi">官方攻略原文</span>中期单挑无敌带线牵制；被动暗影仆从对小兵额外造成伤害，清线快</p>
+        <p class="quote"><span class="evi">玩法</span>清线快、单挑强，靠带线牵制；被集火用大招保命撤退</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">吕布<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>附魔状态下所有伤害转为真实伤害，站撸输出极高</p>
+        <p class="quote"><span class="evi">玩法</span>附魔后真伤拆塔与对拼都快；大招跳大分割战场，落单时带线拆塔很有威慑</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">曹操<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>强化普攻 +35%~70% 攻速；大招解控并回复 18% 已损生命、期间普攻持续回血</p>
+        <p class="quote"><span class="evi">玩法</span>攻速强化拆塔快，大招吸血站撸续航强，适合长期带线消耗</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">亚连<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>被动叠满后攻速极快；物理吸血享受 75% 效果且作用于真伤，暴击流输出高</p>
+        <p class="quote"><span class="evi">玩法</span>攻速+暴击+吸血三合一，拆塔与续航兼备，前期压制力强</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">刘邦<span class="role">坦克 · 对抗路</span></div>
+        <p class="quote"><span class="evi">官方攻略原文</span>后期 41 分推大招支援；带线时注意队友站位随时传送</p>
+        <p class="quote"><span class="evi">玩法</span>典型 41 分推 —— 单人带线，队友抱团，团战一响大招传送瞬间接团，兼顾推塔与支援</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2 -->
+  <div class="tier t2">
+    <div class="tier-head">
+      <span class="tier-tag">T2 · 条件</span>
+      <div><h4>能推塔但非核心 · 偏团战/吃条件</h4><p class="desc">有清线或单体输出能力，但推塔不是最强项，多用于对线压制或团战</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">哪吒<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>被动炙炼火种真伤并减 35% 回复；大招全图锁定飞人，可快速换线支援</p>
+        <p class="quote"><span class="evi">玩法</span>推塔一般，价值在全图支援与切后排，更适合「带线+随时飞团」</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">杨戬 · 狂铁 · 夏侯惇<span class="role">战士/坦 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>三人均有「真伤/强化普攻 + 回血续航」——杨戬普攻真伤+大招吸血；狂铁护盾回血强化普攻；夏侯惇真伤强化普攻+低血回复</p>
+        <p class="quote"><span class="evi">玩法</span>抗压强、单挑稳，可带线消耗，但拆塔速度不及 T0/T1，更多作为对线压制点</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">蚩奼 · 花木兰 · 达摩<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">机制</span>蚩奼攻速加成可突破上限+强化普攻；花木兰重剑普攻+50% 物伤；达摩技能内 +100% 攻速</p>
+        <p class="quote"><span class="evi">玩法</span>有爆发攻速可拆塔，但花木兰、达摩更吃操作与抓人节奏，推塔属副业</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">马超 · 关羽 · 司空震<span class="role">战士 · 对抗路</span></div>
+        <p class="quote"><span class="evi">玩法</span>清线/游走强、机动性高，适合带线拉扯与支援，但拆塔效率一般，靠运营而非强拆</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3 -->
+  <div class="tier t3">
+    <div class="tier-head">
+      <span class="tier-tag">T3 · 偏弱</span>
+      <div><h4>对抗路以承伤/开团为主 · 推塔偏弱</h4><p class="desc">团战价值高于拆塔，带线容易被清或缺乏续航，不建议作为分推核心</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">廉颇 · 白起 · 钟无艳 · 项羽<span class="role">坦克/战士 · 对抗路</span></div>
+        <p class="quote">以霸体/嘲讽/开团承伤见长；项羽定位更是「把敌人往己方塔下推」，非拆塔型</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">猪八戒 · 梦奇 · 孙策 · 元流之子(坦克) · 元歌<span class="role">坦/刺 · 对抗路</span></div>
+        <p class="quote">续航或开团能力尚可，但清线/拆塔非强项；元歌偏刺客操作，带线牵制有限</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec">顶级推塔英雄 · 玩法速查</h2>
+  <p class="sec-sub">把 T0/T1 的拆塔细节整理成一张表，对局直接照着用。</p>
+  <div class="tier" style="border-radius:14px">
+    <div class="tier-body" style="padding:6px 20px 18px">
+      <table>
+        <thead><tr><th>英雄</th><th>推塔核心机制</th><th>续航/清线</th><th>关键玩法</th></tr></thead>
+        <tbody>
+          <tr><td class="name">李信(暗信)</td><td>高攻速近战，官方称「偷塔无解」</td><td>清线快、偷龙强</td><td>带线偷塔为主，被回防就换线</td></tr>
+          <tr><td class="name">程咬金</td><td>大招高额回血，越塔带线</td><td>续航顶级</td><td>残血开大牵制三路，逼对面分兵</td></tr>
+          <tr><td class="name">老夫子</td><td>被动+25%攻速真伤，大招捆人5秒强拆</td><td>2技能免伤反弹</td><td>捆住守塔者直接拆，注意防集火</td></tr>
+          <tr><td class="name">蒙恬</td><td>大招士兵+举盾正面无敌推进</td><td>兵势抗压</td><td>正面贴塔强推，护好侧面背面</td></tr>
+          <tr><td class="name">芈月</td><td>清线快、单挑无敌</td><td>仆从清兵+吸血</td><td>带线牵制，集火则大招撤离</td></tr>
+          <tr><td class="name">吕布</td><td>附魔真伤，拆塔对拼都快</td><td>真伤+护盾转血</td><td>落单带线有威慑，团战跳大分割</td></tr>
+          <tr><td class="name">曹操</td><td>强化普攻+35~70%攻速</td><td>大招回血站撸</td><td>长期带线消耗，攻速拆塔</td></tr>
+          <tr><td class="name">亚连</td><td>被动攻速极快+暴击</td><td>吸血对真伤生效</td><td>攻速暴击流，拆塔续航兼备</td></tr>
+          <tr><td class="name">刘邦</td><td>41 分推</td><td>护盾+全图大招</td><td>单人带线，团战大招瞬间接团</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 class="sec">通用分推运营思路</h2>
+  <p class="sec-sub">推塔英雄的上限不在手法，而在运营节奏（社区主流共识，定性总结）。</p>
+  <div class="tips">
+    <div class="tip"><h5>① 线权优先</h5><p>推塔前提是兵线压制。先清兵把线推过去，才有拆塔窗口；没线权硬顶塔血换血不划算。</p></div>
+    <div class="tip"><h5>② 带线必看地图</h5><p>带线时敌人视野一旦消失就要后撤，插眼/看小地图防打野绕后，别为一座塔送人头。</p></div>
+    <div class="tip"><h5>③ 41 分推节奏</h5><p>一人带线、三人抱团或推另一路；对面回防就推塔，对面抱团就换线，永远制造以多打少。</p></div>
+    <div class="tip"><h5>④ 善用传送/全图</h5><p>刘邦大招、哪吒大招可瞬间换线支援，带线更敢深入，团战也能第一时间到位。</p></div>
+    <div class="tip"><h5>⑤ 有守塔就撤</h5><p>对面有人守塔时不要强行换血拆塔，等团战打赢、对面减员后再推进，效率最高。</p></div>
+    <div class="tip"><h5>⑥ 抗压出装</h5><p>带线英雄优先续航/抗塔（不死鸟之眼、血魔等），活得久才能持续施压。</p></div>
+  </div>
+
+  <h2 class="sec">附：非对抗路但推塔强的英雄</h2>
+  <p class="sec-sub">如果你不设限对抗路，这几个「推塔特化」英雄同样值得了解（同样引自官方原文）。</p>
+  <div class="tier" style="border-radius:14px">
+    <div class="tier-body" style="padding:6px 20px 16px">
+      <div class="hero-item"><div class="hname">韩信<span class="role">打野</span></div><p class="quote"><span class="evi">官方</span>位移刺客，偷塔带线；利用多段位移牵制</p></div>
+      <div class="hero-item"><div class="hname">刘禅<span class="role">游走</span></div><p class="quote"><span class="evi">官方</span>拆塔辅助，暴走机关；技能拆塔，快速推进</p></div>
+      <div class="hero-item"><div class="hname">米莱狄<span class="role">中路</span></div><p class="quote"><span class="evi">官方</span>后期大招强化傀儡推塔；属于推进型法师</p></div>
+      <div class="hero-item"><div class="hname">黄忠<span class="role">发育路</span></div><p class="quote"><span class="evi">官方</span>大招架炮推进，需要队友保护</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <p><b>数据与真实性声明：</b>本专题所有「拆塔/偷塔/带线/推进」判断，均引用 pvp.qq.com 官方英雄技能与攻略原文（已逐条标注出处），<b>不含任何编造的胜率、出场率或梯度数值</b>。</p>
+    <p>实时胜率/出场率榜单依赖「王者营地」登录态接口，官方未开放可公开抓取的实时数据，故本站不抓取、不虚构。分档为「机制 + 版本理解」的定性评估，仅供上分参考。</p>
+    <p>英雄名单核验：2026-11-26 拉取官方 herolist.json = 140 位，本站攻略库 133 位，7 位新英雄待补录。</p>
+    <p>© 王者荣耀全英雄攻略 · 对抗路推塔专题 · 生成于 2026-11-26</p>
+  </footer>
+</div>
+<script>
+(function(){
+  var KEY='hok.theme';
+  var saved=localStorage.getItem(KEY);
+  if(saved){document.documentElement.setAttribute('data-theme',saved);}
+  var btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',cur);
+    localStorage.setItem(KEY,cur);
+  });
+})();
+</script>
+</body>
+</html>
