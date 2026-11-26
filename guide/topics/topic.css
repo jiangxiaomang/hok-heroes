@@ -77,7 +77,7 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text)}
 .tip h5{margin:0 0 6px;color:var(--gold);font-size:14.5px}
 .tip p{margin:0;font-size:13px;color:var(--text2)}
 /* 纠错卡 */
-.crits{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:6px}
+.crits{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:14px;margin-top:6px}
 .crit{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:14px 16px;box-shadow:var(--shadow);
   border-top:3px solid var(--red)}
 .crit .claim{font-size:13px;color:var(--red);text-decoration:line-through;text-decoration-thickness:1px;margin:0 0 6px}
@@ -123,3 +123,9 @@ footer b{color:var(--text2)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
 .chips span{font-size:12.5px;line-height:1.6;color:var(--text);background:rgba(91,155,213,.10);border:1px solid rgba(91,155,213,.35);border-radius:6px;padding:2px 9px;white-space:nowrap}
 @media(max-width:640px){.srcrow{grid-template-columns:1fr;gap:7px}.srcrow .evi{justify-self:start;text-align:left}}
+/* 窄屏表格：固定布局+断词，避免长单元格把整页撑出横向滚动条 */
+@media(max-width:640px){table{table-layout:fixed;width:100%}
+  th,td{padding:8px 9px;word-break:break-word;overflow-wrap:anywhere}
+  th:first-child,td:first-child{width:42%}
+  .chips span{white-space:normal}
+  code{word-break:break-all}}
