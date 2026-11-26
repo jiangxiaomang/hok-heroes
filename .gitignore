@@ -7,3 +7,7 @@ guide/heroes/hok_card_images_133.tar.gz
 # 构建中间产物（源 HTML 已同步到 guide/heroes/<英雄>/，可随时 rebuild 再生）
 guide/cards/
 guide/cards_mini/
+
+# 审查截图（不进部署仓库）
+.shots/
+*shots*/
