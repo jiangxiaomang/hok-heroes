@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反野与视野全解 · 时间表×三条件×盲区清单｜操作手册</title>
+<link rel="stylesheet" href="topic.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="../heroes/index.html">← 返回英雄库</a>
+    <button class="toggle" id="themeBtn">🌓 切换主题</button>
+  </div>
+
+  <header class="hero">
+    <p class="kicker">反野 · 视野 · 操作手册</p>
+    <h1>反野不是赌运气，<span class="accent">是三条打勾</span></h1>
+    <p class="lead">这一页只回答两件事：什么时候能进对面野区，以及「看不见」这件事在本作里到底怎么解决。前者是三条条件，后者是四个位置。</p>
+    <div class="badge-row"><span class="badge">机制 → 动作</span><span class="badge">反野五步 SOP</span><span class="badge">英雄卡：按视野特权分档</span><span class="badge">错误对照 + 复盘四数</span></div>
+  </header>
+
+  <div class="callout">
+    <h3>本页怎么用（三分钟上手）</h3>
+    <p><span class="newlist">① 想反野：</span>先按 §02 打勾，三条全中才进；缺一条去 §04 学换野。</p><p><span class="newlist">② 想解决「被蹲」：</span>只看 §06 四个位置，每次进野区前扫一下。</p><p><span class="newlist">③ 想换英雄：</span>看 §07 卡里「他在视野这件事上有什么特权」，而不是看分路。</p>
+  </div>
+
+  <h2 class="sec" id="sec01"><span class="num">01</span>时间表：什么时间点能做哪件事</h2>
+  <p class="tagline">左列是时钟和局面，第二列只写机制，第三列是你要按的键，第四列是不按的代价。看不懂机制就直接做第三列。</p>
+<div class="tbl-wrap"><table class=""><tr><th>时间 / 局面</th><th>机制事实</th><th>你的动作</th><th>做错的代价</th></tr><tr><td class="">0:00 开局出泉水</td><td class="机制">惩戒开局只有 1 次；红蓝 buff 开局 30 秒刷出，之后每 90 秒一轮，小野 70 秒一轮（站内口径·实测，与「野区节奏」页同一套数，非官方公告原文）</td><td class="">打野站自家红区<b>外侧</b>那片草（红 buff 左上方入口），辅助站河道靠近中路那一侧的草口；两个人不站同一片草。</td><td class="">两人叠在同一片草：一片草被扫掉等于两条视野同时失效，1 级被抓直接掉 buff。</td></tr><tr><td class="">0:30 buff 出生</td><td class="机制">惩戒造成的伤害高于 1 级野怪血量，所以惩戒永远够抢最后一下</td><td class="">惩戒<b>只留给 buff 本体</b>；打小野用手和技能，别用惩戒。</td><td class="">惩戒用来打小野，30 秒后对面打野进你这半边，你手上没有惩戒，buff 直接送人。</td></tr><tr><td class="">1:00 对面打野第一次露头</td><td class="机制">看到他人在哪，等于知道他另一半野区是空的；他回到那半边需要走完整段野区距离</td><td class="">记下他露头的位置和秒数（心里记「XX 秒，他在蓝区」），立刻推自己这边兵线，为 30 秒后进他空半边做准备。</td><td class="">只看不动：这 30 秒是你唯一不需要赌的反野窗口，浪费掉就得赌视野。</td></tr><tr><td class="">1:30–3:00 第一次反野窗口</td><td class="机制">反野成功只由三件事决定：惩戒在你手上、他人在另一半区、你有退路</td><td class="">按 §02 三个条件逐条打勾，三条全中才进；缺一条就改吃自家这半边，把时间换成等级。</td><td class="">三条缺一条硬进：最常见的结局是 buff 没吃到、人被留住、惩戒交掉，接下来 90 秒全崩。</td></tr><tr><td class="">3:00–4:00 河道与中路草丛</td><td class="机制">本作没有可购买的视野道具（守卫 / 眼），视野只能由草丛、地形和英雄技能产出</td><td class="">辅助每次从河道过，先扫靠近中路那一侧的草（技能或普攻逼一下），再让中单过河。</td><td class="">指望「有人会看视野」：中单过河被蹲，人头＋中线塔伤一起亏。</td></tr><tr><td class="">4:00–8:00 龙刷新前后</td><td class="机制">龙区草丛是全场唯一「看一眼就值一条命」的位置，双方都会在这里蹲</td><td class="">打龙前 10 秒，打野站在龙坑<b>背对自家</b>那一侧，辅助站河道入口草；不要两人都进龙坑。</td><td class="">全员进龙坑：对面从河道入口进来一刀切三个，龙还被抢。</td></tr><tr><td class="">8:00 之后 高地与外塔</td><td class="机制">塔的视野覆盖塔前一段距离，塔后与侧面有盲区；绕后路线只有三条（红区后方、蓝区后方、河道侧翼）</td><td class="">推塔时把「谁会从哪条路绕后」写成一句话说给队友：例如「他们打野会从红区后方来」。</td><td class="">不指定绕后方向：塔推掉、人被包、龙丢掉，一次亏三样。</td></tr></table></div>
+  <div class="warnbox"><b>机制事实，不是公告原文：</b>buff 90 秒 / 小野 70 秒 / 开局 30 秒出生这三条，是本页与「野区节奏」页共用的站内口径，训练营开自定义 2 分钟即可自验；官方公告页没有逐条列出刷新秒数，所以本页不把它写成「官方公告原文」。</div>
+  <h2 class="sec" id="sec02"><span class="num">02</span>反野三条件：缺一条就立刻放弃</h2>
+<div class="tbl-wrap"><table class=""><tr><th>条件</th><th>怎么查（10 秒内能做完）</th><th>不满足时做什么</th></tr><tr><td class="">① 惩戒在你手上</td><td class="">看技能栏惩戒图标是否亮着；刚用过就当作没有，不要靠「等下就好了」硬等。</td><td class="">放弃反野，改吃自家这半边野区，把 90 秒的等级差补回来。</td></tr><tr><td class="">② 他人在另一半区</td><td class="">回想他最后一次露头的秒数和位置；没有记忆就当他在你目标野区里。</td><td class="">改走「换野」：他吃你半边，你吃他另半边，人数不占劣势时直接对吃。</td></tr><tr><td class="">③ 你有退路</td><td class="">进之前先看：身后那条路有没有己方兵线、辅助是否在河道口、有没有位移技能可用。</td><td class="">改成「只探不进」：进野区口逼一下、确认有没有人，然后立刻退回自己这半边。</td></tr></table></div>
+  <div class="okbox"><b>一句话记法：</b>惩戒在、人在对面、退路在 —— 三个「在」全中才进去；少一个，这一趟就只配走到野区口。</div>
+  <h2 class="sec" id="sec03"><span class="num">03</span>反野 SOP：五步，任何一步走不通就回头</h2>
+<div class="tbl-wrap"><table class=""><tr><th>步骤</th><th>动作</th><th>失败点</th></tr><tr><td class="">1 站位</td><td class="">从<b>自己野区</b>那一侧绕进对面野区，不要从河道正中过；进之前 2 秒扫一遍入口草。</td><td class="">从河道正中直穿：入口草里有人，你进野区的第一秒就被人看见并留住。</td></tr><tr><td class="">2 探</td><td class="">在野区口停一下，用技能或普攻打一下草丛，确认没有第二个人。</td><td class="">不停直接冲 buff：对面反蹲（他知道你会来），你吃的是双人包夹。</td></tr><tr><td class="">3 数</td><td class="">看一眼小地图：对面中路 / 辅助的位置是否消失。两个人都消失 → 立刻退出。</td><td class="">只看打野位置：中单和辅助消失才是真正的反蹲信号。</td></tr><tr><td class="">4 打</td><td class="">惩戒留给最后一下；普攻＋技能先压血，血线到一半再交惩戒。</td><td class="">一进野区就交惩戒：对面打野从侧面进来，最后一下被抢，你还站在他野区里。</td></tr><tr><td class="">5 撤</td><td class="">buff 到手立刻走<b>原路</b>回，5 秒内不要贪小野。</td><td class="">贪旁边那组小野：多留 8 秒，换来一次被抓或被包，buff 白吃。</td></tr></table></div>
+  <h2 class="sec" id="sec04"><span class="num">04</span>被反野时：换野，不追人</h2>
+<div class="tbl-wrap"><table class=""><tr><th>局面（你看到的）</th><th>机制事实</th><th>你的动作</th><th>做错的代价</th></tr><tr><td class="">他进了你这半边、buff 还在</td><td class="机制">反野方必须在你的野区里停留，这段时间他的另一半野区是空的</td><td class="">不追他，直接去他的另一半野区吃回来；辅助跟你一起走，中单推线牵制。</td><td class="">回头追人：人没追到，自家这半边 buff 也丢了，等于一次亏两片野区。</td></tr><tr><td class="">buff 已经被吃掉</td><td class="机制">被吃的 buff 要等下一轮刷新（90 秒），这段时间你只能靠小野和兵线补等级</td><td class="">放弃这片野区，去另一侧吃小野＋蹭中线经验，把 90 秒填满。</td><td class="">原地站着等刷新，或者反复回同一片野区看：90 秒后等级差 1.5 级，全队节奏被拖。</td></tr><tr><td class="">他不知道你在哪、你也不知道他在哪</td><td class="机制">双方都没有信息时，先动的一方承担风险</td><td class="">先做「有收益且可退」的事：吃自家小野、推一波兵线、把视野装置／戍鼎放到野区口。</td><td class="">两边都不敢动，一起去河道找：河道正中是全场最容易被反打的位置。</td></tr></table></div>
+  <h2 class="sec" id="sec05"><span class="num">05</span>视野的真实规则（没有守卫道具这件事）</h2>
+<div class="tbl-wrap"><table class=""><tr><th>视野来源</th><th>机制事实（官方库字段原文口径）</th><th>你的动作</th><th>做错的代价</th></tr><tr><td class="">草丛</td><td class="机制">站在草丛内，草丛外的敌人看不到你；但在草里攻击／被命中会短暂暴露位置（实测口径）</td><td class="">进草后<b>不要先手普攻</b>；等对方走进草、或等队友到位再出手。</td><td class="">在草里先打一下：暴露 1 秒，对面直接给你一套控制链。</td></tr><tr><td class="">守卫 / 眼</td><td class="机制">本作没有可购买的视野道具；地图视野只能由草丛、地形与英雄技能产出</td><td class="">把「谁负责看视野」写死到人头：辅助看河道、打野看野区口，不要靠「大家都会看」。</td><td class="">以为队友在看：五个人一起瞎，龙区被开团时全队从盲区里被切。</td></tr><tr><td class="">百里守约 · 静谧之眼</td><td class="机制">在脚下布置视野装置，获得 600~1000 范围全部视野；每 40~50 秒准备 1 个，最多储备 3 个，同时最多放置 3 个</td><td class="">三个装置这样放：一个放自家野区口、一个放河道、一个留在身上跟着队伍走。</td><td class="">三个全放自家野区：对面进龙区你完全看不见，装置等于白放。</td></tr><tr><td class="">大禹 · 随山定势</td><td class="机制">召唤戍鼎并提供视野；戍鼎上限 3 个（初始 3，每 3 级 +1，上限 8），靠近戍鼎的队友获得回复</td><td class="">把鼎放在<b>野区入口</b>而不是塔下：鼎是视野＋回复点，不是装饰。</td><td class="">鼎全放在兵线旁边：视野没覆盖入口，队友也不会为回血特地绕路。</td></tr><tr><td class="">鬼谷子 · 先知·雾隐</td><td class="机制">给自己和 1500 距离内队友加伪装，准备 1 秒后生效；同时探查距离自己最近的一名敌方英雄视野</td><td class="">开雾隐前先报「要进哪一侧」，让全队朝同一方向移动；伪装≠无敌，只解决「被看见」。</td><td class="">把伪装当无敌冲塔：塔和技能照样打你，伪装只挡视野不挡伤害。</td></tr><tr><td class="">伪装 / 隐身</td><td class="机制">兰陵王隐身时若处于敌人附近超过 3 秒，隐身自动解除（官方库技能原文）</td><td class="">隐身摸人时<b>绕开</b>他要走的那条线，不要贴着他走；接近 3 秒内必须出手。</td><td class="">贴着人走 3 秒：隐身自动解除，你先手变后手。</td></tr></table></div>
+  <div class="warnbox"><b>别把「机制」当「公告」：</b>上表第一列是机制名称，第二列是官方英雄库／装备库同页字段的原意转述（技能数值为仓库原值）。草丛暴露时长、塔视野范围这两条没有官方数值公开，本页只写行为结论，不写秒数与码数。</div>
+  <h2 class="sec" id="sec06"><span class="num">06</span>视野盲区清单：每次进野区前扫这四处</h2>
+<div class="tbl-wrap"><table class=""><tr><th>位置</th><th>为什么是盲区</th><th>进入前的动作</th></tr><tr><td class="">自家红区入口草</td><td class="">从河道过来的人会先站这片草，等你自己走进来。</td><td class="">打野每次回红区，先打一下入口草再进。</td></tr><tr><td class="">蓝区靠中路那一侧的转角</td><td class="">中单游走最常用的蹲点，视野被墙体切断。</td><td class="">中单离开中线时，辅助先站到转角外侧，让中单从里侧过。</td></tr><tr><td class="">龙坑背面的草</td><td class="">双方打龙前都会蹲这里，谁先到谁拿先手。</td><td class="">打龙前 10 秒，辅助先进这片草，打野再开龙。</td></tr><tr><td class="">外塔后方</td><td class="">塔的视野只管塔前，塔后与侧面是天然绕后通道。</td><td class="">推塔前把「谁会从哪条路绕后」说出口，并让辅助站到那条路上。</td></tr></table></div>
+  <h2 class="sec" id="sec07"><span class="num">07</span>英雄卡：按「机制特权」分三档</h2>
+  <p class="tagline">不按官方定位分，只按「他在视野与反野这件事上有什么别人没有的手段」分。出装与连招取自官方英雄库同页字段。</p>
+  <h3 class="sub">7.1 能替你「看见」：把视野当资源投放</h3>
+  <div class="opcards">      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/196/196.jpg" alt="百里守约" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>百里守约<span class="otype">射手 · 发育路</span></h4>
+          <p class="opsub">视野装置的唯一常规来源：600~1000 范围、最多 3 个同时在场</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="急速战靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1425.jpg" alt="急速战靴" loading="lazy"><b>急速战靴</b></span><span class="arr">→</span><span class="eq" title="泣血之刃"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1132.jpg" alt="泣血之刃" loading="lazy"><b>泣血之刃</b></span><span class="arr">→</span><span class="eq" title="仁者破晓"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1155.jpg" alt="仁者破晓" loading="lazy"><b>仁者破晓</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="急速战靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1425.jpg" alt="急速战靴" loading="lazy"><b>急速战靴</b></span><span class="arr">→</span><span class="eq" title="末世"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1126.jpg" alt="末世" loading="lazy"><b>末世</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="仁者破晓"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1155.jpg" alt="仁者破晓" loading="lazy"><b>仁者破晓</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">2狂风之息-3大招逃脱-1静谧之眼</p><p class="combo">2-2-3(狙击连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期狙击消耗；中期2技能隐身；后期大招超远狙击</div></div>
+          <ul class="ptips"><li>2技能隐身蹲草</li><li>大招超远狙击收割</li><li>1技能视野装置</li><li>狙击命中率决定上限</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>把第一个视野装置放在自家红区入口，而不是脚下——装置是给全队用的。</p>
+          <div class="warnbox"><b>专属提醒：</b>装置每 40~50 秒才准备 1 个、最多储备 3 个，所以「三个都放完」等于接下来 40 秒全队没有新视野——永远留 1 个在身上跟队伍走。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">黄忠</span><span class="bad">公孙离</span><span class="bad">马可波罗</span><span class="bad">盾山</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/188/188.jpg" alt="大禹" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>大禹<span class="otype">辅助 · 游走</span></h4>
+          <p class="opsub">戍鼎＝视野＋回复点，上限随等级从 3 个涨到 8 个</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>宿命×10、虚空×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>治疗术 / 闪现</b></div>
+          <div class="kv"><span>加点</span><b>主二副一，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="极影·形昭"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1737.jpg" alt="极影·形昭" loading="lazy"><b>极影·形昭</b></span><span class="arr">→</span><span class="eq" title="冷静之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1423.jpg" alt="冷静之靴" loading="lazy"><b>冷静之靴</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="冰痕之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/13310.jpg" alt="冰痕之握" loading="lazy"><b>冰痕之握</b></span><span class="arr">→</span><span class="eq" title="霸者重装"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1332.jpg" alt="霸者重装" loading="lazy"><b>霸者重装</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="近卫·救赎"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1724.jpg" alt="近卫·救赎" loading="lazy"><b>近卫·救赎</b></span><span class="arr">→</span><span class="eq" title="冷静之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1423.jpg" alt="冷静之靴" loading="lazy"><b>冷静之靴</b></span><span class="arr">→</span><span class="eq" title="旭日初光"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1353.jpg" alt="旭日初光" loading="lazy"><b>旭日初光</b></span><span class="arr">→</span><span class="eq" title="冰霜冲击"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1341.jpg" alt="冰霜冲击" loading="lazy"><b>冰霜冲击</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">2落鼎控地-1水流推人-3大招洪流聚拢</p><p class="combo">3-2-1（超强团控）</p></div></div>
+          <div class="kv"><span>三段</span><div>前期：治水引导消耗；中期：疏导洪流控场；后期：大招疏通九州分割战场</div></div>
+          <ul class="ptips"><li>治水可改变地形</li><li>疏导洪流减速敌人</li><li>大招开凿河道改线</li><li>被动水脉感知视野</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>第一尊戍鼎放在河道与野区交界口，第二尊跟着队伍推塔，第三尊留给龙区。</p>
+          <div class="warnbox"><b>专属提醒：</b>九鼎齐鸣让「回城」变「传送」，戍鼎位置就是你的撤退点——鼎放在塔下，等于把传送键浪费掉。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">公孙离</span><span class="bad">马可波罗</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/189/189.jpg" alt="鬼谷子" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>鬼谷子<span class="otype">辅助 · 游走</span></h4>
+          <p class="opsub">群体伪装 + 探查最近一名敌人，是全队唯一的「集体隐身通道」</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>梦魇×10、献祭×10、狩猎×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="疾步之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1426.jpg" alt="疾步之靴" loading="lazy"><b>疾步之靴</b></span><span class="arr">→</span><span class="eq" title="近卫·救赎"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1724.jpg" alt="近卫·救赎" loading="lazy"><b>近卫·救赎</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="霸者重装"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1332.jpg" alt="霸者重装" loading="lazy"><b>霸者重装</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="疾步之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1426.jpg" alt="疾步之靴" loading="lazy"><b>疾步之靴</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">先知·神-万物有灵-先知·雾(基础连招)</p><p class="combo">先知·雾-先知·神-万物有灵(爆发连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期隐身拉人；中期群体隐身；后期大招群体隐身开团</div></div>
+          <ul class="ptips"><li>隐身拉人开团</li><li>群体隐身突袭</li><li>大招隐身+加速</li><li>被动隐身机制</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>开雾隐时先报方向，全队同向移动；雾隐只解决「被看见」，不解决伤害。</p>
+          <div class="warnbox"><b>专属提醒：</b>伪装准备 1 秒才生效，进龙区前 1 秒按，不要进草之后再按——那 1 秒你会被先手。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">盾山</span><span class="bad">庄周</span><span class="bad">蔡文姬</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div></div>
+
+  <h3 class="sub">7.2 能「绕开」视野：从盲区进，不从正面进</h3>
+  <div class="opcards">      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/153/153.jpg" alt="兰陵王" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>兰陵王<span class="otype">刺客 · 打野</span></h4>
+          <p class="opsub">隐身 30 秒，解除后 5 秒内 +50% 攻击速度</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="巡守利斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1522.jpg" alt="巡守利斧" loading="lazy"><b>巡守利斧</b></span><span class="arr">→</span><span class="eq" title="疾步之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1426.jpg" alt="疾步之靴" loading="lazy"><b>疾步之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="冰痕之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/13310.jpg" alt="冰痕之握" loading="lazy"><b>冰痕之握</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">隐身秒杀｜<span class="seq">3→2→1→A</span> <span class="cdesc">大招隐身接近，二技能标记，一技能伤害，普攻收割</span></p><p class="combo">基础连招｜<span class="seq">2→1→3</span> <span class="cdesc">二技能标记减速，一技能伤害，大招隐身撤离</span></p><p class="combo">越塔连招｜<span class="seq">3→2→1→A→闪现</span> <span class="cdesc">隐身越塔，标记爆发，闪现撤离</span></p></div></div>
+          <div class="kv"><span>三段</span><div>前期隐身反野抓人；中期隐身切脆皮；后期隐身绕后秒C位</div></div>
+          <ul class="ptips"><li>隐身状态移速快且无法被选中</li><li>2技能镖中后隐身接近</li><li>大招标记+飞镖双段伤害</li><li>隐身时间有限，注意把握时机</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>隐身摸人时绕开他要去的那条线，接近 3 秒内必须出手。</p>
+          <div class="warnbox"><b>专属提醒：</b>「处于敌人附近超过 3 秒隐身自动解除」是官方原文，所以不要贴着人跟着走，要么 3 秒内打完，要么退开重新藏。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">伽罗</span><span class="bad">张良</span><span class="bad">东皇太一</span><span class="bad">盾山</span><span class="bad">庄周</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/506/506.jpg" alt="云中君" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>云中君<span class="otype">刺客 · 打野</span></h4>
+          <p class="opsub">飞行状态普攻变爪击，2 秒内最多 +150% 移速俯冲带 0.5 秒晕眩</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、隐匿×10、鹰眼×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="急速战靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1425.jpg" alt="急速战靴" loading="lazy"><b>急速战靴</b></span><span class="arr">→</span><span class="eq" title="泣血之刃"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1132.jpg" alt="泣血之刃" loading="lazy"><b>泣血之刃</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="泣血之刃"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1132.jpg" alt="泣血之刃" loading="lazy"><b>泣血之刃</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">天隙鸣-若英·华-风雷引(基础连招)</p><p class="combo">风雷引-天隙鸣-若英·华(爆发连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期飞行态抓人；中期爪击流刺伤；后期大招击飞切C</div></div>
+          <ul class="ptips"><li>飞行状态移速快且可穿墙</li><li>1技能刺击造成流血</li><li>大招击飞+位移</li><li>落地后需重新起飞，注意能量</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>用飞行越过墙体走盲区，不要走河道正中；天隙鸣的加速用来「进场」，不是用来「逃跑」。</p>
+          <div class="warnbox"><b>专属提醒：</b>风雷引是解控＋不可选中＋俯冲击飞，留着解对面的控制链，别用来赶路。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">黄忠</span><span class="bad">张良</span><span class="bad">东皇太一</span><span class="bad">盾山</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/531/531.jpg" alt="镜" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>镜<span class="otype">刺客 · 打野</span></h4>
+          <p class="opsub">开锋突进＋减速，见影把路径上的敌人拉回中心定身 1 秒</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="巡守利斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1522.jpg" alt="巡守利斧" loading="lazy"><b>巡守利斧</b></span><span class="arr">→</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="冰痕之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/13310.jpg" alt="冰痕之握" loading="lazy"><b>冰痕之握</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">飞雷神｜<span class="seq">1→2→3→1→2→3</span> <span class="cdesc">一技能突进，二技能伤害，大招镜像换位，无限循环</span></p><p class="combo">基础连招｜<span class="seq">1→A→2→A→3</span> <span class="cdesc">突进强化普攻，二技能减速，大招控制</span></p><p class="combo">反打连招｜<span class="seq">3→2→1→2</span> <span class="cdesc">大招免伤，二技能伤害，一技能追击</span></p></div></div>
+          <div class="kv"><span>三段</span><div>前期刷野到4；中期镜像位移抓人；后期镜像本体双位移秒C</div></div>
+          <ul class="ptips"><li>镜像可与本体互换位置</li><li>1技能两段位移灵活</li><li>大招镜像空间内额外伤害</li><li>操作上限极高，需精准手速</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>从侧面用开锋进野区口，见影的定身用来「留住人」，不是用来「开团」。</p>
+          <div class="warnbox"><b>专属提醒：</b>镜的伤害靠「本体＋镜像两种印记同时触发」刷新冷却，野区 1v1 时把镜像留在退路上，保证你能两段位移撤出。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">伽罗</span><span class="bad">张良</span><span class="bad">东皇太一</span><span class="bad">盾山</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div></div>
+
+  <h3 class="sub">7.3 能「改写野区规则」：反野这件事他规则不同</h3>
+  <div class="opcards">      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/502/502.jpg" alt="裴擒虎" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>裴擒虎<span class="otype">刺客 · 打野</span></h4>
+          <p class="opsub">双形态（人形远程 / 虎形近战突进），反野靠形态切换而不是靠惩戒</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="末世"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1126.jpg" alt="末世" loading="lazy"><b>末世</b></span><span class="arr">→</span><span class="eq" title="宗师之力"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1134.jpg" alt="宗师之力" loading="lazy"><b>宗师之力</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="急速战靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1425.jpg" alt="急速战靴" loading="lazy"><b>急速战靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="无尽战刃"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1133.jpg" alt="无尽战刃" loading="lazy"><b>无尽战刃</b></span><span class="arr">→</span><span class="eq" title="宗师之力"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1134.jpg" alt="宗师之力" loading="lazy"><b>宗师之力</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">冲拳式-气守式-虎啸风生(基础连招)</p><p class="combo">虎啸风生-冲拳式-气守式(爆发连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期人形态远程消耗；中期虎形态近战爆发；后期灵活切换形态</div></div>
+          <ul class="ptips"><li>人形态远程普攻消耗</li><li>虎形态突进伤害高</li><li>大招切换形态有位移</li><li>形态切换是核心操作</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>开局用人形态清野、虎形态抢节奏；反野前先看自己是否还能切形态撤退。</p>
+          <div class="warnbox"><b>专属提醒：</b>形态切换是位移＋伤害变化，也是唯一的撤退手段；切错形态等于把自己交在对面野区里。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">张良</span><span class="bad">东皇太一</span><span class="bad">盾山</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/533/533.jpg" alt="阿古朵" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>阿古朵<span class="otype">射手 · 打野</span></h4>
+          <p class="opsub">惩击被替换为放生——吃自家野怪，但抢不了对面 buff</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>宿命×10、调和×10、虚空×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现/斩杀</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="巨人之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1532.jpg" alt="巨人之握" loading="lazy"><b>巨人之握</b></span><span class="arr">→</span><span class="eq" title="疾步之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1426.jpg" alt="疾步之靴" loading="lazy"><b>疾步之靴</b></span><span class="arr">→</span><span class="eq" title="霸者重装"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1332.jpg" alt="霸者重装" loading="lazy"><b>霸者重装</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="巨人之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1532.jpg" alt="巨人之握" loading="lazy"><b>巨人之握</b></span><span class="arr">→</span><span class="eq" title="影忍之足"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1421.jpg" alt="影忍之足" loading="lazy"><b>影忍之足</b></span><span class="arr">→</span><span class="eq" title="霸者重装"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1332.jpg" alt="霸者重装" loading="lazy"><b>霸者重装</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">2野蛮生长-3大招峡谷总动员-1翻滚吧球球</p><p class="combo">1-2-3(放野怪)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期骑熊刷野极快；中期下熊形态消耗；后期熊形态开团</div></div>
+          <ul class="ptips"><li>骑乘熊形态刷野速度第一</li><li>下熊后本体脆但技能范围大</li><li>熊可以单独指挥攻击</li><li>刷野效率全英雄最高</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>你的「惩戒」是放生：先放生再叫队友帮你守野区，别指望用放生抢对面最后一下。</p>
+          <div class="warnbox"><b>专属提醒：</b>放生的机制是「野怪赠与她金币和经验」，所以她的反野价值在「吃掉对面野区」而不是「抢最后一下」：进对面野区要带人，不要单人拼手速。</div>
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">公孙离</span><span class="bad">马可波罗</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div></div>
+  <h2 class="sec" id="sec08"><span class="num">08</span>错误对照：把「感觉」换成「动作」</h2>
+<div class="tbl-wrap"><table class=""><tr><th>常见写法（错的）</th><th>实际机制</th><th>改成这个动作</th></tr><tr><td class="">「注意站位，别被抓」</td><td class="">被抓只发生在三类位置：野区入口草、河道正中、塔后盲区。</td><td class="">再进野区前，先打一下入口草；过河从中路一侧走，不穿河道正中。</td></tr><tr><td class="">「把握时机反野」</td><td class="">反野时机只由「惩戒在不在、他在不在另一半区、退路在不在」决定。</td><td class="">三条逐条打勾，缺一条就改换野或回自家野区。</td></tr><tr><td class="">「辅助要多做视野」</td><td class="">本作没有可购买视野道具，视野只能由技能与站位产出。</td><td class="">把「辅助站河道口、打野站野区口」写成两句固定指令，每波龙前重复一次。</td></tr><tr><td class="">「小心隐身英雄」</td><td class="">隐身单位靠近你 3 秒（兰陵王）会自动解隐，伪装也不挡伤害。</td><td class="">在草里不先手普攻；看到隐身预警就朝队友方向退，不要原地转。</td></tr></table></div>
+  <h2 class="sec" id="sec09"><span class="num">09</span>复盘：只统计四个数</h2>
+  <ol class="sop">
+    <li><b>反野成功率</b>：带惩戒进对面野区的次数里，真正吃到 buff 的比例。低于一半，说明你的「三条件」判断有问题，不是运气问题。</li>
+    <li><b>视野装置在场数</b>：百里守约／大禹每 5 分钟平均有几个视野物在场。少于 2 个，等于全队这段时间在盲区里打。</li>
+    <li><b>被反次数</b>：一局里自家野区被别人吃掉几次。这个数只跟「你有没有先扫入口草」相关。</li>
+    <li><b>扫草次数</b>：每次进野区算 1 次机会，你实际扫了几次。低于进野区次数的 80%，说明你在用脸探草。</li>
+  </ol>
+  <div class="okbox"><b>一页速查，记住六句：</b>① 惩戒只留给 buff；② 三条全中才反野；③ 被反就换野，不追人；④ 没有守卫道具，视野靠草和技能；⑤ 三个视野物要分开放；⑥ 进野区先扫草。</div>
+  <footer>
+    <p><b>数据来源：</b>本页全部技能数值、出装、连招、铭文取自官方英雄库同页字段（projects/heroes_official.json）；装备机制取自官方装备库同页字段（item_official.json）。</p>
+    <p><b>标注口径：</b>buff 90 秒 / 小野 70 秒 / 开局 30 秒出生为「站内口径·实测」，训练营可自验；草丛暴露时长与塔视野范围无官方数值，本页只写行为结论。</p>
+    <p><b>不写的东西：</b>任何胜率、出场率、T0 排名、以及没有出处的「秒数」。</p>
+    <p><b>关联专题：</b><a href="jungle-tempo.html">野区节奏操作手册</a> · <a href="mid-roam.html">中路游走操作手册</a> · <a href="teamfight-entry.html">团战进场操作手册</a> · <a href="support-engage.html">辅助开团操作手册</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var KEY='hok.theme';
+  var saved=localStorage.getItem(KEY);
+  if(saved){document.documentElement.setAttribute('data-theme',saved);}
+  var btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',cur);
+    localStorage.setItem(KEY,cur);
+  });
+})();
+</script>
+</body>
+</html>
