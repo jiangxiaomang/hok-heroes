@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>推塔全解 · 机制 / 兵线 / 英雄 / 甄别｜对抗路分推专题</title>
+<title>推塔全解 · 机制×越塔SOP×甄别方法论｜推塔专题</title>
 <link rel="stylesheet" href="topic.css">
 </head>
 <body>
@@ -14,314 +14,226 @@
   </div>
 
   <header class="hero">
-    <p class="kicker">对抗路 · 分推全解</p>
-    <h1>推塔这件事，<span class="accent">90% 的攻略都在讲错的层面</span></h1>
-    <p class="lead">大多数推塔攻略只回答"谁拆得快"。真正决定胜负的是三层：<b>防御塔的伤害模型</b>（你能不能站住）、<b>兵线的波次经济</b>（你什么时候该推）、<b>英雄的推进机制</b>（你凭什么拆）。本页把这三层的可验证规则拆开讲，最后单独用一节讲<b>怎么甄别网上 80% 的推塔攻略是编的</b>——包括那套根本不属于王者荣耀的"塔皮 / 一血塔 400 金币"。</p>
-    <div class="badge-row">
-      <span class="badge">官方技能数值：pvp.qq.com herolist 核验</span>
-      <span class="badge">塔伤/兵线：<b>多源交叉 + 实测口径</b></span>
-      <span class="badge">纠错 <b>8</b> 处网传错误</span>
-      <span class="badge">不含编造胜率</span>
-      <span class="badge">更新于 <b>2026-11-26</b></span>
-    </div>
+    <p class="kicker">推塔 · 操作手册</p>
+    <h1>推塔不看输出，<span class="accent">看的是「塔在打谁」</span></h1>
+    <p class="lead">这一页把推塔拆成三件事：有没有炮车（窗口）、塔在打谁（寻敌优先级）、这是第几跳（伤害递增）。三件都清楚，越塔就从「凭胆量」变成「走流程」。</p>
+    <div class="badge-row"><span class="badge">机制 → 动作</span><span class="badge">越塔五步 SOP</span><span class="badge">英雄卡：按推进机制分档</span><span class="badge">甄别方法论 + 复盘四数</span></div>
   </header>
 
   <div class="callout">
-    <h3>📌 这一版和上一版的区别（上一版只做了官方文案转述，太浅）</h3>
-    <p>上一版把"拆塔"理解成"谁的技能描述里出现偷塔/推进"，本质是<b>抄官方攻略文案</b>。这一版换了三条腿：</p>
-    <p>① <b>机制层</b>——防御塔 100% 物理穿透、伤害逐跳递增到封顶、寻敌优先级（小兵→召唤物→英雄）、无兵线防偷塔、减伤/弱化/金身对塔伤的作用，全部到数值；</p>
-    <p>② <b>兵线层</b>——第一波 10 秒、间隔 33 秒、第 8 波（约 4 分 01 秒）起有炮车、破高地塔后下一波起该路换超级兵、主宰先锋替代小兵；</p>
-    <p>③ <b>甄别层</b>——把搜索到的 40+ 篇文本逐篇过筛，错数值、过时出装、AI 水文、LoL 串味内容全部单独列出来（下一节）。</p>
+    <h3>本页怎么用（三分钟上手）</h3>
+    <p><span class="newlist">① 想推塔：</span>先查 §01 时间表：4 分钟前不硬推，炮车到了才有窗口。</p><p><span class="newlist">② 想越塔：</span>按 §02 五步走，任何一步走不通就放弃。</p><p><span class="newlist">③ 想换英雄：</span>看 §04 卡里「在塔面前有什么独特手段」，而不是看出装排行。</p>
   </div>
 
-  <h2 class="sec" id="sec01"><span class="num">01</span>先辟谣：网上流传的 8 个说法，有 7 个是错的</h2>
-  <p class="sec-sub">这些不是"观点不同"，是可验证的事实错误。我把它们放在最前面，因为照错的用会直接影响你的操作判断。</p>
-
-  <div class="crits">
-    <div class="crit">
-      <p class="claim">"吃塔皮、破一血塔多拿 400 金币"</p>
-      <p class="truth"><b>这是英雄联盟（LoL）的机制，王者荣耀没有。</b>王者防御塔是一条血条，没有"镀层/塔皮"分层，也没有"一血塔"额外金币。</p>
-      <p class="why">证据：搜到的"一血塔多少钱"原文通篇 <b>S7/LPL/峡谷先锋/TP/ADC</b>，是 LoL 赛事文章被搜索引擎混进了王者查询。凡出现这些词，立刻判定不是王者内容。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"老夫子二技能 70% 免伤，站塔下无敌"</p>
-      <p class="truth"><b>官方满级是 65%，不是 70%。</b>「举一反三」减伤 45/49/53/57/61/65%，满级 65%，持续 2 秒，且会反弹英雄普攻。</p>
-      <p class="why">来源：官方技能文本。网传的 70% 出现在一篇 2025 年的"英雄攻略"里，同段还写了未公开的胜率数字，属二手转述失真。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"蒙恬满级 1000 兵势"</p>
-      <p class="truth"><b>兵势上限是 1000~4500，随等级成长。</b>"满级 1000"是拿了低等级的下限当上限。</p>
-      <p class="why">来源：官方「玄雍防线」。兵势直接决定蓄力猛击的附加伤害（兵势 20%），差一个数量级就是能不能一波拆掉半血塔。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"老夫子大招捆住塔，直接强拆"</p>
-      <p class="truth"><b>大招「圣人之威」只对英雄生效</b>，捆不了塔、捆不了兵。它的推塔价值是<b>捆住守塔的人</b>，让他 5 秒内无法离开明灯范围、且其造成伤害 -20%。</p>
-      <p class="why">来源：官方文本"将第一个撞到的<b>敌方英雄</b>捆在明灯上"。很多攻略把"捆人强拆"简化成"捆塔"，是理解错误。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"程咬金是拆塔快的英雄"</p>
-      <p class="truth"><b>他没有攻速、没有真伤、没有对建筑加成。</b>他的推塔价值是<b>"能一直在塔下赖着不走"</b>：大招每秒 8% 最大生命回复、持续 5/6/7 秒，+30% 移速。</p>
-      <p class="why">来源：官方技能文本。混淆"拆得快"和"拆得久"是推塔攻略最常见的偷换概念。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"破掉水晶后兵线变超级兵"</p>
-      <p class="truth"><b>水晶破了游戏就结束了，不存在后续兵线。</b>正确条件是<b>摧毁对方高地防御塔</b>，从下一波兵线起该路小兵换为超级兵。</p>
-      <p class="why">逻辑反证即可推翻。支持该说法的那篇文章，前半段还写对了"摧毁高地塔"，后半段又写"高地水晶告破"，前后矛盾。</p>
-    </div>
-    <div class="crit">
-      <p class="claim">"塔伤每次 +60%，最高到 400% 封顶"</p>
-      <p class="truth"><b>存在两套口径，实测那套更可信：</b>六神装站塔实测单次伤害 470 → 752 → 1034 → 1316 → 1598 → 1880，<b>每跳 +282，第 6 跳封顶</b>，不再增加。</p>
-      <p class="why">"+60%/400%"是更早版本的简化说法（470×1.6≈752 刚好对上第一跳，但之后是等差而非等比）。<b>结论：前期能多抗两下，6 下之后一模一样疼。</b></p>
-    </div>
-    <div class="crit">
-      <p class="claim">"2026 最新版李信/蒙恬攻略，含胜率与好评率"</p>
-      <p class="truth"><b>典型的 AI 水文。</b>同一篇里出现"抖音精选APP 52.7 万条评价""87.2% 完播率""2.8 亿播放"，再配上无法核验的胜率，就是拼接稿。</p>
-      <p class="why">还有一篇自相矛盾：第 2 段写“主宰 8 分钟首刷”，第 5 段写“主宰开局 3 分钟”。机制描述可能抄对了，<b>数字全不可信</b>——而且这两个数在当前版本<b>都是过时的</b>：当前口径是 <b>4:00 主宰与暴君同时上线</b>。</p>
-    </div>
+  <h2 class="sec" id="sec01"><span class="num">01</span>一分钟速查：推塔是一张时间表，不是一股狠劲</h2>
+  <p class="sec-sub">推塔的所有判断，都可以压到三件事上：<b>有没有炮车</b>、<b>塔在打谁</b>、<b>这是第几跳</b>。下表每一行都是「机制事实 → 你该做的动作」。</p>
+<div class="tbl-wrap"><table class=""><tr><th>时机 / 状态</th><th>机制事实</th><th>你的动作</th><th>做错的代价</th></tr><tr><td class="">0:00–4:00</td><td class="">第 8 波（约 4:01）之前没有炮车</td><td class=""><b>不强行推塔</b>。想拿塔就攒兵，别攒人头</td><td class="">没炮车扛塔＝你自己吃塔伤，收益低于成本</td></tr><tr><td class="">4:01 之后</td><td class="">炮车进塔，塔优先打炮车（小兵→召唤物→英雄）</td><td class=""><b>炮车挨打的那几秒</b>是你的拆塔窗口，跟着兵进、兵打完就退</td><td class="">错过窗口＝下一波再来，白耗血量</td></tr><tr><td class="">无兵线</td><td class="">王者有防偷塔机制，无兵线推塔效率被大幅削弱，且塔立刻转火你</td><td class="">无兵线不点塔；只在<b>残血塔＋对面全员在另一侧</b>时才偷</td><td class="">硬拆＝塔打死你，还把位置暴露给全队</td></tr><tr><td class="">你要越塔</td><td class="">塔伤是 100% 物理穿透、对同一目标连续攻击递增、第 6 跳封顶</td><td class=""><b>越塔必须在 3 跳内结束</b>（第 4 跳起伤害翻档）</td><td class="">拖到第 4 跳以后＝多挨一倍伤害</td></tr><tr><td class="">越塔中</td><td class="">出塔范围再进＝重置递增；金身/无敌＝重置；<b>净化不解</b></td><td class="">没有无敌就用<b>轮流出塔</b>重置，别硬吃满 6 跳</td><td class="">以为净化能解塔伤＝送两个人</td></tr><tr><td class="">10:00 后</td><td class="">塔伤随时间增长（社区实测口径约 10 分钟达峰）</td><td class="">10 分钟后越塔风险升级，改打「兵线＋召唤物抗」</td><td class="">把 3 分钟的越塔经验套到 10 分钟＝必送</td></tr><tr><td class="">破高地塔</td><td class="">下一波起该路出超级兵，自动推线</td><td class="">破高地后<b>不留在原地</b>，转去打另一路或拿龙</td><td class="">守着一路＝浪费自动化的兵线压力</td></tr><tr><td class="">击杀主宰</td><td class="">下一波兵线中主宰先锋替代小兵</td><td class="">拿完主宰立刻推<b>对面清线最慢的那一路</b></td><td class="">拿了主宰不推＝白拿</td></tr></table></div>
+  <h2 class="sec" id="sec02"><span class="num">02</span>越塔 SOP：五步，缺一步就别越</h2>
+  <p class="sec-sub">「能不能越」不是感觉，是这五步能不能走完。任何一步走不通，越塔的期望值就是负的。</p>
+<div class="tbl-wrap"><table class=""><tr><th>步骤</th><th>动作</th><th>失败点</th></tr><tr><td class="">① 进兵</td><td class="">等兵线先进塔，自己站在塔的攻击范围外一步</td><td class="">人先走进去＝塔直接点你，兵线还没到</td></tr><tr><td class="">② 抗</td><td class="">让<b>炮车／召唤物／坦克</b>先挨第一跳。蒙恬的士兵、米莱狄的机械仆从是天然替伤单位</td><td class="">全员站位一样靠前＝每人都吃满递增</td></tr><tr><td class="">③ 控</td><td class="">控制先交给能打断你的人，不是交给塔下的人</td><td class="">控制交晚了＝对方反手控你在塔下</td></tr><tr><td class="">④ 杀</td><td class=""><b>3 跳内</b>解决：第一跳 470 级别，第三跳约一千，第四跳起翻档</td><td class="">拖过第 3 跳＝伤害不够就该撤，不该加人</td></tr><tr><td class="">⑤ 重置</td><td class="">杀不掉就轮流出塔重置递增，不要硬吃满 6 跳</td><td class="">硬吃＝两个人一起死在塔下</td></tr></table></div>
+  <div class="warnbox"><b>实测口径（非官方公告）：</b>对同一目标连续攻击实测序列 470 / 752 / 1034 / 1316 / 1598 / 1880，每跳 +282，第 6 跳后封顶；塔伤相当于 100% 物理穿透，护甲几乎无效；能减塔伤的只有<b>护盾、减伤技能、弱化</b>（实测 470 → 376）。所以「靠肉装扛塔」是伪命题，「轮流抗塔」才是唯一可靠手法。</div>
+  <h2 class="sec" id="sec03"><span class="num">03</span>分推与抱团的判断表</h2>
+  <p class="sec-sub">分推真正的手艺在<b>兵线</b>，不在塔。你要做的是让兵线持续压过去，自己只在「对面回防慢」的那些秒里点塔。</p>
+<div class="tbl-wrap"><table class=""><tr><th>局面</th><th>你的动作</th><th>为什么</th></tr><tr><td class="">对面 3 人以上出现在另一侧</td><td class="">立刻推这一路，兵线进塔就跟</td><td class="">人数差是唯一免费的推塔条件</td></tr><tr><td class="">己方打野在打龙，你在边路</td><td class="">推线到塔前，<b>不要越塔</b>，等龙打完</td><td class="">龙是更值钱的目标，越塔失手＝两个都丢</td></tr><tr><td class="">兵线被对面清得很干净</td><td class="">放弃推进，回去补线或换路</td><td class="">没有兵线的推进等于送头</td></tr><tr><td class="">对面有超级兵在推你塔</td><td class="">先处理超级兵，别出去推</td><td class="">超级兵会自动推掉你的高地</td></tr><tr><td class="">己方有人能守塔、你在对面高地</td><td class="">分推；<b>对面回防 2 人以上就撤</b></td><td class="">分推的价值是拉扯，不是换命</td></tr><tr><td class="">对面全员在守高地塔</td><td class="">转龙、转另一路，别硬拆</td><td class="">5 人守塔时硬拆＝塔伤递增把人收走</td></tr><tr><td class="">残血塔，对面都在另一侧</td><td class="">这才是「无兵线偷塔」唯一成立的场景</td><td class="">防偷塔机制下，其他场景一律不划算</td></tr><tr><td class="">10 分钟后</td><td class="">越塔前重新算跳数，把 3 跳标准收得更紧</td><td class="">塔伤此时接近峰值</td></tr></table></div>
+  <h2 class="sec" id="sec04"><span class="num">04</span>英雄操作卡：按「推进机制」分档，不按文案分档</h2>
+  <p class="sec-sub">下表选的是<b>在塔面前有独特手段</b>的英雄：召唤物能替伤、位移能脱离、或者有直接减塔伤的能力。铭文／出装／连招取自官方英雄库同页字段。</p>
+  <div class="opcards">
+      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/507/507.jpg" alt="李信" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>李信<span class="otype">战士 · 对抗路</span></h4>
+          <p class="opsub">双形态：光明远程消耗推线，黑暗近身收割。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="影忍之足"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1421.jpg" alt="影忍之足" loading="lazy"><b>影忍之足</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="追击刀锋"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1523.jpg" alt="追击刀锋" loading="lazy"><b>追击刀锋</b></span><span class="arr">→</span><span class="eq" title="影忍之足"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1421.jpg" alt="影忍之足" loading="lazy"><b>影忍之足</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">光信:2-1-3 | 暗信:1-2-3</p><p class="combo">4级前猥琐，4级后变身</p></div></div>
+          <div class="kv"><span>三段</span><div>光信：远程消耗炮台；暗信：近战攻速偷塔偷龙；4级后选择形态不回头</div></div>
+          <ul class="ptips"><li>光信4技能蓄力远程炮伤害爆炸</li><li>暗信攻速极快偷塔无解</li><li>光信守家一流，暗信带线一流</li><li>形态选定后无法切换，慎重选择</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>4 级前只清兵；转「光明形态」后靠 1 技能远程消耗压塔，人站塔外、兵在塔下</p>
+          
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">公孙离</span><span class="bad">马可波罗</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/139/139.jpg" alt="老夫子" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>老夫子<span class="otype">战士 · 对抗路</span></h4>
+          <p class="opsub">单带之王，靠「抓不住」而不是「打得过」赢线。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>红月×10、鹰眼×10、狩猎×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="末世"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1126.jpg" alt="末世" loading="lazy"><b>末世</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="末世"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1126.jpg" alt="末世" loading="lazy"><b>末世</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">圣人训诫-举一反三-圣人之威(基础连招)</p><p class="combo">圣人之威-圣人训诫-举一反三(爆发连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期2技能免伤换血；中期大招单挑抓单；后期大招绑C位直接秒</div></div>
+          <ul class="ptips"><li>大招绑住的人跑不掉（除非净化）</li><li>2技能免伤+反弹普攻克制射手</li><li>1技能拉人配合大招必中</li><li>单挑之王，怕多人集火</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>大招留给塔下最想跑的那个人；1 技能拉扯＋2 技能回血撑住兵线</p>
+          
+          <div class="ctags"><span class="good">花木兰</span><span class="good">芈月</span><span class="good">达摩</span><span class="bad">公孙离</span><span class="bad">马超</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/144/144.jpg" alt="程咬金" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>程咬金<span class="otype">坦克 · 对抗路</span></h4>
+          <p class="opsub">最经典的「一个人换一路」分推点。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、均衡×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="红莲斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1331.jpg" alt="红莲斗篷" loading="lazy"><b>红莲斗篷</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="闪电匕首"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1135.jpg" alt="闪电匕首" loading="lazy"><b>闪电匕首</b></span><span class="arr">→</span><span class="eq" title="名刀·司命"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1127.jpg" alt="名刀·司命" loading="lazy"><b>名刀·司命</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">3大招正义潜能-1爆裂双斧-2激热回旋</p><p class="combo">1-2-3-A(站撸消耗)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期猥琐发育；中期带线牵制无人能抓；后期团战搅屎棍搅乱阵型</div></div>
+          <ul class="ptips"><li>大招回血随血量越低回复越高</li><li>带线流精髓：永远不团，牵制三路</li><li>1技能减速+位移追击逃跑都好用</li><li>不死鸟之眼+大招=移动泉水</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>血量越低越要带线，靠 3 技能回血撑住；被包两人以上就撤</p>
+          
+          <div class="ctags"><span class="good">花木兰</span><span class="good">芈月</span><span class="good">凯</span><span class="bad">荆轲</span><span class="bad">马可波罗</span><span class="bad">蔷薇</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/527/527.jpg" alt="蒙恬" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>蒙恬<span class="otype">坦克 · 对抗路</span></h4>
+          <p class="opsub">召唤物抗塔机制的最大受益者。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、隐匿×10、鹰眼×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="影忍之足"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1421.jpg" alt="影忍之足" loading="lazy"><b>影忍之足</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="碎星锤"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1131.jpg" alt="碎星锤" loading="lazy"><b>碎星锤</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="影忍之足"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1421.jpg" alt="影忍之足" loading="lazy"><b>影忍之足</b></span><span class="arr">→</span><span class="eq" title="巨人之握"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1532.jpg" alt="巨人之握" loading="lazy"><b>巨人之握</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span><span class="arr">→</span><span class="eq" title="宗师之力"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1134.jpg" alt="宗师之力" loading="lazy"><b>宗师之力</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">2以守为攻-3大招玄雍众将-1方阵突刺</p><p class="combo">1-2-3(雁行阵)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期防御姿态抗压；中期举盾推进；后期大招士兵+举盾推进拆塔</div></div>
+          <ul class="ptips"><li>防御姿态减少正面伤害</li><li>大招士兵可阻挡飞行物</li><li>举盾状态下正面几乎无敌</li><li>侧面和背面是弱点，注意站位</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>开阵型后士兵是塔的优先目标＝合法抗塔单位；进塔前先开阵</p>
+          
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">公孙离</span><span class="bad">马可波罗</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/114/114.jpg" alt="刘禅" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>刘禅<span class="otype">辅助 · 游走</span></h4>
+          <p class="opsub">拆塔型辅助，塔伤减免是他进塔的本钱。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>宿命×10、虚空×10、调和×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="红莲斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1331.jpg" alt="红莲斗篷" loading="lazy"><b>红莲斗篷</b></span><span class="arr">→</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="反伤刺甲"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1327.jpg" alt="反伤刺甲" loading="lazy"><b>反伤刺甲</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">1小霸王护盾-2机关魔爪-3大招暴走熊猫</p><p class="combo">1-2-3-闪现(越塔强拆)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期机关消耗；中期磁力护盾保人；后期大招机关领域</div></div>
+          <ul class="ptips"><li>机关护盾吸收伤害</li><li>磁力牵引控制</li><li>大招领域减速</li><li>被动机关强化</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>1 技能机器人抗塔＋2 技能减塔伤；越塔时由你先起手控</p>
+          
+          <div class="ctags"><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">黄忠</span><span class="bad">吕布</span><span class="bad">马超</span><span class="bad">关羽</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/504/504.jpg" alt="米莱狄" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>米莱狄<span class="otype">法师 · 中路</span></h4>
+          <p class="opsub">召唤物推塔流，无兵线也能持续消耗。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>梦魇×10、献祭×10、轮回×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="冷静之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1423.jpg" alt="冷静之靴" loading="lazy"><b>冷静之靴</b></span><span class="arr">→</span><span class="eq" title="回响之杖"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1233.jpg" alt="回响之杖" loading="lazy"><b>回响之杖</b></span><span class="arr">→</span><span class="eq" title="痛苦面具"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1235.jpg" alt="痛苦面具" loading="lazy"><b>痛苦面具</b></span><span class="arr">→</span><span class="eq" title="博学者之怒"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1232.jpg" alt="博学者之怒" loading="lazy"><b>博学者之怒</b></span><span class="arr">→</span><span class="eq" title="虚无法杖"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1231.jpg" alt="虚无法杖" loading="lazy"><b>虚无法杖</b></span><span class="arr">→</span><span class="eq" title="贤者天书"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1238.jpg" alt="贤者天书" loading="lazy"><b>贤者天书</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="冷静之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1423.jpg" alt="冷静之靴" loading="lazy"><b>冷静之靴</b></span><span class="arr">→</span><span class="eq" title="回响之杖"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1233.jpg" alt="回响之杖" loading="lazy"><b>回响之杖</b></span><span class="arr">→</span><span class="eq" title="痛苦面具"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1235.jpg" alt="痛苦面具" loading="lazy"><b>痛苦面具</b></span><span class="arr">→</span><span class="eq" title="博学者之怒"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1232.jpg" alt="博学者之怒" loading="lazy"><b>博学者之怒</b></span><span class="arr">→</span><span class="eq" title="凝冰之息"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1234.jpg" alt="凝冰之息" loading="lazy"><b>凝冰之息</b></span><span class="arr">→</span><span class="eq" title="贤者天书"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1238.jpg" alt="贤者天书" loading="lazy"><b>贤者天书</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">空中力量-强制入侵-浩劫磁场(基础连招)</p><p class="combo">浩劫磁场-空中力量-强制入侵(爆发连招)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期机器人消耗；中期傀儡大军；后期大招强化傀儡推塔</div></div>
+          <ul class="ptips"><li>机器人自动攻击</li><li>傀儡大军推塔极快</li><li>大招强化所有傀儡</li><li>被动召唤物推塔流</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>机械仆从先上，塔会优先打它们；大招给塔下的残血英雄而不是塔</p>
+          
+          <div class="ctags"><span class="good">小乔</span><span class="good">鲁班七号</span><span class="good">后羿</span><span class="bad">兰陵王</span><span class="bad">镜</span><span class="bad">澜</span><span class="bad">马超</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/121/121.jpg" alt="芈月" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>芈月<span class="otype">法师 · 对抗路</span></h4>
+          <p class="opsub">牵制型单带，靠位移让对面永远抓不到。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>梦魇×10、怜悯×10、狩猎×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="噬神之书"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1240.jpg" alt="噬神之书" loading="lazy"><b>噬神之书</b></span><span class="arr">→</span><span class="eq" title="痛苦面具"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1235.jpg" alt="痛苦面具" loading="lazy"><b>痛苦面具</b></span><span class="arr">→</span><span class="eq" title="巫术法杖"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1236.jpg" alt="巫术法杖" loading="lazy"><b>巫术法杖</b></span><span class="arr">→</span><span class="eq" title="博学者之怒"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1232.jpg" alt="博学者之怒" loading="lazy"><b>博学者之怒</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="贪婪之噬"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1533.jpg" alt="贪婪之噬" loading="lazy"><b>贪婪之噬</b></span><span class="arr">→</span><span class="eq" title="急速战靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1425.jpg" alt="急速战靴" loading="lazy"><b>急速战靴</b></span><span class="arr">→</span><span class="eq" title="噬神之书"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1240.jpg" alt="噬神之书" loading="lazy"><b>噬神之书</b></span><span class="arr">→</span><span class="eq" title="痛苦面具"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1235.jpg" alt="痛苦面具" loading="lazy"><b>痛苦面具</b></span><span class="arr">→</span><span class="eq" title="极寒风暴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1336.jpg" alt="极寒风暴" loading="lazy"><b>极寒风暴</b></span><span class="arr">→</span><span class="eq" title="不死鸟之眼"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1334.jpg" alt="不死鸟之眼" loading="lazy"><b>不死鸟之眼</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">3大招暗影之月-1痛苦冲击-2幻翼仆从</p><p class="combo">1-2-3-A(消耗吸血)</p></div></div>
+          <div class="kv"><span>三段</span><div>前期2技能链子消耗吸血；中期单挑无敌带线牵制；后期大招保命切后排</div></div>
+          <ul class="ptips"><li>2技能链子命中后持续吸血+减速</li><li>大招无敌期间可穿地形</li><li>1技能放出乌鸦可二次位移，逃跑神器</li><li>单挑几乎无敌，怕强开团</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>被包就 2 技能位移穿墙走；带线时不与人对拼，只点塔</p>
+          
+          <div class="ctags"><span class="good">花木兰</span><span class="good">吕布</span><span class="good">达摩</span><span class="bad">公孙离</span><span class="bad">马超</span><span class="bad">伽罗</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>      <div class="opcard">
+        <div class="ophead">
+          <img class="hava" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/140/140.jpg" alt="关羽" loading="lazy" onerror="this.style.display='none'">
+          <div class="htxt">
+          <h4>关羽<span class="otype">战士 · 对抗路</span></h4>
+          <p class="opsub">机动推线与强开，怕减速也怕控。</p>
+          </div>
+        </div>
+        <div class="opbody">
+          <div class="kv"><span>铭文</span><b>异变×10、鹰眼×10、隐匿×10</b></div>
+          <div class="kv"><span>召唤</span><b>闪现</b></div>
+          <div class="kv"><span>加点</span><b>主一副二，有大点大</b></div>
+          <div class="kv"><span>出装</span><div><div class="build"><span class="bno">方案1</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="魔女斗篷"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1335.jpg" alt="魔女斗篷" loading="lazy"><b>魔女斗篷</b></span><span class="arr">→</span><span class="eq" title="贤者的庇护"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1337.jpg" alt="贤者的庇护" loading="lazy"><b>贤者的庇护</b></span></div><div class="build"><span class="bno">方案2</span><span class="eq" title="抵抗之靴"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1422.jpg" alt="抵抗之靴" loading="lazy"><b>抵抗之靴</b></span><span class="arr">→</span><span class="eq" title="暗影战斧"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1137.jpg" alt="暗影战斧" loading="lazy"><b>暗影战斧</b></span><span class="arr">→</span><span class="eq" title="霸者重装"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1332.jpg" alt="霸者重装" loading="lazy"><b>霸者重装</b></span><span class="arr">→</span><span class="eq" title="不祥征兆"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1333.jpg" alt="不祥征兆" loading="lazy"><b>不祥征兆</b></span><span class="arr">→</span><span class="eq" title="强者破军"><img src="https://game.gtimg.cn/images/yxzj/img201606/itemimg/1138.jpg" alt="强者破军" loading="lazy"><b>强者破军</b></span></div></div></div>
+          <div class="kv"><span>连招</span><div><p class="combo">冲锋连招｜<span class="seq">3→2→1→A</span> <span class="cdesc">大招冲锋，二技能击退，一技能伤害，普攻收割</span></p><p class="combo">基础连招｜<span class="seq">1→2→3</span> <span class="cdesc">一技能伤害，二技能解控，大招冲锋</span></p><p class="combo">无限推｜<span class="seq">1→A→2→A</span> <span class="cdesc">利用移速不断推人</span></p></div></div>
+          <div class="kv"><span>三段</span><div>前期冲锋状态劈人消耗；中期绕后冲锋推人；后期冲锋大招群体击退开团</div></div>
+          <ul class="ptips"><li>冲锋状态下1技能变为劈砍伤害翻倍</li><li>疾跑+冲锋被动移速无人能追</li><li>2技能解控保命核心</li><li>大招推人方向决定团战胜负</li></ul>
+          <p class="startact"><b>开局就做这一件：</b>推线用 1 技能扫，绕后进场靠 2 技能加速；被减速类控制克制时改打正面</p>
+          
+          <div class="ctags"><span class="good">鲁班七号</span><span class="good">后羿</span><span class="good">伽罗</span><span class="good">小乔</span><span class="bad">东皇太一</span><span class="bad">张良</span><span class="bad">盾山</span></div>
+          <p class="opfoot">绿＝打得过（克制）· 红＝打不过（被克制）· 数据取自官方英雄库同页字段</p>
+        </div>
+      </div>
   </div>
-
-  <div class="warnbox">
-    <b>一个正在扩散的错误口径：</b>"主宰开局 3 分钟刷新"。当前版本的口径是：<b>4:00 主宰与暴君同时上线</b>，击败后<b>间隔 4 分钟</b>重刷（故普通龙一局最多吃 2 次）；<b>9:30 消失</b>；<b>10:00 起换成暗影主宰 / 暗影暴君</b>（间隔 <b>3 分 30 秒</b>）；<b>20:00 风暴龙王</b>（两个龙坑间随机，只能看小地图）。<span class="evi o">公告转录</span>「9 分 30 秒」来自「普通主宰 / 暴君消失时间从 10 分钟调整为 9 分 30 秒」的公告条款；出处说明见<a href="jungle-tempo.html">野区节奏</a> §1.1。<br>
-    <b>更隐蔽的坑：</b>"暴君 2 分钟首刷、主宰 8 分钟首刷、10 分钟后→黑暗暴君"这一整套是<b>2019 年前的老版本结构</b>——结构看着专业、数字全部过期，比胡编更难过筛。<br>
-    <b>兵线口径：</b>第一波 <b>10 秒</b>，之后每 <b>33 秒</b>一波；<b>第 8 波（约 4 分 01 秒）起出现炮车</b>，即前 4 分钟没有炮车。（注：有篇文章把第 8 波写成 4 分 36 秒，与它自己列的前 7 波 33 秒间隔自相矛盾，是笔误——10+33×7=241 秒。）
-  </div>
-
-  <h2 class="sec" id="sec02"><span class="num">02</span>机制层：防御塔到底怎么打你</h2>
-  <p class="sec-sub">不搞清这一层，所有"该不该越塔""能不能硬拆"的判断都是猜的。</p>
-
-  <h3 class="sub">2.1 三条硬规则（实测口径，非官方公告）</h3>
-  <div class="tier">
-    <div class="tier-body" style="padding:8px 20px 18px">
-      <div class="hero-item">
-        <div class="hname">① 塔伤是<b>百分比物理穿透</b>，护甲基本无效</div>
-        <p class="quote">塔的伤害相当于 100% 物理穿透，堆护甲在塔面前几乎等于没堆。<b>能减塔伤的只有三种：护盾、减伤技能、召唤师技能弱化</b>（实测 470 → 376，正好 -20%）。这条直接决定"靠肉装扛塔"是伪命题。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">② 对同一目标<b>连续攻击伤害递增</b>，第 6 跳封顶</div>
-        <p class="quote">实测序列 470 / 752 / 1034 / 1316 / 1598 / 1880，每跳 +282，第 6 跳后不再涨。<b>含义：</b>坦克也别想"多抗两下"，前 3 跳和后面完全是两个游戏。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">③ 递增可以<b>重置</b>，但有门槛</div>
-        <p class="quote"><b>出塔范围再进</b> = 重置；<b>金身/无敌</b> = 重置；<b>净化 = 没用</b>（净化不解塔伤递增）。这就是"轮流抗塔"这个操作存在的机制依据，不是玄学。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">④ 塔伤随时间增长，约 10 分钟达峰</div>
-        <p class="quote">社区实测口径：塔的基础伤害每 30 秒左右 +3~4 点，10 分钟达最大值。所以<b>"10 分钟后越塔"和"3 分钟越塔"是完全不同的风险等级</b>。</p>
-      </div>
-    </div>
-  </div>
-
-  <h3 class="sub">2.2 寻敌优先级：这条能解释一半的"为什么塔不打我/只打我"</h3>
-  <div class="okbox">
-    优先顺序是 <b>小兵 → 召唤物 → 英雄</b>。但有一条例外把很多人坑死：<b>你对敌方英雄造成伤害的瞬间，塔会立刻转火你</b>，不管小兵还在不在。<br>
-    <b>两条实战推论：</b><br>
-    · <b>有兵线时</b>塔在打兵，你拆塔是"免费时间"；<b>无兵线时</b>塔直接点你，而且王者有防偷塔机制（无兵线推塔效率被大幅削弱）——所以"无兵线偷塔"只在残血塔 + 对面全员在另一侧时才成立；<br>
-    · <b>召唤物是天然的替伤工具</b>——这让蒙恬的士兵、米莱狄的机械仆从成了"合法抗塔"的单位（塔按优先级先打它们），而程咬金、李信没有这种手段，只能硬吃。
-  </div>
-
-  <h3 class="sub">2.3 兵线才是真正的攻城武器</h3>
-  <div class="ladder">
-    <div><p class="t">0:10</p><p class="c">第一波兵出发</p></div>
-    <div><p class="t">每 33 秒</p><p class="c">一波新兵</p></div>
-    <div><p class="t">≈4:01</p><p class="c">第 8 波起带<b>炮车</b></p></div>
-    <div><p class="t">4 分钟前</p><p class="c">无炮车，塔伤偏低但没炮车抗塔</p></div>
-    <div><p class="t">破高地塔</p><p class="c">下一波起该路<b>超级兵</b></p></div>
-    <div><p class="t">击杀主宰</p><p class="c">下一波兵线中<b>主宰先锋替代小兵</b></p></div>
-  </div>
-
-  <div class="callout" style="margin-top:18px">
-    <h3>💡 由这条推导出的三个反常识结论</h3>
-    <p><b>1. 前 4 分钟强行推塔，收益低于成本。</b>没有炮车，兵线撑不住塔伤，你必须亲自吃塔伤；而 4 分钟后炮车来了，塔会先打炮车，你的拆塔窗口是"炮车抗伤的那几秒"。</p>
-    <p><b>2. 破高地塔的价值不在那 200 血，而在"自动化的兵线压力"。</b>超级兵一旦上线，你不去推它也会推——这就是为什么高地塔是分推体系的核心目标，也是为什么守高地永远是全队的事。</p>
-    <p><b>3. 主宰先锋不是"多打两下"，是"换掉一路兵线"。</b>它替代小兵，等于让对面那条线的清线成本翻倍，配合你们的分推点才是真正的推进核武器。</p>
-  </div>
-
-  <h2 class="sec" id="sec03"><span class="num">03</span>运营层：分推真正的手艺在兵线，不在塔</h2>
-  <p class="sec-sub">以下为多篇社区文本交叉后一致的操作口径（定性总结，不含编造数值）。</p>
-  <div class="tips">
-    <div class="tip"><h5>① 线权 → 窗口 → 输出</h5><p>先把兵线推到塔前，再谈拆塔。没线权时的所有"换血拆塔"都是在用血量买时间，而塔伤是百分比物穿，这笔交易几乎必亏。</p></div>
-    <div class="tip"><h5>② 慢推 vs 快推</h5><p>对面有人守塔时要<b>慢推</b>：让兵线慢慢积两层，逼对方清线暴露位置；没视野/想换线时要<b>快推</b>，把线塞进塔里立刻走，让兵线替你继续压。</p></div>
-    <div class="tip"><h5>③ 卡线（冻线）</h5><p>把线停在自家塔前，让对面吃不到兵还不敢深入。卡线是"不推塔的推塔"——你在用兵线经济差换对面的失误。</p></div>
-    <div class="tip"><h5>④ 放线换资源</h5><p>打不动一条线就主动放掉，把兵线送进去，然后转另一路或转龙。<b>会放线的分推点比会推塔的分推点高一个段位</b>。</p></div>
-    <div class="tip"><h5>⑤ 兵线同步（131 / 41）</h5><p>让两路兵线<b>同时</b>到达对方塔下，对面必须分人处理，你才能在另一侧形成多打少。异步推线是分推最常见的失败原因。</p></div>
-    <div class="tip"><h5>⑥ 残血兵的处理</h5><p>推塔前把自家残血兵"喂"给对面技能，逼他交技能清线；反之，塔下留一两个残血兵能拖住塔的注意力，多给你 1~2 秒。</p></div>
-    <div class="tip"><h5>⑦ 视野决定敢不敢深</h5><p>分推死法第一名：小地图上敌方消失 3 秒还在拆。规矩很简单——<b>敌人消失超过 3 秒就往回退一个闪现的距离</b>。</p></div>
-    <div class="tip"><h5>⑧ 塔换塔，别换命</h5><p>对面抱团推你塔时，你的正确选择是<b>推得更快</b>，而不是回防。一座高地塔换两座外塔，永远是赚。</p></div>
-  </div>
-
-  <h2 class="sec" id="sec04"><span class="num">04</span>英雄层：分档（按"推进机制"而不是按文案）</h2>
-  <p class="sec-sub">分档依据：官方技能文本里能验证的三类推进要素——攻速/真伤类持续输出、减伤/召唤物类抗塔能力、续航类赖线能力。同一档内不再细分强弱。</p>
-
-  <div class="tier t0">
-    <div class="tier-head">
-      <span class="tier-tag">T0 · 分推核心</span>
-      <div><h4>机制上同时具备两项以上推进要素</h4><p class="desc">拆得动 + 站得住，能独立完成"推到高地"这件事</p></div>
-    </div>
-    <div class="tier-body">
-      <div class="hero-item">
-        <div class="hname">李信（暗信形态）<span class="role">战士 · 对抗路</span></div>
-        <p class="quote"><span class="evi o">官方机制</span>狂暴形态普攻两段（100% 物攻 + 65~205 物理）、+30 移速；一技能蓄力超 1 秒 <b>+40% 攻速持续 3 秒</b>，普攻命中还减一技能 1 秒 CD；二技能命中后普攻额外 90~180 伤害</p>
-        <p class="quote"><span class="evi c">推塔逻辑</span>唯一同时有「攻速爆发 + 短 CD 位移 + 机动」的英雄：兵线进去 → 一技能攒攻速 → 打塔 → 血掉下去立刻位移走。他不靠抗塔，靠<b>每次只吃两下塔伤</b>。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">蒙恬<span class="role">坦克 · 对抗路</span></div>
-        <p class="quote"><span class="evi o">官方机制</span>防御姿态三层正面减伤：蓄力期间 -10% + 「以守为攻」-20% + 「方圆阵」额外 -20%；大招召唤 <b>4 名士兵持续 20 秒</b>；兵势上限 1000~4500</p>
-        <p class="quote"><span class="evi c">推塔逻辑</span>士兵是<b>召唤物</b>，按塔的寻敌优先级先于英雄被攻击——所以蒙恬是少数能"让塔打别人"的对抗路。塔伤是百分比物穿，<b>减伤是唯一有效抗性</b>，而他有全英雄最多的减伤层数。这两条叠起来，才是"举盾推塔"的真正原因。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">老夫子<span class="role">战士 · 对抗路</span></div>
-        <p class="quote"><span class="evi o">官方机制</span>被动 5 层训诫后 <b>+25% 攻速、普攻附带 60 点真伤</b>持续 5 秒；二技能减伤<b>最高 65%</b> 持续 2 秒并反弹普攻；大招捆英雄 5 秒、其造成伤害 -20%</p>
-        <p class="quote"><span class="evi c">推塔逻辑</span>进塔先开二技能（65% 减伤硬吃塔伤）→ 大招捆住守塔的人 → 强拆。<b>反常识：60 点真伤是固定值，别指望它立功</b>；他真正的拆塔效率来自 25% 攻速 + 25% 概率双普攻 + 二技能让他活得比谁都久。</p>
-        <p class="quote"><span class="evi x">版本风险</span>社区有明确反对声音："老夫子严重脱离版本，不建议主玩"（该作者引用的巅峰赛胜率约 50.2%，样本未公开，仅作方向参考）。<b>结论：机制上仍是顶级分推点，但强度随版本波动，别当唯一上分英雄。</b></p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">程咬金<span class="role">坦克 · 对抗路</span></div>
-        <p class="quote"><span class="evi o">官方机制</span>被动：每损失 1% 最大生命 +3~7 点物攻（随等级）；大招每秒回 8% 最大生命、+30% 移速、持续 5/6/7 秒；每次放技能回 8% 已损生命</p>
-        <p class="quote"><span class="evi c">推塔逻辑</span><b>他不是拆得快，是拆得久。</b>塔伤是百分比物穿，血量和回复才是抗塔资本。正确姿势是"血量管理"：残血时攻击力最高、能清线；吃塔伤吃到危险血量就开大回满继续赖。对面 5 人抓你时，你已经用一个人的兵线换掉了他们三路的时间。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="tier t1">
-    <div class="tier-head">
-      <span class="tier-tag">T1 · 优秀</span>
-      <div><h4>具备一项强推进要素，能稳定牵制一路</h4><p class="desc">拆得动但站不太住，或站得住但拆得慢</p></div>
-    </div>
-    <div class="tier-body">
-      <div class="hero-item">
-        <div class="hname">芈月 · 吕布 · 曹操 · 亚连</div>
-        <p class="quote"><span class="evi c">机制</span>芈月仆从清线快、单挑强，靠带线牵制（集火则大招撤离）；吕布附魔后全伤害转真伤，对拼与拆塔都快；曹操强化普攻 +35%~70% 攻速、大招解控回 18% 已损生命；亚连被动叠满攻速极快、物理吸血对真伤生效</p>
-        <p class="quote"><span class="evi x">共同短板</span>没有蒙恬那种"让塔打别人"的手段，也没有老夫子 65% 减伤，<b>越塔靠血量和操作硬吃</b>。他们的正确打法是在兵线里打、塔外压迫，而不是塔下强拆。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">刘邦</div>
-        <p class="quote"><span class="evi o">官方攻略</span>后期 41 分推、大招全图支援。他的分推逻辑不在拆塔数值，而在<b>"带线不会被惩罚"</b>——被抓可以直接传走，是容错最高的分推点。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="tier t2">
-    <div class="tier-head">
-      <span class="tier-tag">T2 · 条件型</span>
-      <div><h4>能推塔但不是核心，价值在别处</h4><p class="desc">对线压制/支援/团战价值高于拆塔</p></div>
-    </div>
-    <div class="tier-body">
-      <div class="hero-item">
-        <div class="hname">哪吒 · 杨戬 · 狂铁 · 夏侯惇</div>
-        <p class="quote">哪吒价值在全图飞人（带线 + 随时飞团），推塔一般；杨戬/狂铁/夏侯惇有真伤或强化普攻 + 回血，抗压强、单挑稳，但拆塔速度不及 T0/T1。</p>
-      </div>
-      <div class="hero-item">
-        <div class="hname">蚩奼 · 花木兰 · 达摩 · 马超 · 关羽 · 司空震</div>
-        <p class="quote">有攻速爆发或机动性，可拆塔，但更吃操作与抓人节奏。<b>提醒：花木兰重剑形态有减伤，是本档里唯一能像老夫子那样硬吃塔伤越塔的</b>。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="tier t3">
-    <div class="tier-head">
-      <span class="tier-tag">T3 · 不适合分推</span>
-      <div><h4>团战/承伤定位，带线容易被清</h4><p class="desc">不建议作为分推核心</p></div>
-    </div>
-    <div class="tier-body">
-      <div class="hero-item">
-        <div class="hname">廉颇 · 白起 · 钟无艳 · 项羽 · 猪八戒 · 梦奇 · 孙策 · 元流之子(坦克) · 元歌</div>
-        <p class="quote">以霸体/嘲讽/开团/承伤见长，清线与拆塔不是强项。项羽的定位甚至是"把敌人往自家塔下推"，与拆塔逻辑完全相反。</p>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="sec" id="sec05"><span class="num">05</span>越塔 SOP：把"能不能越"变成一个可以执行的流程</h2>
-  <p class="sec-sub">塔的机制在 02 节已经给全了，这里只做排序。按顺序错一步，越塔就是送。</p>
+  <h2 class="sec" id="sec05"><span class="num">05</span>辟谣对照：七个常见说法，六个是错的</h2>
+<div class="tbl-wrap"><table class=""><tr><th>流传的说法</th><th>实际情况</th><th>你该记住的版本</th></tr><tr><td class="">堆护甲能扛塔</td><td class="">塔伤相当于 100% 物理穿透</td><td class="">只有护盾／减伤技能／弱化能减塔伤</td></tr><tr><td class="">净化可以清塔伤递增</td><td class="">实测净化不解递增</td><td class="">用出塔重置、金身、无敌</td></tr><tr><td class="">塔伤是固定的</td><td class="">对同一目标连续攻击递增，第 6 跳封顶</td><td class="">3 跳内解决，别拖</td></tr><tr><td class="">无兵线也能偷塔</td><td class="">防偷塔机制大幅削弱无兵线推塔效率，且塔立刻转火你</td><td class="">只在残血塔＋对面全在另一侧时偷</td></tr><tr><td class="">越塔越早越赚</td><td class="">塔伤随时间增长，约 10 分钟达峰</td><td class="">早越的风险确实更低，但仍要按 3 跳算</td></tr><tr><td class="">主宰先锋只是多几个兵</td><td class="">它<b>替代</b>该路小兵，等于让对面清线成本翻倍</td><td class="">拿主宰＝推清线最慢那一路</td></tr><tr><td class="">推塔靠人多</td><td class="">人多不如有炮车、有召唤物抗伤</td><td class="">先造条件，再堆人</td></tr></table></div>
+  <h2 class="sec" id="sec06"><span class="num">06</span>甄别方法论：以后自己怎么判断一篇推塔攻略能不能信</h2>
+  <h3 class="sub">6.1 拼接稿的五个硬特征（命中两条就弃）</h3>
+<div class="tbl-wrap"><table class=""><tr><th>特征</th><th>为什么是破绽</th></tr><tr><td class="">出现「抖音精选／XX 万条评价／完播率／播放量」</td><td class="">这是短视频平台的运营数据，攻略作者拿不到，只有拼接模型会编来增加权威感</td></tr><tr><td class="">同一篇里机制数值自相矛盾</td><td class="">真人写错是稳定的错；拼接稿是两次检索拼在一起，才会「主宰 8 分钟」和「主宰 3 分钟」并存</td></tr><tr><td class="">标题写「2026 最新」，内容却是旧图鉴/旧出装</td><td class="">看装备名就能判断年代</td></tr><tr><td class="">通篇没有一句「什么时候不该这么做」</td><td class="">真攻略一定写条件和例外；拼接稿只堆「必选/必出/必带」</td></tr><tr><td class="">数值精度异常（胜率 52.7%、减伤 70%）</td><td class="">精确到小数点的胜率没有样本来源，几乎必假；官方数值一律整数区间</td></tr></table></div>
+  <h3 class="sub">6.2 来源可信度分级（本页实际采信标准）</h3>
+<div class="tbl-wrap"><table class=""><tr><th>级别</th><th>来源类型</th><th>本页怎么用它</th></tr><tr><td class="">A · 可用</td><td class="">pvp.qq.com 官方技能文本、官方英雄库</td><td class="">所有英雄数值与机制描述的唯一基准，冲突时以它为准</td></tr><tr><td class="">B · 交叉后可用</td><td class="">玩家实测文（带截图/伤害序列）、多篇一致的机制总结</td><td class="">塔伤递增、寻敌优先级、兵线波次：至少两源一致才采信，并标注「实测口径」</td></tr><tr><td class="">C · 仅作观点</td><td class="">「某英雄脱离版本」「建议别玩」类社区文章</td><td class="">标注为社区观点，不作分档依据</td></tr><tr><td class="">D · 弃用</td><td class="">AI 拼接稿、含 LoL 术语的串味文、带编造数据的文章</td><td class="">不采信任何数字</td></tr></table></div>
+  <h3 class="sub">6.3 三个交叉验证动作（两分钟能做完）</h3>
   <ol class="sop">
-    <li><b>先确认兵线在塔下。</b>有兵：塔优先打兵，你有一段免费时间。无兵：塔直接点你，且有防偷塔减伤——除非残血塔 + 敌方全员另一侧，否则不打。</li>
-    <li><b>让召唤物/兵吃第一下。</b>蒙恬先放大招士兵、米莱狄先放仆从，塔按优先级会先打它们。你自己的兵线同理。</li>
-    <li><b>不要先手打敌方英雄。</b>你对英雄造成伤害的瞬间塔会立刻转火你，把这段递增伤害留到他交位移之后。</li>
-    <li><b>算好递增节奏：第 4 跳往后退。</b>470→752→1034→1316→1598→1880，第 3 跳开始就该出范围。坦克也一样——塔伤是百分比物穿，你不是肉。</li>
-    <li><b>出范围再进 = 重置递增。</b>两人越塔要轮流进出，而不是"我肉我多抗两下"。金身/无敌也能重置，净化不能。</li>
-    <li><b>减伤叠满再进。</b>老夫子二技能（65%）、蒙恬防御姿态（10%+20%+方圆阵 20%）、召唤师技能弱化（实测 -20%）——这是塔伤面前唯一有效的抗性。</li>
-    <li><b>看时间：10 分钟后塔伤达峰，别越。</b>前期越塔和后期越塔是两个风险等级，别把"3 分钟那次成功"当经验复制。</li>
+    <li><b>对官方文本</b>：把攻略里的技能描述拿去和 pvp.qq.com 英雄页逐字比，改过措辞的就是二手转述。</li>
+    <li><b>对训练营</b>：塔伤递增、寻敌优先级这两条，训练营开自定义 3 分钟就能自己验，不用信任何人。</li>
+    <li><b>对版本</b>：看装备名和英雄名。出现早已改版／重做的机制，这篇就是旧稿换标题。</li>
   </ol>
-
-  <h2 class="sec" id="sec06"><span class="num">06</span>附：三个非对抗路的"机制型拆塔器"</h2>
-  <p class="sec-sub">它们拆塔快不是数值问题，是机制直接绕过了"英雄吃塔伤"这条线。</p>
-  <div class="tier"><div class="tier-body" style="padding:8px 20px 16px">
-    <div class="hero-item"><div class="hname">刘禅<span class="role">游走</span></div>
-      <p class="quote"><span class="evi o">官方机制</span>被动「磁力屏障」：技能对<b>机关（建筑）</b>造成等量伤害，控制效果可对机关造成干扰 1.2 秒，且技能对机关造成伤害时掠夺零件回血 280~392</p>
-      <p class="quote"><span class="evi c">为什么强</span>他是全游戏唯一把"技能伤害转成对塔伤害"的英雄，还自带回血和机关干扰（1.2 秒）。拆塔不是副业，是他的主职。</p></div>
-    <div class="hero-item"><div class="hname">米莱狄<span class="role">中路</span></div>
-      <p class="quote"><span class="evi o">官方机制</span>大招「浩劫磁场」<b>可对建筑释放</b>（眩晕无效），标记结束按期间累计伤害的 25/37/50% 爆炸；开大时范围内仆从 +100% 攻速移速冲向目标；仆从至多 5 个</p>
-      <p class="quote"><span class="evi c">为什么强</span>仆从是召唤物，塔按优先级先打仆从 → 她可以在塔外持续施压。加上大招对建筑生效，是"不需要英雄吃塔伤"的推进法师。</p></div>
-    <div class="hero-item"><div class="hname">韩信<span class="role">打野</span></div>
-      <p class="quote"><span class="evi o">官方机制</span>被动：技能命中 +50% 攻速、第四段普攻击飞；技能自带两段位移 + 横扫</p>
-      <p class="quote"><span class="evi c">为什么强</span>不靠抗塔，靠"打两下就走"。位移多意味着他能选择<b>每次只吃第 1~2 跳塔伤</b>，永远停在递增曲线最便宜的那一段。</p></div>
-  </div></div>
-
-  <h2 class="sec" id="sec07"><span class="num">07</span>甄别方法论：以后自己怎么判断一篇推塔攻略能不能信</h2>
-  <p class="sec-sub">这一节是这次整理的副产品，也是最有用的部分——因为下次你还会搜到同样的水文。</p>
-
-  <h3 class="sub">7.1 AI 拼接稿的 5 个硬特征（命中 2 条就弃）</h3>
-  <table>
-    <thead><tr><th>特征</th><th>为什么是破绽</th></tr></thead>
-    <tbody>
-      <tr><td class="name">出现"抖音精选APP / XX 万条评价 / 完播率 / 播放量"</td><td>这些是短视频平台的运营数据，攻略作者拿不到，只有拼接模型会编来增加"权威感"</td></tr>
-      <tr><td class="name">同一篇里机制数值自相矛盾</td><td>真人写错是稳定的错；拼接稿是两次检索结果拼在一起，才会"主宰 8 分钟"和"主宰 3 分钟"并存</td></tr>
-      <tr><td class="name">标题写 2026 最新，内容却是 2017 的图鉴/出装</td><td>看装备名即可判断年代（极寒风暴、不死鸟之眼时代的程咬金出装早不是主流）</td></tr>
-      <tr><td class="name">通篇没有一句"什么时候不该这么做"</td><td>真攻略一定写条件和例外；拼接稿只堆"必选/必出/必带"</td></tr>
-      <tr><td class="name">数值精度异常（胜率 52.7%、减伤 70%、兵势 1000）</td><td>精确到小数点的胜率却没有样本来源，几乎必假；官方数值一律是整数区间（65%、1000~4500）</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="sub">7.2 三个交叉验证动作</h3>
-  <div class="tips" style="margin-top:8px">
-    <div class="tip"><h5>① 拿官方技能文本对一遍数值</h5><p>减伤%、兵势上限、回血%、攻速加成——所有百分比都能在官方技能描述里查到。对不上就是二手失真。这次 8 处纠错里 5 处是这么抓出来的。</p></div>
-    <div class="tip"><h5>② 找"机制类"事实的多源一致性</h5><p>兵线波次、野怪刷新、超级兵条件这类机制，真人攻略会不约而同写对；只有一个来源说"主宰 3 分钟"，那就是它错了。</p></div>
-    <div class="tip"><h5>③ 用逻辑反证荒谬项</h5><p>"水晶破了变超级兵"——水晶破了游戏就结束了。凡是描述会导致游戏无法进行下去的机制，直接判假，不用查。</p></div>
-  </div>
-
-  <h3 class="sub">7.3 来源可信度分级（本页的实际采信标准）</h3>
-  <div class="tbl-wrap">
-  <table>
-    <thead><tr><th>级别</th><th>来源类型</th><th>本页怎么用它</th></tr></thead>
-    <tbody>
-      <tr><td class="name" style="color:var(--green)">A · 可用</td><td>pvp.qq.com 官方技能文本、官方 herolist</td><td>所有英雄数值、机制描述的唯一基准。冲突时一律以它为准</td></tr>
-      <tr><td class="name" style="color:var(--blue)">B · 交叉后可用</td><td>玩家的实测文（带截图/伤害序列）、多篇一致的机制总结</td><td>塔伤递增、寻敌优先级、兵线波次——至少两源一致才采信，并标注"实测口径"</td></tr>
-      <tr><td class="name" style="color:var(--purple)">C · 仅作观点</td><td>提出"某英雄脱离版本""建议别玩"的社区文章</td><td>标为社区观点、注明样本未公开，不作为分档依据，只作为风险提示</td></tr>
-      <tr><td class="name" style="color:var(--red)">D · 弃用</td><td>AI 拼接稿、含 LoL 术语的串味文、带编造胜率/播放数据的文章</td><td>不采信任何数字；仅当它恰好引用了可核验的官方文本时，回 A 级源复核后再用</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2 class="sec" id="sec08"><span class="num">08</span>一页速查：记住这 7 句就够</h2>
-  <div class="callout">
-    <h3>🗡️ 分推口诀</h3>
-    <p><b>1. 塔伤是百分比物穿，堆护甲没用，减伤才有用。</b></p>
-    <p><b>2. 塔对同一目标越打越疼，第 6 下封顶；出范围再进可重置。</b></p>
-    <p><b>3. 有兵线塔打兵，无兵线塔打你，且防偷塔。</b></p>
-    <p><b>4. 前 4 分钟没炮车别硬推，4 分钟后借炮车抗伤推。</b></p>
-    <p><b>5. 破高地塔 = 超级兵自动推线，这才是分推的真实目标。</b></p>
-    <p><b>6. 拆得快 ≠ 拆得久：李信/老夫子靠攻速减伤，程咬金靠回复赖线。</b></p>
-    <p><b>7. 兵线同步（131/41）比手速重要，会放线的分推点高一档。</b></p>
-  </div>
-
-<div class="srcblock">
-    <div class="srcrow"><span class="evi o">官方技能文本</span><div class="srcbody">
-      <div class="srcnote">李信、老夫子、程咬金、蒙恬等人的「攻速换减伤 / 回复赖线 / 霸体抗塔」机制，全部逐条取自官方英雄技能文本，页内已逐条标注 <span class="evi o">技能文案</span> 徽标。</div>
-    </div></div>
-    <div class="srcrow"><span class="evi c">多源咬合</span><div class="srcbody">
-      <div class="chips"><span>第一波 10 秒</span><span>每 33 秒一波</span><span>第 8 波 = 4:01 出炮车</span><span>塔伤为百分比物穿</span><span>同目标越打越疼</span><span>4:00 双龙</span><span>9:30 普通龙消失</span></div>
-      <div class="srcnote">兵线时间线可由 <code>10 + (n−1)×33</code> 自洽推出，与语料中「33 秒会再刷出新的一波小兵」逐段吻合；塔伤模型与寻敌优先级来自多篇攻略交叉后的实测口径，属<b>实测/社区口径</b>，不与官方数值混用。</div>
-    </div></div>
-    <div class="srcrow"><span class="evi x">有冲突</span><div class="srcbody">
-      <div class="srcnote">仍在流传的错口径：<b>「主宰开局 3 分钟」</b>（现 4:00）、<b>「第 7 波起有炮车」</b>（现第 8 波 = 4:01，算术可判）、<b>「黑暗暴君 / 大龙首刷 10 分钟 / 10 分钟后不再刷新」</b>（属 2019 年前老版本结构）。见到这些直接弃用整篇。</div>
-    </div></div>
-  </div>
-
+  <h2 class="sec" id="sec07"><span class="num">07</span>复盘：只统计四个数</h2>
+  <ol class="sop">
+    <li><b>越塔成功率</b>：越塔次数里成功的比例。低于一半，说明你的「3 跳内解决」判断有问题。</li>
+    <li><b>死亡时的塔状态</b>：统计死于「塔在打兵」还是「塔在打你」——后者全是站位错误。</li>
+    <li><b>炮车利用率</b>：每波带炮车的兵线，你有几次跟着进塔？低于一半等于白丢推进窗口。</li>
+    <li><b>高地破掉后的 60 秒</b>：破高地后你在做什么？如果还留在原地，超级兵的价值被浪费了。</li>
+  </ol>
+  <div class="okbox"><b>一页速查，记住七句：</b>① 4 分钟前不硬推；② 有炮车才有窗口；③ 塔先打兵再打人；④ 你打人它就转火你；⑤ 越塔按 3 跳算；⑥ 净化不解塔伤，出塔才重置；⑦ 破高地后立刻转线。</div>
   <footer>
-    <p><b>数据与真实性声明：</b>本页英雄机制与数值<b>全部来自 pvp.qq.com 官方英雄技能文本</b>（已逐条标注）；防御塔伤害模型、寻敌优先级、兵线波次、野怪刷新为<b>多源交叉后的实测口径</b>，已在文中标明"实测/社区口径"字样，不与官方数值混用；社区观点（如版本强弱判断）单独标注、注明样本未公开。</p>
-    <p><b>不含任何编造的胜率、出场率、梯度分数、播放数据。</b>实时胜率榜单依赖「王者营地」登录态接口，官方未开放公开抓取，故本站不抓取、不虚构。</p>
-    <p><b>数据时效：</b>英雄名单核验于 2026-11-26（官方 herolist = 140 位，本站攻略库 133 位；7 位新英雄待补录：刀锋宝贝、卡芬妮、星葵、皮皮、索文、绯泪、莉莉安）。其中仅绯泪属战士可能涉对抗路，但缺官方技能文本，<b>本页不臆测其强度</b>。</p>
-    <p><b>已知边界：</b>塔伤递增存在"+60%/400% 封顶"与"每跳 +282/第 6 跳封顶"两套口径，本页采信后者（有伤害序列实测），但两者都提示"后期塔伤极高"这一结论；版本更新可能让具体数值变动，以游戏内为准。</p>
-    <p>© 王者荣耀全英雄攻略 · 对抗路推塔全解 · 生成于 2026-11-26</p>
+    <p><b>官方原文：</b>本页的英雄数值、铭文、出装、连招、克制关系取自官方英雄库；<b>防御塔数值没有任何一条来自 pvp.qq.com 公告页原文</b>，全部标注为「实测口径」，可在训练营自行验证。</p>
+    <p><b>塔伤实测序列：</b>470 / 752 / 1034 / 1316 / 1598 / 1880（每跳 +282，第 6 跳封顶）；弱化实测 470 → 376。属玩家实测，不是官方公布数值。</p>
+    <p><b>不写的东西：</b>任何胜率、出场率、T0 排名。</p>
+    <p><b>关联专题：</b><a href="jungle-tempo.html">野区节奏操作手册</a> · <a href="adc-lane.html">发育路操作手册</a> · <a href="mid-roam.html">中路游走操作手册</a></p>
   </footer>
 </div>
 <script>

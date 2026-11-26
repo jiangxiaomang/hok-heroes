@@ -129,3 +129,71 @@ footer b{color:var(--text2)}
   th:first-child,td:first-child{width:42%}
   .chips span{white-space:normal}
   code{word-break:break-all}}
+
+/* ===== 操作手册组件（2026-11-26） ===== */
+/* 英雄操作卡 */
+.opcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:16px;margin-top:12px}
+.opcard{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
+.ophead{padding:12px 16px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(212,175,55,.10),transparent 70%)}
+.ophead h4{margin:0;font-size:16px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ophead h4 .otype{font-size:11.5px;font-weight:400;color:var(--text3);border:1px solid var(--line-b);border-radius:5px;padding:1px 7px}
+.opsub{margin:6px 0 0;font-size:12.5px;color:var(--text3);line-height:1.6}
+.opbody{padding:13px 16px 16px;font-size:13px;color:var(--text2)}
+.kv{display:grid;grid-template-columns:52px 1fr;gap:5px 10px;font-size:12.8px;line-height:1.65}
+.kv>span{color:var(--gold2);white-space:nowrap}
+.kv>b{font-weight:600;color:var(--text)}
+.build{font-size:12.5px;color:var(--text2);line-height:1.75}
+.build .arr{color:var(--gold2);padding:0 2px}
+.combo{font-size:12.5px;line-height:1.7;color:var(--text);margin:3px 0 0}
+.combo .seq{font-weight:700;color:var(--gold);letter-spacing:.5px}
+.combo .cdesc{color:var(--text3);font-size:12.2px}
+.startact{margin:10px 0 0;padding:9px 11px;border-left:3px solid var(--green);background:rgba(95,191,127,.07);border-radius:0 8px 8px 0;font-size:12.8px;line-height:1.7;color:var(--text2)}
+.startact b{color:var(--green)}
+.ptips{margin:9px 0 0;padding:0;list-style:none}
+.ptips li{font-size:12.6px;line-height:1.7;color:var(--text2);padding-left:13px;position:relative}
+.ptips li::before{content:"·";position:absolute;left:2px;color:var(--gold2);font-weight:700}
+.ctags{margin:9px 0 0;display:flex;flex-wrap:wrap;gap:5px}
+.ctags span{font-size:11.8px;border-radius:5px;padding:1px 7px;line-height:1.6}
+.ctags .good{color:var(--green);background:rgba(95,191,127,.10);border:1px solid rgba(95,191,127,.35)}
+.ctags .bad{color:var(--red);background:rgba(224,108,90,.10);border:1px solid rgba(224,108,90,.35)}
+.opfoot{margin:12px 0 0;padding-top:9px;border-top:1px dashed var(--line);font-size:12.2px;color:var(--text3)}
+/* 错/对 对照表 */
+.fix th:nth-child(1){color:var(--red)}
+.fix th:nth-child(2){color:var(--green)}
+.fix td:nth-child(1){color:var(--text3);text-decoration:line-through;text-decoration-color:rgba(224,108,90,.6)}
+.fix td:nth-child(2){color:var(--text)}
+
+/* ---- 英雄操作卡：头像 + 装备图标 ---- */
+.opcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;margin:14px 0 8px;align-items:stretch}
+.opcard{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold2);border-radius:12px;padding:14px 15px;display:flex;flex-direction:column}
+.ophead{display:flex;gap:11px;align-items:flex-start}
+.hava{width:46px;height:46px;border-radius:10px;object-fit:cover;border:1px solid var(--line-b);flex:0 0 auto}
+.htxt{flex:1 1 auto;min-width:0}
+.ophead h4{margin:0;font-size:16.5px;color:var(--text);display:flex;flex-wrap:wrap;align-items:baseline;gap:7px}
+.otype{font-size:11px;font-weight:400;color:var(--gold);border:1px solid var(--line-b);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.opsub{margin:3px 0 0;font-size:12.5px;color:var(--text3);line-height:1.55}
+.opbody{margin-top:9px;font-size:13px}
+.kv{display:flex;gap:8px;padding:4px 0;border-top:1px dashed var(--line);align-items:flex-start}
+.kv:first-child{border-top:0}
+.kv>span{flex:0 0 34px;color:var(--gold);font-size:11.5px;letter-spacing:.04em;padding-top:4px}
+.kv>b,.kv>div{flex:1 1 auto;min-width:0;color:var(--text2);font-weight:400}
+.build{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:2px 0 5px}
+.bno{font-size:11px;color:var(--text3);margin-right:2px}
+.arr{color:var(--text3);font-size:11px;opacity:.7}
+.eq{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:7px;padding:1px 5px 1px 1px;font-size:11px;color:var(--text2);white-space:nowrap}
+html[data-theme="light"] .eq{background:rgba(140,118,66,.06)}
+.eq img{width:22px;height:22px;border-radius:5px;display:block;flex:0 0 auto}
+.eq b{font-weight:500}
+.eq.noicon{padding:2px 6px}
+.combo{margin:3px 0;font-size:12.5px;color:var(--text2);line-height:1.6}
+.cdesc{color:var(--text3);font-size:11.5px}
+.seq{color:var(--gold);font-weight:600;letter-spacing:.03em}
+.ptips{margin:7px 0 0;padding-left:16px;font-size:12.5px;color:var(--text2)}
+.ptips li{margin:2px 0;line-height:1.6}
+.startact{margin:9px 0 0;font-size:12.5px;color:var(--text);background:rgba(244,208,63,.07);border-left:2px solid var(--gold);padding:6px 9px;border-radius:0 7px 7px 0;line-height:1.65}
+.startact b{color:var(--gold)}
+.ctags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.good,.bad{font-size:11px;border-radius:6px;padding:1px 7px}
+.good{color:var(--green);border:1px solid rgba(95,191,127,.4);background:rgba(95,191,127,.08)}
+.bad{color:var(--red);border:1px solid rgba(224,108,90,.4);background:rgba(224,108,90,.08)}
+.opfoot{margin:8px 0 0;font-size:10.5px;color:var(--text3)}
