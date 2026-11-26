@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>野区节奏全解 · 计时器 / 决策 / 英雄 / 甄别｜打野专题</title>
+<link rel="stylesheet" href="topic.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="../heroes/index.html">← 返回英雄库</a>
+    <button class="toggle" id="themeBtn">🌓 切换主题</button>
+  </div>
+
+  <header class="hero">
+    <p class="kicker">打野 · 节奏全解</p>
+    <h1>所谓「打野节奏」，<span class="accent">本质是把野区计时器翻译成决策</span></h1>
+    <p class="lead">这篇不讲「多抓人多反野」这种正确的废话。野区是一套精确到秒的刷新系统——把这套系统算清楚，抓人、反野、控龙、回野的每一个「该不该」，就都变成了减法。</p>
+    <div class="badge-row">
+      <span class="badge">四层结构：<b>机制 → 运营 → 英雄 → 校验</b></span>
+      <span class="badge">英雄机制：<b>官方技能文本</b></span>
+      <span class="badge">数值：<b>标注来源与冲突</b></span>
+      <span class="badge">不含：<b>编造胜率</b></span>
+    </div>
+  </header>
+
+  <div class="callout">
+    <h3>本页要解决的三个问题</h3>
+    <p><span class="newlist">① 野区什么时候有什么？</span>——把刷新表算成一张「时间线」，而不是背一堆数字。</p>
+    <p><span class="newlist">② 什么时候该抓人、该反野、该控龙？</span>——用时间线余量做减法，而不是靠感觉。</p>
+    <p><span class="newlist">③ 网上那套「主宰 3 分钟」「暴君 2 分钟」到底信不信？</span>——给出可复现的甄别方法，以及当前版本的口径与冲突。</p>
+  </div>
+
+  <h2 class="sec"><span class="num">01</span>机制层：野区是一台秒表</h2>
+  <p class="sec-sub">不看这一层，所有「节奏」都是玄学。下面每个数字都标了来源；有冲突的地方我会直接摊开（见 §04）。</p>
+
+  <h3 class="sub">1.1 当前版本野区时间线</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>时间点</th><th>发生了什么</th><th>对打野意味着什么</th></tr>
+      <tr><td class="num">0:30</td><td>所有野怪上线（含边路赤甲）</td><td>第一波野的起点；早于 0:30 到野区只能空等</td></tr>
+      <tr><td class="num">击杀后 70s</td><td>小野怪（含赤甲）刷新</td><td>清野顺序决定第二轮野的「接口」</td></tr>
+      <tr><td class="num">击杀后 90s</td><td><b>红 / 蓝 buff 刷新</b>，增益持续 <b>70s</b></td><td>增益只有 70s、刷新要 90s → <b>中间天然有 20 秒空窗</b>（本页最有用的一条）</td></tr>
+      <tr><td class="num">0:30</td><td>河道之灵上线，间隔 <b>60s</b>，<b>4 分钟后停刷</b></td><td>每条分路最多 4 只；中路首刷比边路早，中路开局线权从这里开始</td></tr>
+      <tr><td class="num">4:00</td><td><b>主宰 + 暴君同时上线</b>，击败后间隔 <b>4 分钟</b>重刷</td><td>前 4 分钟打野根本不该「为龙分心」；4:00 之后才有控龙这件事</td></tr>
+      <tr><td class="num">9:30</td><td>普通主宰 / 暴君<b>消失</b></td><td>9:30→10:00 有 <b>30 秒「无龙窗口」</b>，是抓人黄金期（对手常在这个节点松懈）</td></tr>
+      <tr><td class="num">10:00</td><td><b>暗影主宰 / 暗影暴君</b>上线，间隔 <b>3 分 30 秒</b></td><td>龙的收益从「兵线压力」升级为「团战数值」，控龙风险同步上升</td></tr>
+      <tr><td class="num">20:00</td><td><b>风暴龙王</b>，在两个龙坑之间<b>随机</b>刷新</td><td>位置只能看小地图；抢龙变成 5v5 团战题，不再是打野单点决策</td></tr>
+    </table>
+  </div>
+  <p class="tagline"><span class="evi o">官方公告</span>90s / 70s / 9:30 消失三项来自版本更新公告原文。<span class="evi c">社区复述</span>0:30 上线、70s 小野怪、河蟹 30s / 60s / 4 分钟停刷、4:00 双龙、10:00 暗影 3:30、20:00 龙王来自现行版本打野攻略的时间线整理，与公告项互相咬合。<span class="evi x">有冲突</span>普通龙首刷时间存在「2 分钟」与「4 分钟」两套口径，见 §04。</p>
+
+  <h3 class="sub">1.2 由时间线直接推出的四条硬结论</h3>
+  <div class="tips">
+    <div class="tip">
+      <h5>① 20 秒 buff 空窗，是你的抓人预算</h5>
+      <p>buff 增益 70s、刷新 90s。吃到 buff 的第 70 秒失效，第 90 秒才可能再刷。这 20 秒里，你身上没有 buff —— 而对面知道这一点。<b>反过来说：buff 消失的那一刻，是你最该缩的 20 秒，而不是最该开团的 20 秒。</b></p>
+    </div>
+    <div class="tip">
+      <h5>② 用「击杀时刻 + 90s」反推对面 buff</h5>
+      <p>看到对面打野在 1:05 吃了红，那他下一个红在 2:35 前后刷新。这不是玄学预判，是算术。<b>知道对面 buff 什么时候刷新，才知道该去蹲、该去抢、还是该让。</b></p>
+    </div>
+    <div class="tip">
+      <h5>③ 前 4 分钟，龙不存在</h5>
+      <p>4:00 才有主宰 / 暴君。所以开局到 4 分钟这段时间，打野的全部带宽只有两个用途：<b>刷野效率</b>和<b>线上人差</b>。「开局先去打个龙」在这套时间线下直接不成立。</p>
+    </div>
+    <div class="tip">
+      <h5>④ 9:30–10:00 是全图最容易抓人的 30 秒</h5>
+      <p>普通龙已消失、暗影龙还没上线，双方打野的「目标感」同时消失，边路最松懈。<b>这个窗口的抓人成功率，比任何一次有龙可打的时段都高</b>——因为它不依赖对手失误，只依赖系统性的注意力空档。</p>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="num">02</span>运营层：把时间线翻译成决策</h2>
+  <p class="sec-sub">机制只告诉你「什么时候有什么」，运营要回答「所以我该去哪」。</p>
+
+  <h3 class="sub">2.1 打野的三段节奏</h3>
+  <div class="ladder">
+    <div><p class="t">0:00 – 4:00</p><p class="c"><b>抢等级、抢人差</b><br>刷野不断档 + 抢河蟹 + 抓一次压线的边。此阶段目标是「不漏经验」，不是「必须杀人」。</p></div>
+    <div><p class="t">4:00 – 10:00</p><p class="c"><b>控龙 + 抓边 + 反野</b><br>龙出现后节奏由「刷」转「抢」。控龙前提永远是：敌方打野位置已知。</p></div>
+    <div><p class="t">10:00 – 20:00</p><p class="c"><b>暗影龙团</b><br>个人节奏让位团队节奏，打野变成「开团 / 抢龙 / 惩戒归属」的角色。</p></div>
+    <div><p class="t">20:00 +</p><p class="c"><b>龙王定胜负</b><br>位置随机、双方必争。此时打野的第一职责是活着 + 惩戒在手。</p></div>
+  </div>
+
+  <h3 class="sub">2.2 抓人判断的四个要素（缺一个就别去）</h3>
+  <div class="tier t0">
+    <div class="tier-head"><span class="tier-tag">决策清单</span>
+      <div><h4>抓人不是「路过就抓」，是四条件同时成立</h4><p class="desc">任何一条不成立，成功率断崖式下跌</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">① 敌方压线深度<span class="role">位置</span></div>
+        <p class="quote">对面在己方塔前补刀、或者兵线过了河道，才有「截断退路」的空间。对方在自己塔下清线时抓人，等于送一次免费回城。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">② 敌方位移 / 召唤师技能状态<span class="role">反打能力</span></div>
+        <p class="quote">有位移的射手和法师，抓人必须先把位移逼出来再进场，或者干脆绕后封退路。<b>「他技能好了没」比「他血有多少」更决定这一抓成不成。</b></p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">③ 我方线上状态<span class="role">能不能跟</span></div>
+        <p class="quote">线上血量低、没蓝、或者正被对面压着打，你来了也是 1v2。抓人前先看自家线上有没有「跟技能」的能力，而不是只看自己能不能打过。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">④ 视野：知道敌方打野在哪<span class="role">会不会被反蹲</span></div>
+        <p class="quote">不知道对面打野位置时的抓人，本质是赌博。反蹲的收益比抓人稳定得多——<b>因为它不需要对手失误，只需要对手按套路走。</b></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">2.3 反野：不是「敢不敢」，是「算不算得清」</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>前提</th><th>怎么确认</th><th>不满足的后果</th></tr>
+      <tr><td class="name">敌方打野位置已知</td><td>小地图露头 / 刚在上路抓人 / 用「击杀时刻 + 90s」算他刚吃完哪片</td><td>进去撞脸，交出惩戒还丢 buff</td></tr>
+      <tr><td class="name">有撤退路线</td><td>己方中单 / 边路能接应，或野区入口有己方视野</td><td>被三个人围在野区，人和野一起没</td></tr>
+      <tr><td class="name">惩戒在手</td><td>反野前不要用惩戒清自家野</td><td>对面回来了，buff 归属靠拼伤害，不稳</td></tr>
+      <tr><td class="name">劣势时改成「换野」</td><td>自家野区被压 → 直接去对面另一半野区</td><td>在自家野区死守 = 送人头还丢经济</td></tr>
+    </table>
+  </div>
+  <div class="okbox">
+    <b>一句话反野法则：</b>反野赚的是「时间差 + 经济差」，不是「操作」。<b>确认位置 → 再进野区</b>这个顺序一旦颠倒，反野就从稳赚变成赌博。反过来，劣势局正确的动作是<b>换野止损</b>，而不是在自家野区硬守——守野区的人永远是最后一个知道对面来了几个的人。
+  </div>
+
+  <h3 class="sub">2.4 控龙 SOP：从「想打」到「能打」</h3>
+  <ol class="sop">
+    <li><b>提前 30 秒清空附近野区。</b> 龙刷新前把自己野区清干净，控完龙才有地方可去；否则打完龙反而没节奏。</li>
+    <li><b>先拿视野，再谈开龙。</b> 龙坑两侧草丛 + 河道入口。没有视野的开龙，等于把龙送给对面打野的惩戒。</li>
+    <li><b>确认人差。</b> 敌方打野刚在哪露头、边路是不是残血。人差不足时，「开龙逼团」比「开龙吃龙」更现实。</li>
+    <li><b>惩戒留到最后一刻。</b> 血线压到惩戒线前，不要提前交；对面打野敢进来抢，靠的就是你惩戒已经用掉了这一点信息。</li>
+    <li><b>控完立刻转线 / 推塔。</b> 龙的真正收益是兵线压力，不是那点属性。吃完龙站在原地，等于浪费了它。</li>
+  </ol>
+
+  <h2 class="sec"><span class="num">03</span>英雄层：30 个打野，节奏类型比强度更重要</h2>
+  <p class="sec-sub">下面按「节奏类型」分类。技能描述取自官方技能文本，定位取自官方英雄资料——不引用任何来路不明的胜率排名。</p>
+
+  <h3 class="sub">3.1 四类打野与它们的「时间归属」</h3>
+  <div class="tier t0">
+    <div class="tier-head"><span class="tier-tag">前期入侵型</span>
+      <div><h4>强在前 4 分钟，弱在「必须一直赚」</h4><p class="desc">核心资产是「位移 / 隐身 / 双形态」带来的野区统治力</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">裴擒虎<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「虎啸风生」人虎双形态切换，切换后 1 秒内 +30% 移速并强化攻击；官方定位标注「前期入侵极强」。</p>
+        <p class="quote">双形态 = 前期同时具备「清野速度」和「对拼能力」。这类英雄的正确玩法是<b>按对面 buff 刷新时刻排班表</b>，而不是按自己舒不舒服打野。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">兰陵王<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「秘技·隐匿」准备 1.5 秒后隐身 <b>30 秒</b>，隐身时提供 20% 移速，解隐后 +50% 攻速；「秘技·影蚀」命中标记，再中一次晕眩 1 秒。</p>
+        <p class="quote">隐身的价值不是「看不见」，是<b>让对手的视野投资作废</b>。对面插了眼也白插——所以他只能用「抱团」来对冲，而这会压缩他的发育空间。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">韩信<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「杀意之枪」技能命中 +50% 攻速、第 4 次普攻击飞；「无情冲锋」冲锋后 5 秒内可二次冲锋。</p>
+        <p class="quote">多段位移 + 高攻速 = <b>刷野效率天花板</b>。官方定位也写明「刷野快、经济高、偷塔带线」。韩信的时间不属于团战，属于<b>资源</b>。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier t1">
+    <div class="tier-head"><span class="tier-tag">中期爆发型</span>
+      <div><h4>4–10 分钟的控龙与抓边主力</h4><p class="desc">需要装备 / 等级门槛，到点后单点爆发极高</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">赵云<span class="role">战士</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「龙鸣」每损失 3% 最大生命获得 1% 减伤（满血到残血最多减伤约 33%）；「天翔之龙」范围击飞，标记「感电」后普攻与技能追加额外法术伤害。</p>
+        <p class="quote">官方定位直接写「适合新手打野上分」——原因不是技能简单，而是<b>容错高</b>：减伤被动 + 稳定控制，让「抓错了」的代价比刺客低一个等级。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">澜<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「狩猎」潜水接近、「处决」大招推人收割。官方定位：「潜水加速接近，大招推人收割」。</p>
+        <p class="quote">潜水接近 = <b>绕开视野的进场方式</b>。这类英雄的抓人不需要「对面压线」，因为他的进场路径不受草丛视野限制。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">镜<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「开锋 / 裂空 / 见影」镜像与本体切换。官方定位：「飞雷神操作上限高」。</p>
+        <p class="quote">操作上限型打野的共同特征：<b>强度几乎完全由玩家折算，不由版本决定</b>。看榜单选这类英雄是典型的错配。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier t2">
+    <div class="tier-head"><span class="tier-tag">后期团战型</span>
+      <div><h4>10 分钟之后才开始赚钱</h4><p class="desc">前期别硬打，把节奏让给队友</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">典韦<span class="role">战士</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「激怒 / 红眼 / 狂暴 / 嗜血」。官方定位：「大招真伤吸血，越战越勇」。</p>
+        <p class="quote">越战越勇 = <b>前期主动出击是负收益</b>。这类打野的正确玩法是「拒绝无效支援」——把 4 分钟前的抓人机会换成刷野效率。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">阿轲<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「死吻」背后暴击必死、「幻舞」隐身回血。官方定位：「背后暴击必死，大招隐身回血」。</p>
+        <p class="quote">背后暴击的机制决定了她是<b>团战收尾者</b>，不是开团者。队友不开团，她就没有「背后」这件事。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier t3">
+    <div class="tier-head"><span class="tier-tag">功能 / 特殊机制型</span>
+      <div><h4>改变野区规则的英雄</h4><p class="desc">不是「打得过」，是「玩法不一样」</p></div>
+    </div>
+    <div class="tier-body">
+      <div class="hero-item">
+        <div class="hname">阿古朵<span class="role">射手定位 · 打野位</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「山林奇缘 / 野蛮生长 / 翻滚吧球球 / 峡谷总动员」。官方定位：「放生野怪召唤，球球抗伤输出」。</p>
+        <p class="quote">「放生野怪」这套机制，让她的野区收益结构和别人完全不同——<b>她的野怪不是经济，是兵源</b>。用「刷野速度」评价她本身就是错的尺子。</p>
+      </div>
+      <div class="hero-item">
+        <div class="hname">李白<span class="role">刺客</span></div>
+        <p class="quote"><span class="evi o">官方技能</span>「侠客行」普攻叠层解锁大招「青莲剑歌」。官方定位：「利用野怪刷大」。</p>
+        <p class="quote">野怪对李白是<b>弹药</b>。这解释了一个常见误判：李白「野区被反」的损失远大于经济差，因为他失去的是团战资格。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="warnbox">
+    <b>关于「打野强度排行」：</b>本页刻意不给 T0/T1 排名。原因是真实的强度榜需要版本内的胜率、出场率、分段分布数据，而这些数据本站在没有官方或营地接口的情况下<b>拿不到</b>——拿不到就不写，比编一个「T0 裴擒虎」更负责。本页给的是<b>节奏类型与时间归属</b>，这部分由官方技能文本直接决定，不随版本漂移。
+  </div>
+
+  <h2 class="sec"><span class="num">04</span>校验层：网上那些「龙的时间」到底信谁的</h2>
+  <p class="sec-sub">这一节比前三节更重要——因为你能背下来的数字，别人也能编。</p>
+
+  <h3 class="sub">4.1 当前真实存在的三套口径</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>口径</th><th>主张</th><th>来源性质</th><th>判断</th></tr>
+      <tr><td class="name">4:00 同刷</td><td>主宰与暴君 4:00 同时上线，间隔 4 分钟，9:30 消失（故一局最多吃 2 次）</td><td>现行版本攻略的时间线整理，与官方公告的「9:30 消失」自洽</td><td><b>本页采用</b>：三处内部自洽（4:00 → 8:00 二刷 → 9:30 消失）</td></tr>
+      <tr><td class="name">2:00 首刷</td><td>主宰暴君 1:56 出生动画、2:00 可攻击；9:56 第二次出生、10:00 可攻击</td><td>更早期体验服版本的调整说明</td><td><b>过时口径</b>：它描述的版本里还没有「9:30 消失」这条改动</td></tr>
+      <tr><td class="name">19:30 暗影消失</td><td>暗影主宰 / 暗影暴君 19:30 消失，20:00 龙王，龙王间隔 3 分钟</td><td>百科类词条，混合了不同版本的数据</td><td><b>不采用</b>：与「10:00 暗影上线、间隔 3:30」冲突，且来源未标注版本</td></tr>
+    </table>
+  </div>
+
+  <div class="crits">
+    <div class="crit">
+      <p class="claim">"主宰开局 3 分钟刷新"</p>
+      <p class="truth"><b>当前版本 4:00 才上线。</b>「3 分钟」这套说法在任何一版官方调整里都找不到对应。</p>
+      <p class="why">判断依据：如果首刷是 3 分钟，在 9:30 消失前按 4 分钟间隔只能再刷一次，与「一局最多吃 2 次」勉强吻合，<b>但和「4:00 双龙同刷」的实战体感对不上</b>。数字看着合理，恰恰是最危险的。</p>
+    </div>
+    <div class="crit">
+      <p class="claim">"暴君 2 分钟、主宰 8 分钟、10 分钟后变成黑暗暴君"</p>
+      <p class="truth"><b>这是一整套过期结构。</b>「黑暗暴君」这个命名本身就属于更早的版本。</p>
+      <p class="why">这类错误的可怕之处：<b>结构是专业的，只有数字过期</b>。它比胡编更难识别，因为读起来「像内行写的」。</p>
+    </div>
+    <div class="crit">
+      <p class="claim">"2026 最新版打野攻略，胜率 54.7%"</p>
+      <p class="truth"><b>无来源的精确胜率，就是 AI 拼接稿。</b>真正的胜率数据必须带统计口径（分段、场次、时间窗）。</p>
+      <p class="why">识别信号：精确到小数点 + 同一篇里出现多个版本口径 + 没有一处能点开的原始出处。</p>
+    </div>
+  </div>
+
+  <h3 class="sub">4.2 三步现场核验法（不依赖任何攻略）</h3>
+  <ol class="sop">
+    <li><b>对局内直接读小地图。</b> 龙坑图标亮起 = 已上线；亮着但没打 = 还在。这是唯一 100% 权威的信息源，因为它就是游戏本身。</li>
+    <li><b>做一次计时实验。</b> 击杀一只 buff，看它多久回来（应 ≈ 90 秒）；击杀一只小野怪，看多久回来（应 ≈ 70 秒）。<b>一次实验就能验证整张表是否正确。</b></li>
+    <li><b>查公告而非攻略。</b> 远古生物的时间改动一定会出现在版本更新公告里；攻略只是二手转述，转述会叠加误差，公告不会。</li>
+  </ol>
+
+  <div class="warnbox">
+    <b>本页的诚实声明：</b>时间线中的 90s / 70s / 9:30 三项有官方公告原文支撑，其余（0:30 上线、河蟹 30s、4:00 双龙、10:00 暗影、3:30 间隔、20:00 龙王）来自现行版本攻略的整理并与公告项互相咬合，但<b>没有直接拿到官方公告原文逐条核对</b>。如有疑问，请按上面的「三步现场核验法」自测——这套方法比任何一篇文章都可靠。
+  </div>
+
+  <footer>
+    <p><b>数据与来源：</b>英雄技能文本取自官方英雄技能库；野区数值标注为「官方公告 / 社区复述 / 有冲突」三类，冲突处已摊开列出（§4.1）。</p>
+    <p><b>关联专题：</b><a href="tower-push.html">推塔全解</a>（兵线波次、防御塔伤害、分推 SOP）· <a href="adc-lane.html">发育路对线</a> · <a href="mid-roam.html">中路游走</a></p>
+    <p>本页不出售任何「最新胜率」。拿不到真实数据的字段，我们写「拿不到」。</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY='hok.theme';
+  var saved=localStorage.getItem(KEY);
+  if(saved){document.documentElement.setAttribute('data-theme',saved);}
+  var btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',cur);
+    localStorage.setItem(KEY,cur);
+  });
+})();
+</script>
+</body>
+</html>

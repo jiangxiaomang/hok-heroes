@@ -4,118 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>推塔全解 · 机制 / 兵线 / 英雄 / 甄别｜对抗路分推专题</title>
-<style>
-:root{
-  --bg:#0e1218; --bg2:#121826; --card:rgba(22,28,42,.92); --card-solid:#161c2a;
-  --line:rgba(200,170,80,.20); --line-b:rgba(200,170,80,.42);
-  --text:#f5f0e6; --text2:#cdc5b6; --text3:#aca396;
-  --gold:#f4d03f; --gold2:#d4af37; --blue:#5b9bd5; --red:#e06c5a; --green:#5fbf7f; --purple:#b07fd0;
-  --shadow:0 16px 45px rgba(0,0,0,.45);
-}
-html[data-theme="light"]{
-  --bg:#f4f1e8; --bg2:#efe9da; --card:rgba(255,253,247,.97); --card-solid:#fffdf7;
-  --line:rgba(140,118,66,.22); --line-b:rgba(140,118,66,.42);
-  --text:#23262b; --text2:#444a52; --text3:#5c5749;
-  --gold:#8a6d1a; --gold2:#a8871f; --blue:#2b6cb0; --red:#b03a2e; --green:#1e8449; --purple:#7d3c98;
-  --shadow:0 10px 30px rgba(90,78,48,.16);
-}
-*{box-sizing:border-box}
-body{
-  margin:0; background:linear-gradient(180deg,var(--bg),var(--bg2));
-  color:var(--text); font-family:'Noto Serif SC',-apple-system,'PingFang SC','Microsoft YaHei',serif;
-  line-height:1.7; -webkit-font-smoothing:antialiased; min-height:100vh;
-}
-.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
-.back{color:var(--text3);text-decoration:none;font-size:14px}
-.back:hover{color:var(--gold)}
-.toggle{cursor:pointer;border:1px solid var(--line-b);background:var(--card);color:var(--text2);
-  border-radius:999px;padding:7px 16px;font-size:13px;font-family:inherit}
-.toggle:hover{border-color:var(--gold);color:var(--gold)}
-header.hero{padding:26px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
-.kicker{font-size:13px;letter-spacing:3px;color:var(--gold2);margin:0 0 10px}
-h1{font-size:30px;margin:0 0 10px;letter-spacing:1px}
-h1 .accent{color:var(--gold)}
-.lead{color:var(--text2);font-size:15px;margin:0;max-width:800px}
-.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.badge{font-size:12.5px;border:1px solid var(--line-b);border-radius:999px;padding:5px 13px;color:var(--text2);background:var(--card)}
-.badge b{color:var(--gold)}
-.callout{border:1px solid var(--line-b);border-left:4px solid var(--gold);background:var(--card);
-  border-radius:10px;padding:16px 18px;margin:0 0 30px;box-shadow:var(--shadow)}
-.callout h3{margin:0 0 8px;font-size:15px;color:var(--gold)}
-.callout p{margin:5px 0;font-size:13.5px;color:var(--text2)}
-.callout .newlist{color:var(--text);font-weight:600}
-h2.sec{font-size:21px;margin:44px 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-h2.sec::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px;display:inline-block}
-h2.sec .num{font-size:13px;color:var(--gold2);font-weight:400;letter-spacing:1px}
-h3.sub{font-size:16px;margin:26px 0 8px;color:var(--text)}
-h3.sub::before{content:"▍";color:var(--gold2);margin-right:6px}
-.sec-sub{color:var(--text3);font-size:13px;margin:0 0 18px}
-.tier{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-.tier-head{display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid var(--line)}
-.tier-tag{font-weight:700;font-size:14px;padding:5px 12px;border-radius:8px;letter-spacing:1px;white-space:nowrap}
-.t0 .tier-tag{background:rgba(244,208,63,.16);color:var(--gold);border:1px solid var(--gold2)}
-.t1 .tier-tag{background:rgba(91,155,213,.14);color:var(--blue);border:1px solid var(--blue)}
-.t2 .tier-tag{background:rgba(176,127,208,.14);color:var(--purple);border:1px solid var(--purple)}
-.t3 .tier-tag{background:rgba(154,146,132,.14);color:var(--text3);border:1px solid var(--text3)}
-.tier-head h4{margin:0;font-size:16px}
-.tier-head .desc{margin:0;font-size:12.5px;color:var(--text3)}
-.tier-body{padding:6px 20px 16px}
-.hero-item{padding:13px 0;border-bottom:1px dashed var(--line)}
-.hero-item:last-child{border-bottom:none}
-.hname{font-size:16px;font-weight:700;color:var(--text)}
-.hname .role{font-size:12px;font-weight:400;color:var(--text3);margin-left:8px}
-.quote{margin:5px 0 0;font-size:13.5px;color:var(--text2)}
-.quote::before{content:"「";color:var(--gold2)}
-.quote::after{content:"」";color:var(--gold2)}
-.evi{display:inline-block;font-size:11px;color:var(--gold2);border:1px solid var(--line-b);border-radius:5px;padding:1px 7px;margin-right:6px;vertical-align:1px;white-space:nowrap}
-.evi.o{color:var(--green);border-color:rgba(95,191,127,.45)}
-.evi.c{color:var(--blue);border-color:rgba(91,155,213,.45)}
-.evi.x{color:var(--red);border-color:rgba(224,108,90,.45)}
-table{width:100%;border-collapse:collapse;margin:10px 0 0;font-size:13.5px}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--gold);font-weight:600;font-size:13px;background:var(--card-solid)}
-td.name{font-weight:700;white-space:nowrap}
-td.num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text)}
-.tbl-wrap{overflow-x:auto}
-.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.tip{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--card);box-shadow:var(--shadow)}
-.tip h5{margin:0 0 6px;color:var(--gold);font-size:14.5px}
-.tip p{margin:0;font-size:13px;color:var(--text2)}
-/* 纠错卡 */
-.crits{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:6px}
-.crit{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:14px 16px;box-shadow:var(--shadow);
-  border-top:3px solid var(--red)}
-.crit .claim{font-size:13px;color:var(--red);text-decoration:line-through;text-decoration-thickness:1px;margin:0 0 6px}
-.crit .truth{font-size:13.2px;color:var(--text);margin:0 0 6px}
-.crit .why{font-size:12px;color:var(--text3);margin:0}
-.crit .why b{color:var(--gold2);font-weight:600}
-/* 步骤 */
-.sop{counter-reset:s;list-style:none;padding:0;margin:10px 0 0}
-.sop li{counter-increment:s;position:relative;padding:11px 0 11px 42px;border-bottom:1px dashed var(--line);font-size:13.5px;color:var(--text2)}
-.sop li:last-child{border-bottom:none}
-.sop li::before{content:counter(s);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;
-  background:rgba(244,208,63,.14);border:1px solid var(--gold2);color:var(--gold);font-size:13px;font-weight:700;
-  display:flex;align-items:center;justify-content:center}
-.sop li b{color:var(--text)}
-/* 时间轴 */
-.ladder{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:10px}
-.ladder div{padding:13px 15px;border-right:1px solid var(--line);background:var(--card)}
-.ladder div:last-child{border-right:none}
-.ladder .t{font-size:12px;color:var(--gold2);letter-spacing:1px;margin:0 0 4px}
-.ladder .c{font-size:12.8px;color:var(--text2);margin:0}
-footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text3);line-height:1.8}
-footer b{color:var(--text2)}
-.note-inline{color:var(--red);font-weight:600}
-.warnbox{border:1px solid rgba(224,108,90,.4);border-left:4px solid var(--red);background:rgba(224,108,90,.06);
-  border-radius:10px;padding:13px 16px;margin:14px 0;font-size:13px;color:var(--text2)}
-.warnbox b{color:var(--red)}
-.okbox{border:1px solid rgba(95,191,127,.38);border-left:4px solid var(--green);background:rgba(95,191,127,.06);
-  border-radius:10px;padding:13px 16px;margin:14px 0;font-size:13px;color:var(--text2)}
-.okbox b{color:var(--green)}
-.tagline{font-size:12px;color:var(--text3);margin-top:8px}
-@media(max-width:600px){h1{font-size:23px}table{font-size:12px}th,td{padding:8px}.wrap{padding:18px 14px 60px}}
-</style>
+<link rel="stylesheet" href="topic.css">
 </head>
 <body>
 <div class="wrap">
@@ -187,12 +76,13 @@ footer b{color:var(--text2)}
     <div class="crit">
       <p class="claim">"2026 最新版李信/蒙恬攻略，含胜率与好评率"</p>
       <p class="truth"><b>典型的 AI 水文。</b>同一篇里出现"抖音精选APP 52.7 万条评价""87.2% 完播率""2.8 亿播放"，再配上无法核验的胜率，就是拼接稿。</p>
-      <p class="why">还有一篇自相矛盾：第 2 段写"主宰 8 分钟首刷"，第 5 段写"主宰开局 3 分钟"。机制描述可能抄对了，<b>数字全不可信</b>。</p>
+      <p class="why">还有一篇自相矛盾：第 2 段写“主宰 8 分钟首刷”，第 5 段写“主宰开局 3 分钟”。机制描述可能抄对了，<b>数字全不可信</b>——而且这两个数在当前版本<b>都是过时的</b>：当前口径是 <b>4:00 主宰与暴君同时上线</b>。</p>
     </div>
   </div>
 
   <div class="warnbox">
-    <b>一个正在扩散的错误口径：</b>"主宰开局 3 分钟刷新"。多源一致的结论是<b>主宰 8 分钟首刷、间隔 5 分钟</b>；<b>暴君 2 分钟首刷、间隔 3 分钟</b>；10 分钟后暴君→黑暗暴君、主宰→风暴主宰。<br>
+    <b>一个正在扩散的错误口径：</b>"主宰开局 3 分钟刷新"。当前版本的口径是：<b>4:00 主宰与暴君同时上线</b>，击败后<b>间隔 4 分钟</b>重刷（故普通龙一局最多吃 2 次）；<b>9:30 消失</b>；<b>10:00 起换成暗影主宰 / 暗影暴君</b>（间隔 <b>3 分 30 秒</b>）；<b>20:00 风暴龙王</b>（两个龙坑间随机，只能看小地图）。<br>
+    <b>更隐蔽的坑：</b>"暴君 2 分钟首刷、主宰 8 分钟首刷、10 分钟后→黑暗暴君"这一整套是<b>2019 年前的老版本结构</b>——结构看着专业、数字全部过期，比胡编更难过筛。<br>
     <b>兵线口径：</b>第一波 <b>10 秒</b>，之后每 <b>33 秒</b>一波；<b>第 8 波（约 4 分 01 秒）起出现炮车</b>，即前 4 分钟没有炮车。（注：有篇文章把第 8 波写成 4 分 36 秒，与它自己列的前 7 波 33 秒间隔自相矛盾，是笔误——10+33×7=241 秒。）
   </div>
 
