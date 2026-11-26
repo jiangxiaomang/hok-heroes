@@ -109,3 +109,17 @@ footer b{color:var(--text2)}
 .okbox b{color:var(--green)}
 .tagline{font-size:13.5px;line-height:1.85;color:var(--text2);margin:12px 0 0;padding:10px 0 10px 14px;border-left:3px solid var(--line-b);background:linear-gradient(90deg,rgba(212,175,55,.05),transparent 70%)}
 @media(max-width:600px){h1{font-size:23px}table{font-size:12px}th,td{padding:8px}.wrap{padding:18px 14px 60px}}
+
+/* 分层来源块：公告引文 / 时间线 / 冲突 各自独立成行，避免徽标与长句混排 */
+.srcblock{border:1px solid var(--line-b);border-radius:10px;background:rgba(212,175,55,.045);padding:4px 16px;margin:16px 0 0}
+.srcrow{display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:start;padding:12px 0}
+.srcrow+.srcrow{border-top:1px solid var(--line-b)}
+.srcrow .evi{margin:0;text-align:center;padding:2px 6px;font-size:12px}
+.srcbody{font-size:13.5px;line-height:1.78;color:var(--text2);min-width:0}
+.quote{font-size:13px;line-height:1.75;color:var(--text);border-left:2px solid rgba(95,191,127,.45);padding-left:11px;margin:0 0 7px}
+.quote:last-of-type{margin-bottom:9px}
+.quote b{color:var(--green);font-weight:700}
+.srcnote{font-size:12.5px;line-height:1.7;color:var(--text2);opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.chips span{font-size:12.5px;line-height:1.6;color:var(--text);background:rgba(91,155,213,.10);border:1px solid rgba(91,155,213,.35);border-radius:6px;padding:2px 9px;white-space:nowrap}
+@media(max-width:640px){.srcrow{grid-template-columns:1fr;gap:7px}.srcrow .evi{justify-self:start;text-align:left}}
